@@ -3,1225 +3,4817 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta name="theme-color" content="#eaf3f4">
-<title>YOUR SOUND — あなたを、音楽にすると。</title>
-<meta name="description" content="性格・恋愛傾向・今の気持ちから、あなたに刺さる音楽を探すYOUR SOUND。">
+<meta name="theme-color" content="#eaf4f5">
+
+<title>YOUR SOUND — まだ知らない、あなたの音。</title>
+
+<meta
+  name="description"
+  content="性格・恋愛傾向・今の気持ちから、まだ出会っていない音楽を探します。"
+>
 
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@400;500;700;900&display=swap');
+
+@import url('https://fonts.googleapis.com/css2?family=Dela+Gothic+One&family=DotGothic16&family=Shippori+Mincho+B1:wght@400;600;700;800&family=Train+One&family=Zen+Kaku+Gothic+New:wght@400;500;700;900&display=swap');
 
 :root{
---ink:#111315;
---muted:#666d71;
---paper:#edf5f6;
---line:rgba(17,19,21,.18);
---b1:#d7eef2;
---b2:#e7e1f4;
---b3:#f2dfe7
+  --ink:#101315;
+  --muted:#616a70;
+  --line:rgba(16,19,21,.19);
+
+  --base:#eaf4f5;
+  --b1:#7ed6e5;
+  --b2:#d2a2e4;
+  --b3:#ffbecf;
+
+  --glow:rgba(75,202,228,.76);
+  --wash:rgba(255,255,255,.12);
 }
 
-*{box-sizing:border-box}
-html{scroll-behavior:smooth}
+
+/* ================================
+   RESET
+================================ */
+
+*{
+  box-sizing:border-box;
+}
+
+html{
+  scroll-behavior:smooth;
+}
 
 body{
-margin:0;
-min-height:100vh;
-overflow-x:hidden;
-color:var(--ink);
-font-family:"Zen Kaku Gothic New","Hiragino Kaku Gothic ProN","Yu Gothic",sans-serif;
-background:var(--paper)
+  margin:0;
+  min-height:100vh;
+  overflow-x:hidden;
+
+  color:var(--ink);
+
+  font-family:
+    "Zen Kaku Gothic New",
+    sans-serif;
+
+  background:var(--base);
+
+  transition:
+    color .9s ease,
+    background 1s ease;
 }
 
+button,
+select,
+input,
+textarea{
+  font:inherit;
+}
+
+button{
+  color:inherit;
+  -webkit-tap-highlight-color:transparent;
+}
+
+button,
+a{
+  touch-action:manipulation;
+}
+
+
+/* ================================
+   BACKGROUND
+================================ */
+
 body:before{
-content:"";
-position:fixed;
-inset:-25%;
-z-index:-2;
-background:
-radial-gradient(circle at 12% 10%,var(--b1),transparent 32%),
-radial-gradient(circle at 90% 20%,var(--b2),transparent 35%),
-radial-gradient(circle at 55% 90%,var(--b3),transparent 38%),
-#edf5f6;
-transition:background 1.4s ease;
-animation:ambient 15s ease-in-out infinite alternate
+  content:"";
+
+  position:fixed;
+  inset:-22%;
+
+  z-index:-3;
+
+  background:
+    radial-gradient(
+      circle at 12% 12%,
+      var(--b1) 0 8%,
+      transparent 38%
+    ),
+    radial-gradient(
+      circle at 92% 27%,
+      var(--b2) 0 7%,
+      transparent 43%
+    ),
+    radial-gradient(
+      circle at 48% 93%,
+      var(--b3) 0 12%,
+      transparent 48%
+    ),
+    var(--base);
+
+  filter:
+    saturate(1.5)
+    contrast(1.08);
+
+  transition:
+    background 1s cubic-bezier(.16,1,.3,1),
+    transform .7s cubic-bezier(.16,1,.3,1);
+
+  animation:
+    atmosphere
+    11s
+    ease-in-out
+    infinite
+    alternate;
 }
 
 body:after{
-content:"";
-position:fixed;
-inset:0;
-z-index:-1;
-pointer-events:none;
-opacity:.14;
-background-image:repeating-linear-gradient(0deg,transparent,transparent 2px,rgba(0,0,0,.025) 3px)
+  content:"";
+
+  position:fixed;
+
+  width:95vw;
+  aspect-ratio:1;
+
+  left:50%;
+  top:58%;
+
+  z-index:-2;
+
+  border-radius:50%;
+
+  background:var(--glow);
+
+  filter:blur(95px);
+
+  opacity:.65;
+
+  transform:
+    translate(-50%,-50%);
+
+  transition:
+    background .95s ease,
+    opacity .95s ease,
+    transform .65s cubic-bezier(.16,1,.3,1);
+
+  pointer-events:none;
 }
 
-@keyframes ambient{
-from{transform:translate(-1%,0) scale(1.03)}
-to{transform:translate(2%,-2%) scale(1.08)}
+body.mood-hit:before{
+  transform:scale(1.14);
 }
 
-button,select,input,textarea{font:inherit}
-button{color:inherit;-webkit-tap-highlight-color:transparent}
-.app{width:min(1120px,100%);margin:auto;padding:18px 18px 110px}
+body.mood-hit:after{
+  transform:
+    translate(-50%,-50%)
+    scale(1.36);
+
+  opacity:.9;
+}
+
+@keyframes atmosphere{
+  from{
+    transform:
+      translate(-2%,-1%)
+      scale(1);
+  }
+
+  to{
+    transform:
+      translate(3%,2%)
+      scale(1.09);
+  }
+}
+
+
+/* ================================
+   APP
+================================ */
+
+.app{
+  width:min(1120px,100%);
+
+  margin:auto;
+
+  padding:
+    16px
+    16px
+    110px;
+}
+
+
+/* ================================
+   HEADER
+================================ */
 
 header{
-display:flex;
-justify-content:space-between;
-align-items:center;
-min-height:55px;
-padding:8px 1px 14px;
-border-bottom:1px solid var(--ink);
-font-size:9px;
-font-weight:900;
-letter-spacing:.22em
+  display:flex;
+
+  justify-content:space-between;
+  align-items:center;
+
+  min-height:56px;
+
+  padding:
+    9px
+    1px
+    14px;
+
+  border-bottom:
+    1px solid
+    var(--ink);
+
+  font-family:
+    "DotGothic16",
+    monospace;
+
+  font-size:9px;
+
+  letter-spacing:.16em;
+
+  transition:
+    border-color .8s ease;
 }
 
-.brand{font-size:12px}
-.issue{opacity:.48}
+.brand{
+  font-size:13px;
 
-/* HERO */
+  letter-spacing:.11em;
+}
+
+.issue{
+  opacity:.55;
+}
+
+
+/* ================================
+   HERO
+================================ */
 
 .hero{
-position:relative;
-min-height:650px;
-display:flex;
-flex-direction:column;
-justify-content:center;
-padding:90px 5px 100px;
-overflow:hidden
+  position:relative;
+
+  min-height:650px;
+
+  padding:
+    78px
+    0
+    70px;
+
+  overflow:hidden;
 }
 
-.hero-disc{
-position:absolute;
-width:min(76vw,650px);
-aspect-ratio:1;
-left:50%;
-top:49%;
-transform:translate(-50%,-50%);
-border-radius:50%;
-border:1px solid rgba(17,19,21,.17);
-background:
-radial-gradient(circle at center,
-rgba(237,245,246,.94) 0 7%,
-rgba(17,19,21,.16) 7.2% 7.7%,
-transparent 8% 19%,
-rgba(17,19,21,.08) 19.3% 19.7%,
-transparent 20% 31%,
-rgba(17,19,21,.065) 31.3% 31.6%,
-transparent 32% 43%,
-rgba(17,19,21,.055) 43.3% 43.6%,
-transparent 44%),
-radial-gradient(circle at 35% 28%,rgba(255,255,255,.9),rgba(188,218,224,.45) 35%,rgba(90,110,120,.12) 65%);
-animation:discFloat 10s ease-in-out infinite alternate
+.hero-meta{
+  position:absolute;
+
+  top:75px;
+  left:2px;
+  right:2px;
+
+  display:flex;
+
+  justify-content:space-between;
+
+  font-family:
+    "DotGothic16",
+    monospace;
+
+  font-size:8px;
+
+  letter-spacing:.19em;
+
+  opacity:0;
+
+  animation:
+    metaIn
+    .35s
+    .03s
+    forwards;
 }
 
-.hero-disc:after{
-content:"";
-position:absolute;
-width:13%;
-aspect-ratio:1;
-left:50%;top:50%;
-transform:translate(-50%,-50%);
-border-radius:50%;
-background:#edf5f6;
-border:1px solid rgba(17,19,21,.2)
+
+/* 円 */
+
+.hero-orbit{
+  position:absolute;
+
+  width:min(92vw,650px);
+  aspect-ratio:1;
+
+  left:50%;
+  top:51%;
+
+  border-radius:50%;
+
+  border:
+    1px solid
+    var(--line);
+
+  opacity:0;
+
+  transform:
+    translate(-50%,-50%)
+    scale(.82);
+
+  animation:
+    orbitIn
+    1.1s
+    .12s
+    cubic-bezier(.16,1,.3,1)
+    forwards;
 }
 
-@keyframes discFloat{
-from{transform:translate(-50%,-50%) rotate(-3deg) scale(.95)}
-to{transform:translate(-50%,-52%) rotate(4deg) scale(1)}
+.hero-orbit:before,
+.hero-orbit:after{
+  content:"";
+
+  position:absolute;
+
+  border-radius:50%;
+
+  border:
+    1px solid
+    var(--line);
 }
 
-.vertical-copy{
-position:absolute;
-left:2px;top:105px;
-writing-mode:vertical-rl;
-font-size:8px;
-font-weight:700;
-letter-spacing:.28em;
-opacity:0;
-animation:fadeUp 1.4s 4.1s forwards
+.hero-orbit:before{
+  inset:13%;
+  opacity:.6;
 }
+
+.hero-orbit:after{
+  inset:32%;
+  opacity:.38;
+}
+
+
+/* ================================
+   HERO TYPOGRAPHY
+================================ */
+
+.hero-copy{
+  position:relative;
+
+  z-index:3;
+
+  display:flex;
+
+  flex-direction:column;
+
+  padding-top:105px;
+}
+
+
+/* まだ知らない */
+
+.hero-small{
+  margin-left:6%;
+
+  font-family:
+    "Shippori Mincho B1",
+    serif;
+
+  font-size:
+    clamp(29px,7vw,58px);
+
+  font-weight:600;
+
+  line-height:1;
+
+  letter-spacing:-.06em;
+
+  opacity:0;
+
+  transform:
+    translateY(26px)
+    rotate(-1deg);
+
+  animation:
+    copyReveal
+    .58s
+    .16s
+    cubic-bezier(.16,1,.3,1)
+    forwards;
+}
+
+
+/* あなたの */
+
+.hero-you{
+  align-self:flex-end;
+
+  margin:
+    14px
+    9%
+    1px
+    0;
+
+  font-family:
+    "Dela Gothic One",
+    sans-serif;
+
+  font-size:
+    clamp(30px,8.2vw,68px);
+
+  font-weight:400;
+
+  line-height:.92;
+
+  letter-spacing:-.08em;
+
+  opacity:0;
+
+  transform:
+    translateY(32px)
+    rotate(.8deg);
+
+  animation:
+    copyReveal
+    .62s
+    .42s
+    cubic-bezier(.16,1,.3,1)
+    forwards;
+}
+
+
+/* 音 */
+
+.hero-sound{
+  align-self:center;
+
+  position:relative;
+
+  margin-top:9px;
+
+  font-family:
+    "Train One",
+    sans-serif;
+
+  font-size:
+    clamp(160px,48vw,400px);
+
+  font-weight:400;
+
+  line-height:.72;
+
+  letter-spacing:-.11em;
+
+  opacity:0;
+
+  transform:
+    translateY(75px)
+    scaleX(.55)
+    scaleY(1.33)
+    rotate(-3deg);
+
+  filter:blur(12px);
+
+  animation:
+    soundReveal
+    1.05s
+    .63s
+    cubic-bezier(.16,1,.3,1)
+    forwards;
+}
+
+.hero-sound span{
+  display:inline-block;
+
+  margin-left:.03em;
+
+  font-family:
+    "Shippori Mincho B1",
+    serif;
+
+  font-size:.28em;
+
+  font-weight:800;
+
+  vertical-align:bottom;
+
+  transform:
+    translateY(-.07em)
+    rotate(8deg);
+}
+
+.hero-sound:before{
+  content:"SOUND";
+
+  position:absolute;
+
+  left:7%;
+  top:-3%;
+
+  font-family:
+    "DotGothic16",
+    monospace;
+
+  font-size:8px;
+
+  letter-spacing:.42em;
+
+  opacity:.45;
+}
+
+
+/* 左 */
+
+.hero-vertical{
+  position:absolute;
+
+  left:1px;
+  top:155px;
+
+  writing-mode:vertical-rl;
+
+  font-family:
+    "Shippori Mincho B1",
+    serif;
+
+  font-size:9px;
+
+  line-height:2;
+
+  letter-spacing:.18em;
+
+  opacity:0;
+
+  animation:
+    subtleIn
+    .45s
+    1.2s
+    forwards;
+}
+
+
+/* 右 */
 
 .hero-number{
-position:absolute;
-right:3px;top:100px;
-text-align:right;
-font-size:8px;
-line-height:1.8;
-letter-spacing:.18em;
-opacity:0;
-animation:fadeUp 1.4s 4.3s forwards
+  position:absolute;
+
+  right:1px;
+  top:150px;
+
+  text-align:right;
+
+  font-family:
+    "DotGothic16",
+    monospace;
+
+  font-size:8px;
+
+  line-height:1.8;
+
+  letter-spacing:.14em;
+
+  opacity:0;
+
+  animation:
+    subtleIn
+    .45s
+    1.3s
+    forwards;
 }
 
-.hero-title{
-position:relative;
-z-index:2;
-margin:0;
-display:flex;
-flex-direction:column;
-line-height:.88;
-letter-spacing:-.08em
-}
 
-.hero-pre{
-align-self:flex-start;
-margin-left:7%;
-font-size:clamp(25px,5vw,46px);
-font-weight:500;
-opacity:0;
-animation:copyIn 1.4s .45s cubic-bezier(.16,1,.3,1) forwards
-}
-
-.hero-music{
-align-self:center;
-position:relative;
-margin:0;
-font-size:clamp(100px,25vw,230px);
-line-height:.78;
-font-weight:900;
-letter-spacing:-.13em;
-opacity:0;
-animation:musicSlow 2.8s 1.25s cubic-bezier(.16,1,.3,1) forwards
-}
-
-.hero-music:before{
-content:"MUSIC";
-position:absolute;
-left:4%;top:-8px;
-font-size:7px;
-font-weight:900;
-letter-spacing:.28em;
-opacity:.35
-}
-
-.hero-post{
-align-self:flex-end;
-margin:14px 8% 0 0;
-font-size:clamp(29px,7vw,62px);
-font-weight:500;
-opacity:0;
-animation:copyIn 1.5s 3.65s cubic-bezier(.16,1,.3,1) forwards
-}
+/* 説明 */
 
 .hero-description{
-position:absolute;
-right:2px;bottom:45px;
-width:min(300px,67vw);
-padding-top:12px;
-border-top:1px solid var(--ink);
-font-size:11px;
-line-height:1.9;
-opacity:0;
-animation:fadeUp 1.4s 4.7s forwards
+  position:absolute;
+
+  right:0;
+  bottom:34px;
+
+  width:min(300px,72vw);
+
+  padding-top:11px;
+
+  border-top:
+    1px solid
+    var(--ink);
+
+  font-size:10px;
+
+  line-height:1.9;
+
+  opacity:0;
+
+  animation:
+    subtleIn
+    .5s
+    1.4s
+    forwards;
 }
 
 .hero-description:before{
-content:"ABOUT / YOUR SOUND";
-display:block;
-margin-bottom:7px;
-font-size:7px;
-font-weight:900;
-letter-spacing:.2em;
-opacity:.45
+  content:"DISCOVER YOUR SOUND";
+
+  display:block;
+
+  margin-bottom:7px;
+
+  font-family:
+    "DotGothic16",
+    monospace;
+
+  font-size:8px;
+
+  letter-spacing:.2em;
+
+  opacity:.53;
 }
 
-@keyframes copyIn{
-from{opacity:0;transform:translateY(28px)}
-to{opacity:1;transform:none}
+
+/* hero animations */
+
+@keyframes metaIn{
+  to{
+    opacity:.5;
+  }
 }
 
-@keyframes fadeUp{
-from{opacity:0;transform:translateY(15px)}
-to{opacity:1;transform:none}
+@keyframes copyReveal{
+  to{
+    opacity:1;
+    transform:none;
+  }
 }
 
-@keyframes musicSlow{
-0%{opacity:0;transform:translateY(80px) scaleX(.42) scaleY(1.55);filter:blur(18px)}
-35%{opacity:.45;transform:translateY(40px) scaleX(.62) scaleY(1.35);filter:blur(8px)}
-72%{opacity:1;transform:translateY(-6px) scaleX(1.08) scaleY(.94);filter:blur(0)}
-100%{opacity:1;transform:none;filter:none}
+@keyframes orbitIn{
+  to{
+    opacity:1;
+
+    transform:
+      translate(-50%,-50%)
+      scale(1);
+  }
 }
 
-/* MODES */
+@keyframes soundReveal{
+  0%{
+    opacity:0;
+
+    transform:
+      translateY(75px)
+      scaleX(.52)
+      scaleY(1.34)
+      rotate(-4deg);
+
+    filter:blur(13px);
+  }
+
+  55%{
+    opacity:1;
+
+    transform:
+      translateY(-7px)
+      scaleX(1.05)
+      scaleY(.96)
+      rotate(1deg);
+
+    filter:blur(0);
+  }
+
+  100%{
+    opacity:1;
+
+    transform:
+      translateY(0)
+      scaleX(.94)
+      scaleY(1.03)
+      rotate(-.6deg);
+
+    filter:none;
+  }
+}
+
+@keyframes subtleIn{
+  from{
+    opacity:0;
+    transform:translateY(10px);
+  }
+
+  to{
+    opacity:.62;
+    transform:none;
+  }
+}
+
+
+/* ================================
+   MODES
+================================ */
 
 .modes{
-display:grid;
-grid-template-columns:1fr 1fr;
-border-top:1px solid var(--ink);
-border-bottom:1px solid var(--ink);
-margin-top:25px
+  display:grid;
+
+  grid-template-columns:
+    1fr
+    1fr;
+
+  margin-top:25px;
+
+  border-top:
+    1px solid
+    var(--ink);
+
+  border-bottom:
+    1px solid
+    var(--ink);
 }
 
 .mode{
-min-height:135px;
-padding:22px 20px;
-border:0;
-border-right:1px solid var(--line);
-background:transparent;
-text-align:left;
-transition:.35s
+  min-height:142px;
+
+  padding:
+    22px
+    19px;
+
+  border:0;
+
+  border-right:
+    1px solid
+    var(--line);
+
+  background:transparent;
+
+  text-align:left;
+
+  transition:
+    background .35s,
+    color .35s;
 }
 
-.mode:last-child{border-right:0}
-.mode b{display:block;margin:18px 0 6px;font-size:20px;letter-spacing:-.05em}
-.mode span{display:block;font-size:10px;color:var(--muted);line-height:1.6}
-.mode.active{color:#fff;background:var(--ink)}
-.mode.active span{color:rgba(255,255,255,.6)}
-
-.panel{margin-top:50px;padding:32px 0 10px;border-top:1px solid var(--ink)}
-.hidden{display:none!important}
-
-.head{
-display:flex;
-justify-content:space-between;
-align-items:flex-end;
-gap:15px;
-margin-bottom:32px
+.mode:last-child{
+  border-right:0;
 }
 
-.head h2{margin:0;font-size:clamp(29px,5vw,48px);line-height:1;font-weight:700;letter-spacing:-.07em}
-.head small{font-size:8px;letter-spacing:.2em;opacity:.5}
+.mode:before{
+  display:block;
 
-.grid{display:grid;grid-template-columns:1fr 1fr;gap:25px 30px}
-.field.full{grid-column:1/-1}
-.field{padding-top:9px;border-top:1px solid var(--line)}
-.field label{display:block;margin-bottom:9px;font-size:9px;font-weight:700;letter-spacing:.14em;opacity:.55}
+  font-family:
+    "DotGothic16",
+    monospace;
 
-.field select,.field input,.field textarea{
-width:100%;
-padding:12px 2px;
-border:0;
-border-bottom:1px solid var(--ink);
-border-radius:0;
-outline:none;
-background:transparent;
-color:var(--ink);
-font-size:15px
+  font-size:8px;
+
+  letter-spacing:.18em;
+
+  opacity:.52;
 }
 
-.field select{height:50px}
-.field textarea{min-height:100px;resize:vertical}
-
-.seg{display:flex;margin-bottom:6px;border:1px solid var(--ink)}
-.seg button{flex:1;padding:9px;border:0;background:transparent;font-size:10px;font-weight:700}
-.seg button.active{color:#fff;background:var(--ink)}
-
-.primary{
-width:100%;
-min-height:67px;
-margin-top:36px;
-border:1px solid var(--ink);
-background:var(--ink);
-color:#fff;
-font-size:12px;
-font-weight:900;
-letter-spacing:.1em
+.mode:nth-child(1):before{
+  content:"MODE / 01";
 }
 
-.status{display:none;margin-top:12px;padding:10px 0;border-bottom:1px solid var(--line);color:var(--muted);font-size:11px}
-.error{color:#9d2845}
-.manual-note{max-width:550px;margin:-12px 0 28px;font-size:11px;line-height:1.8;color:var(--muted)}
+.mode:nth-child(2):before{
+  content:"MODE / 02";
+}
+
+.mode b{
+  display:block;
+
+  margin:
+    17px
+    0
+    7px;
+
+  font-family:
+    "Dela Gothic One",
+    sans-serif;
+
+  font-size:18px;
+
+  font-weight:400;
+
+  line-height:1.2;
+
+  letter-spacing:-.045em;
+}
+
+.mode span{
+  display:block;
+
+  font-size:10px;
+
+  line-height:1.7;
+
+  color:var(--muted);
+}
+
+.mode.active{
+  color:var(--base);
+
+  background:var(--ink);
+}
+
+.mode.active span{
+  color:var(--base);
+
+  opacity:.66;
+}
+
 
 /* ================================
-   VINYL LOADING
+   PANELS
+================================ */
+
+.panel{
+  margin-top:52px;
+
+  padding:
+    32px
+    0
+    10px;
+
+  border-top:
+    1px solid
+    var(--ink);
+}
+
+.hidden{
+  display:none!important;
+}
+
+.head{
+  display:flex;
+
+  justify-content:space-between;
+  align-items:flex-end;
+
+  gap:15px;
+
+  margin-bottom:32px;
+}
+
+.head h2{
+  margin:0;
+
+  font-family:
+    "Dela Gothic One",
+    sans-serif;
+
+  font-size:
+    clamp(26px,5vw,45px);
+
+  font-weight:400;
+
+  line-height:1;
+
+  letter-spacing:-.055em;
+}
+
+.head small{
+  font-family:
+    "DotGothic16",
+    monospace;
+
+  font-size:8px;
+
+  letter-spacing:.18em;
+
+  opacity:.5;
+}
+
+
+/* ================================
+   FORM
+================================ */
+
+.grid{
+  display:grid;
+
+  grid-template-columns:
+    1fr
+    1fr;
+
+  gap:
+    26px
+    30px;
+}
+
+.field.full{
+  grid-column:1/-1;
+}
+
+.field{
+  padding-top:9px;
+
+  border-top:
+    1px solid
+    var(--line);
+}
+
+.field label{
+  display:block;
+
+  margin-bottom:10px;
+
+  font-family:
+    "DotGothic16",
+    monospace;
+
+  font-size:9px;
+
+  letter-spacing:.12em;
+
+  opacity:.62;
+}
+
+.field select,
+.field input,
+.field textarea{
+  width:100%;
+
+  padding:
+    12px
+    2px;
+
+  border:0;
+
+  border-bottom:
+    1px solid
+    var(--ink);
+
+  border-radius:0;
+
+  outline:none;
+
+  background:transparent;
+
+  color:var(--ink);
+
+  font-size:15px;
+
+  transition:
+    color .8s ease,
+    border-color .8s ease,
+    background .2s;
+}
+
+.field select{
+  height:50px;
+}
+
+.field textarea{
+  min-height:105px;
+
+  resize:vertical;
+}
+
+.field select:focus,
+.field input:focus,
+.field textarea:focus{
+  background:var(--wash);
+}
+
+
+/* love type */
+
+.seg{
+  display:flex;
+
+  margin-bottom:7px;
+
+  border:
+    1px solid
+    var(--ink);
+}
+
+.seg button{
+  flex:1;
+
+  padding:9px;
+
+  border:0;
+
+  background:transparent;
+
+  font-family:
+    "DotGothic16",
+    monospace;
+
+  font-size:10px;
+}
+
+.seg button.active{
+  color:var(--base);
+
+  background:var(--ink);
+}
+
+
+/* ================================
+   BUTTONS
+================================ */
+
+.primary{
+  width:100%;
+
+  min-height:69px;
+
+  margin-top:38px;
+
+  border:
+    1px solid
+    var(--ink);
+
+  background:var(--ink);
+
+  color:var(--base);
+
+  font-family:
+    "Dela Gothic One",
+    sans-serif;
+
+  font-size:12px;
+
+  font-weight:400;
+
+  letter-spacing:.01em;
+
+  transition:
+    transform .2s,
+    background .4s,
+    color .4s;
+}
+
+.primary:active{
+  transform:scale(.985);
+}
+
+.status{
+  display:none;
+
+  margin-top:12px;
+
+  padding:11px 0;
+
+  border-bottom:
+    1px solid
+    var(--line);
+
+  font-size:11px;
+
+  color:var(--muted);
+}
+
+.error{
+  color:#b32550;
+}
+
+.manual-note{
+  max-width:550px;
+
+  margin:
+    -12px
+    0
+    28px;
+
+  font-size:11px;
+
+  line-height:1.8;
+
+  color:var(--muted);
+}
+
+
+/* ================================
+   LOADING
 ================================ */
 
 .loading{
-position:fixed;
-inset:0;
-z-index:100;
-display:none;
-place-items:center;
-overflow:hidden;
-background:rgba(235,244,245,.96);
-backdrop-filter:blur(24px);
--webkit-backdrop-filter:blur(24px)
+  position:fixed;
+
+  inset:0;
+
+  z-index:100;
+
+  display:none;
+
+  place-items:center;
+
+  overflow:hidden;
+
+  color:#101315;
+
+  background:
+    rgba(232,244,246,.97);
+
+  backdrop-filter:blur(25px);
+
+  -webkit-backdrop-filter:blur(25px);
 }
 
-.loading.show{display:grid}
+.loading.show{
+  display:grid;
+}
 
 .loading .marquee{
-position:absolute;
-top:8%;
-left:0;
-width:max-content;
-white-space:nowrap;
-font-size:clamp(65px,18vw,180px);
-line-height:.8;
-font-weight:900;
-letter-spacing:-.09em;
-color:rgba(17,19,21,.04);
-animation:marquee 15s linear infinite
+  position:absolute;
+
+  top:7%;
+  left:0;
+
+  width:max-content;
+
+  white-space:nowrap;
+
+  font-family:
+    "Train One",
+    sans-serif;
+
+  font-size:
+    clamp(64px,18vw,185px);
+
+  line-height:.8;
+
+  letter-spacing:-.06em;
+
+  color:
+    rgba(16,19,21,.055);
+
+  animation:
+    marquee
+    14s
+    linear
+    infinite;
 }
 
 .loading .ticker{
-position:absolute;
-bottom:7%;
-width:max-content;
-white-space:nowrap;
-font-size:8px;
-font-weight:900;
-letter-spacing:.34em;
-opacity:.38;
-animation:ticker 18s linear infinite
+  position:absolute;
+
+  bottom:7%;
+
+  width:max-content;
+
+  white-space:nowrap;
+
+  font-family:
+    "DotGothic16",
+    monospace;
+
+  font-size:8px;
+
+  letter-spacing:.24em;
+
+  opacity:.48;
+
+  animation:
+    ticker
+    17s
+    linear
+    infinite;
 }
 
 @keyframes marquee{
-from{transform:translateX(8vw)}
-to{transform:translateX(-52%)}
+  from{
+    transform:translateX(7vw);
+  }
+
+  to{
+    transform:translateX(-52%);
+  }
 }
 
 @keyframes ticker{
-from{transform:translateX(-35%)}
-to{transform:translateX(15%)}
+  from{
+    transform:translateX(-35%);
+  }
+
+  to{
+    transform:translateX(15%);
+  }
 }
 
 .load{
-position:relative;
-z-index:3;
-width:min(92vw,540px);
-min-height:570px;
-display:flex;
-flex-direction:column;
-justify-content:center;
-align-items:center;
-text-align:center
+  position:relative;
+
+  z-index:3;
+
+  width:min(92vw,540px);
+
+  min-height:570px;
+
+  display:flex;
+
+  flex-direction:column;
+
+  justify-content:center;
+  align-items:center;
+
+  text-align:center;
 }
 
+
+/* vinyl */
+
 .turntable{
-position:relative;
-width:min(75vw,350px);
-height:330px
+  position:relative;
+
+  width:min(75vw,350px);
+
+  height:330px;
 }
 
 .orb{
-position:absolute;
-width:min(62vw,270px);
-aspect-ratio:1;
-left:50%;
-top:20px;
-transform:translateX(-50%);
-border-radius:50%;
-background:
-radial-gradient(circle,#dcebed 0 4%,#111315 4.5% 6%,#cbdcde 6.5% 17%,#151719 17.5% 19%,#111315 19.5% 100%);
-box-shadow:0 32px 70px rgba(17,19,21,.24);
-animation:vinylSpin 5.2s linear infinite
+  position:absolute;
+
+  width:min(62vw,270px);
+  aspect-ratio:1;
+
+  left:50%;
+  top:20px;
+
+  transform:
+    translateX(-50%);
+
+  border-radius:50%;
+
+  background:
+    radial-gradient(
+      circle,
+      #dbecee 0 4%,
+      #101315 4.5% 6%,
+      #c6dade 6.5% 17%,
+      #151719 17.5% 19%,
+      #101315 19.5% 100%
+    );
+
+  box-shadow:
+    0
+    32px
+    70px
+    rgba(17,19,21,.25);
+
+  animation:
+    vinylSpin
+    5s
+    linear
+    infinite;
 }
 
 .orb:before{
-content:"";
-position:absolute;
-inset:7%;
-border-radius:50%;
-background:repeating-radial-gradient(circle,transparent 0 4px,rgba(255,255,255,.065) 5px,transparent 6px)
+  content:"";
+
+  position:absolute;
+
+  inset:7%;
+
+  border-radius:50%;
+
+  background:
+    repeating-radial-gradient(
+      circle,
+      transparent 0 4px,
+      rgba(255,255,255,.07) 5px,
+      transparent 6px
+    );
 }
 
 .orb:after{
-content:"YOUR\A SOUND";
-white-space:pre;
-position:absolute;
-width:27%;
-aspect-ratio:1;
-left:50%;top:50%;
-transform:translate(-50%,-50%);
-display:grid;
-place-items:center;
-border-radius:50%;
-background:#d8eaec;
-color:#111315;
-font-size:7px;
-font-weight:900;
-line-height:1.25;
-letter-spacing:.12em
+  content:"YOUR\A SOUND";
+
+  white-space:pre;
+
+  position:absolute;
+
+  width:27%;
+  aspect-ratio:1;
+
+  left:50%;
+  top:50%;
+
+  transform:
+    translate(-50%,-50%);
+
+  display:grid;
+
+  place-items:center;
+
+  border-radius:50%;
+
+  background:#d7eaed;
+
+  color:#101315;
+
+  font-family:
+    "DotGothic16",
+    monospace;
+
+  font-size:8px;
+
+  line-height:1.18;
 }
 
 .vinyl-shine{
-position:absolute;
-width:min(62vw,270px);
-aspect-ratio:1;
-left:50%;top:20px;
-transform:translateX(-50%) rotate(-30deg);
-border-radius:50%;
-background:linear-gradient(100deg,transparent 34%,rgba(255,255,255,.02) 42%,rgba(255,255,255,.23) 49%,rgba(255,255,255,.03) 57%,transparent 65%);
-animation:shine 3.2s ease-in-out infinite alternate;
-pointer-events:none
+  position:absolute;
+
+  width:min(62vw,270px);
+  aspect-ratio:1;
+
+  left:50%;
+  top:20px;
+
+  transform:
+    translateX(-50%)
+    rotate(-30deg);
+
+  border-radius:50%;
+
+  background:
+    linear-gradient(
+      100deg,
+      transparent 34%,
+      rgba(255,255,255,.02) 42%,
+      rgba(255,255,255,.26) 49%,
+      rgba(255,255,255,.03) 57%,
+      transparent 65%
+    );
+
+  animation:
+    shine
+    3s
+    ease-in-out
+    infinite
+    alternate;
+
+  pointer-events:none;
 }
 
 .arm{
-position:absolute;
-width:8px;
-height:170px;
-left:calc(50% + 120px);
-top:15px;
-border-radius:10px;
-background:#202326;
-transform-origin:50% 8px;
-transform:rotate(25deg);
-box-shadow:0 4px 12px rgba(0,0,0,.18);
-animation:armMove 4.2s ease-in-out infinite alternate
+  position:absolute;
+
+  width:8px;
+  height:170px;
+
+  left:
+    calc(50% + 120px);
+
+  top:15px;
+
+  border-radius:10px;
+
+  background:#202326;
+
+  transform-origin:
+    50% 8px;
+
+  transform:rotate(25deg);
+
+  box-shadow:
+    0
+    4px
+    12px
+    rgba(0,0,0,.2);
+
+  animation:
+    armMove
+    4s
+    ease-in-out
+    infinite
+    alternate;
 }
 
 .arm:before{
-content:"";
-position:absolute;
-width:35px;height:35px;
-border-radius:50%;
-background:#111315;
-left:50%;top:-5px;
-transform:translateX(-50%)
+  content:"";
+
+  position:absolute;
+
+  width:35px;
+  height:35px;
+
+  left:50%;
+  top:-5px;
+
+  transform:
+    translateX(-50%);
+
+  border-radius:50%;
+
+  background:#101315;
 }
 
 .arm:after{
-content:"";
-position:absolute;
-width:20px;height:27px;
-background:#111315;
-bottom:-16px;
-left:50%;
-transform:translateX(-50%) rotate(-8deg)
+  content:"";
+
+  position:absolute;
+
+  width:20px;
+  height:27px;
+
+  left:50%;
+  bottom:-16px;
+
+  transform:
+    translateX(-50%)
+    rotate(-8deg);
+
+  background:#101315;
 }
 
 @keyframes vinylSpin{
-from{transform:translateX(-50%) rotate(0)}
-to{transform:translateX(-50%) rotate(360deg)}
+  from{
+    transform:
+      translateX(-50%)
+      rotate(0);
+  }
+
+  to{
+    transform:
+      translateX(-50%)
+      rotate(360deg);
+  }
 }
 
 @keyframes shine{
-from{opacity:.3;transform:translateX(-50%) rotate(-42deg)}
-to{opacity:.95;transform:translateX(-50%) rotate(-15deg)}
+  from{
+    opacity:.3;
+
+    transform:
+      translateX(-50%)
+      rotate(-42deg);
+  }
+
+  to{
+    opacity:.96;
+
+    transform:
+      translateX(-50%)
+      rotate(-15deg);
+  }
 }
 
 @keyframes armMove{
-from{transform:rotate(23deg)}
-to{transform:rotate(29deg)}
+  from{
+    transform:rotate(23deg);
+  }
+
+  to{
+    transform:rotate(29deg);
+  }
 }
 
 .load-stage{
-font-size:8px;
-font-weight:900;
-letter-spacing:.25em;
-opacity:.42;
-margin-bottom:9px
+  margin-bottom:10px;
+
+  font-family:
+    "DotGothic16",
+    monospace;
+
+  font-size:9px;
+
+  letter-spacing:.17em;
+
+  opacity:.5;
 }
 
 .load h2{
-margin:0 0 10px;
-font-size:clamp(23px,6vw,34px);
-letter-spacing:-.06em
+  margin:
+    0
+    0
+    10px;
+
+  font-family:
+    "Dela Gothic One",
+    sans-serif;
+
+  font-size:
+    clamp(20px,5vw,30px);
+
+  font-weight:400;
+
+  line-height:1.2;
+
+  letter-spacing:-.045em;
 }
 
 .load h2:after{
-content:"●";
-font-size:7px;
-margin-left:10px;
-vertical-align:middle;
-animation:blink 1s steps(1) infinite
+  content:"●";
+
+  margin-left:10px;
+
+  font-size:7px;
+
+  vertical-align:middle;
+
+  animation:
+    blink
+    1s
+    steps(1)
+    infinite;
 }
 
-@keyframes blink{50%{opacity:.15}}
+@keyframes blink{
+  50%{
+    opacity:.15;
+  }
+}
 
 .load p{
-min-height:22px;
-margin:0;
-font-size:11px;
-color:var(--muted);
-transition:.3s
+  min-height:22px;
+
+  margin:0;
+
+  font-size:11px;
+
+  color:#616a70;
+
+  transition:.3s;
 }
 
+
 /* ================================
-   REVEAL / ONE-LINER
+   FOUND REVEAL
 ================================ */
 
 .reveal{
-position:fixed;
-inset:0;
-z-index:95;
-display:none;
-place-items:center;
-overflow:hidden;
-background:rgba(237,245,246,.97)
+  position:fixed;
+
+  inset:0;
+
+  z-index:95;
+
+  display:none;
+
+  place-items:center;
+
+  overflow:hidden;
+
+  color:#101315;
+
+  background:
+    rgba(236,246,247,.98);
 }
 
-.reveal.show{display:grid}
+.reveal.show{
+  display:grid;
+}
 
 .reveal-inner{
-width:min(900px,88vw);
-text-align:left
+  width:min(900px,88vw);
 }
 
 .reveal-kicker{
-font-size:8px;
-font-weight:900;
-letter-spacing:.25em;
-opacity:0;
-animation:revealSmall .7s .2s forwards
+  font-family:
+    "DotGothic16",
+    monospace;
+
+  font-size:9px;
+
+  letter-spacing:.2em;
+
+  opacity:0;
+
+  animation:
+    revealSmall
+    .6s
+    .12s
+    forwards;
 }
 
 .reveal-copy{
-margin:22px 0;
-font-size:clamp(43px,10vw,100px);
-line-height:1.02;
-letter-spacing:-.08em;
-font-weight:900;
-opacity:0;
-transform:translateY(50px);
-animation:revealCopy 1.35s .55s cubic-bezier(.16,1,.3,1) forwards
+  margin:
+    22px
+    0;
+
+  font-family:
+    "Shippori Mincho B1",
+    serif;
+
+  font-size:
+    clamp(38px,9vw,90px);
+
+  font-weight:700;
+
+  line-height:1.06;
+
+  letter-spacing:-.06em;
+
+  opacity:0;
+
+  transform:
+    translateY(45px);
+
+  animation:
+    revealCopy
+    1s
+    .38s
+    cubic-bezier(.16,1,.3,1)
+    forwards;
 }
 
 .reveal-type{
-padding-top:12px;
-border-top:1px solid var(--ink);
-font-size:11px;
-opacity:0;
-animation:revealSmall .8s 1.45s forwards
+  padding-top:12px;
+
+  border-top:
+    1px solid
+    #101315;
+
+  font-family:
+    "DotGothic16",
+    monospace;
+
+  font-size:9px;
+
+  letter-spacing:.12em;
+
+  opacity:0;
+
+  animation:
+    revealSmall
+    .65s
+    1.1s
+    forwards;
 }
 
 @keyframes revealCopy{
-to{opacity:1;transform:none}
+  to{
+    opacity:1;
+    transform:none;
+  }
 }
 
 @keyframes revealSmall{
-to{opacity:.55}
+  to{
+    opacity:.6;
+  }
 }
 
-/* RESULTS */
 
-.results{display:none;margin-top:75px;padding-top:40px;border-top:1px solid var(--ink)}
-.results.enter{animation:resultIn 1s cubic-bezier(.16,1,.3,1) both}
+/* ================================
+   RESULTS
+================================ */
+
+.results{
+  display:none;
+
+  margin-top:75px;
+
+  padding-top:40px;
+
+  border-top:
+    1px solid
+    var(--ink);
+}
+
+.results.enter{
+  animation:
+    resultIn
+    .9s
+    cubic-bezier(.16,1,.3,1)
+    both;
+}
 
 @keyframes resultIn{
-from{opacity:0;transform:translateY(35px)}
-to{opacity:1;transform:none}
+  from{
+    opacity:0;
+    transform:translateY(30px);
+  }
+
+  to{
+    opacity:1;
+    transform:none;
+  }
 }
 
-.type{position:relative;padding:10px 0 55px}
-.eyebrow{font-size:8px;font-weight:900;letter-spacing:.22em;opacity:.45}
 
-.type h2{
-max-width:800px;
-margin:14px 0 22px;
-font-size:clamp(42px,8vw,82px);
-line-height:.98;
-letter-spacing:-.08em
+/* ================================
+   MUSIC TYPE
+================================ */
+
+.type{
+  position:relative;
+
+  padding:
+    10px
+    0
+    55px;
+}
+
+.eyebrow{
+  font-family:
+    "DotGothic16",
+    monospace;
+
+  font-size:9px;
+
+  letter-spacing:.17em;
+
+  opacity:.54;
+}
+
+.type-title{
+  display:block;
+
+  width:100%;
+
+  margin:
+    16px
+    0
+    23px;
+
+  white-space:nowrap;
+
+  overflow:hidden;
+
+  font-family:
+    "Dela Gothic One",
+    sans-serif;
+
+  font-size:68px;
+
+  font-weight:400;
+
+  line-height:1.08;
+
+  letter-spacing:-.075em;
 }
 
 .type p{
-max-width:620px;
-margin:0;
-padding-top:14px;
-border-top:1px solid var(--line);
-font-size:12px;
-line-height:1.9;
-color:var(--muted)
+  max-width:620px;
+
+  margin:0;
+
+  padding-top:14px;
+
+  border-top:
+    1px solid
+    var(--line);
+
+  font-size:12px;
+
+  line-height:1.9;
+
+  color:var(--muted);
 }
 
-.results>.head{margin-top:20px;padding-top:13px;border-top:1px solid var(--ink)}
+.results>.head{
+  margin-top:20px;
+
+  padding-top:13px;
+
+  border-top:
+    1px solid
+    var(--ink);
+}
+
+
+/* ================================
+   CAROUSEL
+================================ */
 
 .carousel{
-display:flex;
-gap:28px;
-overflow-x:auto;
-scroll-snap-type:x mandatory;
-scrollbar-width:none;
-margin:0 -18px;
-padding:30px calc(50% - 142px) 45px
+  display:flex;
+
+  gap:28px;
+
+  overflow-x:auto;
+
+  scroll-snap-type:x mandatory;
+
+  scrollbar-width:none;
+
+  margin:
+    0
+    -16px;
+
+  padding:
+    30px
+    calc(50% - 142px)
+    45px;
 }
 
-.carousel::-webkit-scrollbar{display:none}
+.carousel::-webkit-scrollbar{
+  display:none;
+}
 
 .card{
-flex:0 0 284px;
-position:relative;
-scroll-snap-align:center;
-opacity:.25;
-transform:scale(.82) rotate(-2deg);
-transition:.55s cubic-bezier(.16,1,.3,1)
+  flex:
+    0 0 284px;
+
+  position:relative;
+
+  scroll-snap-align:center;
+
+  opacity:.22;
+
+  transform:
+    scale(.8)
+    rotate(-2deg);
+
+  transition:
+    .55s
+    cubic-bezier(.16,1,.3,1);
 }
 
-.card:nth-child(even){transform:scale(.82) rotate(2deg)}
-.card.active{opacity:1;transform:scale(1) rotate(0)}
+.card:nth-child(even){
+  transform:
+    scale(.8)
+    rotate(2deg);
+}
+
+.card.active{
+  opacity:1;
+
+  transform:
+    scale(1)
+    rotate(0);
+}
 
 .art{
-display:block;
-width:100%;
-aspect-ratio:1;
-object-fit:cover;
-border-radius:50%;
-border:1px solid rgba(17,19,21,.25);
-background:#dde8e9;
-box-shadow:0 25px 60px rgba(20,35,40,.16);
-filter:saturate(.88)
+  display:block;
+
+  width:100%;
+  aspect-ratio:1;
+
+  object-fit:cover;
+
+  border-radius:50%;
+
+  border:
+    1px solid
+    var(--line);
+
+  background:#dce8e9;
+
+  box-shadow:
+    0
+    25px
+    65px
+    rgba(20,35,40,.2);
+
+  filter:
+    saturate(1.08);
 }
 
-.card.active .art{animation:coverFloat 5s ease-in-out infinite alternate}
+.card.active .art{
+  animation:
+    coverFloat
+    5s
+    ease-in-out
+    infinite
+    alternate;
+}
 
 @keyframes coverFloat{
-to{transform:translateY(-8px) rotate(2deg)}
+  to{
+    transform:
+      translateY(-8px)
+      rotate(2deg);
+  }
 }
 
 .best{
-position:absolute;
-right:-4px;top:8px;
-z-index:3;
-padding:8px 9px;
-background:var(--ink);
-color:#fff;
-font-size:7px;
-font-weight:900;
-letter-spacing:.13em;
-transform:rotate(5deg)
+  position:absolute;
+
+  right:-4px;
+  top:8px;
+
+  z-index:3;
+
+  padding:
+    8px
+    9px;
+
+  background:var(--ink);
+
+  color:var(--base);
+
+  font-family:
+    "DotGothic16",
+    monospace;
+
+  font-size:9px;
+
+  letter-spacing:.07em;
+
+  transform:rotate(5deg);
 }
 
 .card h3{
-margin:17px 0 3px;
-overflow:hidden;
-white-space:nowrap;
-text-overflow:ellipsis;
-font-size:21px;
-letter-spacing:-.055em
+  margin:
+    18px
+    0
+    4px;
+
+  overflow:hidden;
+
+  white-space:nowrap;
+
+  text-overflow:ellipsis;
+
+  font-family:
+    "Shippori Mincho B1",
+    serif;
+
+  font-size:23px;
+
+  font-weight:700;
+
+  letter-spacing:-.055em;
 }
 
-.artist{font-size:10px;letter-spacing:.06em;color:var(--muted)}
-.dots{margin:-13px 0 30px;text-align:center;font-size:8px;letter-spacing:.35em;opacity:.55}
+.artist{
+  font-family:
+    "DotGothic16",
+    monospace;
 
-.detail{padding:35px 0;border-top:1px solid var(--ink);border-bottom:1px solid var(--ink)}
-.detail.animate{animation:detailIn .6s cubic-bezier(.16,1,.3,1)}
+  font-size:10px;
+
+  letter-spacing:.045em;
+
+  color:var(--muted);
+}
+
+.dots{
+  margin:
+    -13px
+    0
+    30px;
+
+  text-align:center;
+
+  font-size:8px;
+
+  letter-spacing:.35em;
+
+  opacity:.57;
+}
+
+
+/* ================================
+   DETAIL
+================================ */
+
+.detail{
+  padding:
+    35px
+    0;
+
+  border-top:
+    1px solid
+    var(--ink);
+
+  border-bottom:
+    1px solid
+    var(--ink);
+}
+
+.detail.animate{
+  animation:
+    detailIn
+    .6s
+    cubic-bezier(.16,1,.3,1);
+}
 
 @keyframes detailIn{
-from{opacity:.1;transform:translateY(14px);filter:blur(5px)}
-to{opacity:1;transform:none;filter:none}
+  from{
+    opacity:.1;
+
+    transform:
+      translateY(14px);
+
+    filter:blur(5px);
+  }
+
+  to{
+    opacity:1;
+    transform:none;
+    filter:none;
+  }
 }
 
-.detail-head{display:flex;justify-content:space-between;align-items:flex-start;gap:15px}
-.detail h2{max-width:760px;margin:6px 0;font-size:clamp(38px,7vw,72px);line-height:.96;letter-spacing:-.08em}
+.detail-head{
+  display:flex;
+
+  justify-content:space-between;
+  align-items:flex-start;
+
+  gap:15px;
+}
+
+.detail h2{
+  max-width:760px;
+
+  margin:
+    7px
+    0;
+
+  font-family:
+    "Shippori Mincho B1",
+    serif;
+
+  font-size:
+    clamp(37px,7vw,70px);
+
+  font-weight:700;
+
+  line-height:.97;
+
+  letter-spacing:-.065em;
+}
 
 .heart{
-flex:0 0 47px;
-width:47px;height:47px;
-border:1px solid var(--ink);
-border-radius:50%;
-background:transparent;
-font-size:20px
+  flex:
+    0 0 47px;
+
+  width:47px;
+  height:47px;
+
+  border:
+    1px solid
+    var(--ink);
+
+  border-radius:50%;
+
+  background:transparent;
+
+  color:var(--ink);
+
+  font-size:20px;
 }
 
-.info{display:grid;grid-template-columns:1fr 1fr;gap:0;margin-top:35px;border-top:1px solid var(--line)}
-.box{padding:21px 18px 21px 0;border-bottom:1px solid var(--line)}
-.box:nth-child(odd){border-right:1px solid var(--line)}
-.box:nth-child(even){padding-left:18px}
-.box h4{margin:0 0 9px;font-size:10px}
-.box p{margin:0;font-size:11px;line-height:1.85;color:var(--muted)}
+.info{
+  display:grid;
 
-.links{display:flex;flex-wrap:wrap;margin-top:25px;border:1px solid var(--ink)}
+  grid-template-columns:
+    1fr
+    1fr;
+
+  margin-top:35px;
+
+  border-top:
+    1px solid
+    var(--line);
+}
+
+.box{
+  padding:
+    21px
+    18px
+    21px
+    0;
+
+  border-bottom:
+    1px solid
+    var(--line);
+}
+
+.box:nth-child(odd){
+  border-right:
+    1px solid
+    var(--line);
+}
+
+.box:nth-child(even){
+  padding-left:18px;
+}
+
+.box h4{
+  margin:
+    0
+    0
+    9px;
+
+  font-family:
+    "DotGothic16",
+    monospace;
+
+  font-size:10px;
+
+  letter-spacing:.035em;
+}
+
+.box p{
+  margin:0;
+
+  font-size:11px;
+
+  line-height:1.85;
+
+  color:var(--muted);
+}
+
+.links{
+  display:flex;
+
+  flex-wrap:wrap;
+
+  margin-top:25px;
+
+  border:
+    1px solid
+    var(--ink);
+}
+
 .links a{
-flex:1;
-min-width:110px;
-padding:13px;
-border-right:1px solid var(--ink);
-color:var(--ink);
-text-align:center;
-text-decoration:none;
-font-size:9px;
-font-weight:900
-}
-.links a:last-child{border-right:0}
+  flex:1;
 
-.actions{display:grid;grid-template-columns:1fr 1fr;margin-top:20px;border:1px solid var(--ink)}
-.secondary{min-height:50px;border:0;border-right:1px solid var(--ink);background:transparent;font-size:10px;font-weight:900}
-.secondary:last-child{border-right:0}
+  min-width:110px;
+
+  padding:13px;
+
+  border-right:
+    1px solid
+    var(--ink);
+
+  color:var(--ink);
+
+  text-align:center;
+
+  text-decoration:none;
+
+  font-family:
+    "DotGothic16",
+    monospace;
+
+  font-size:10px;
+}
+
+.links a:last-child{
+  border-right:0;
+}
+
+.actions{
+  display:grid;
+
+  grid-template-columns:
+    1fr
+    1fr;
+
+  margin-top:20px;
+
+  border:
+    1px solid
+    var(--ink);
+}
+
+.secondary{
+  min-height:52px;
+
+  border:0;
+
+  border-right:
+    1px solid
+    var(--ink);
+
+  background:transparent;
+
+  color:var(--ink);
+
+  font-family:
+    "Dela Gothic One",
+    sans-serif;
+
+  font-size:10px;
+
+  font-weight:400;
+}
+
+.secondary:last-child{
+  border-right:0;
+}
+
+
+/* ================================
+   MOBILE
+================================ */
 
 @media(max-width:650px){
-.app{padding:15px 15px 90px}
-.hero{min-height:620px;padding-top:70px}
-.hero-disc{width:92vw}
-.hero-music{font-size:clamp(100px,31vw,150px)}
-.grid,.info{grid-template-columns:1fr}
-.field.full{grid-column:auto}
-.box:nth-child(odd){border-right:0}
-.box:nth-child(even){padding-left:0}
-.orb,.vinyl-shine{width:230px}
-.turntable{height:295px}
-.arm{height:140px;left:calc(50% + 99px)}
+
+  .app{
+    padding:
+      15px
+      15px
+      90px;
+  }
+
+  .hero{
+    min-height:620px;
+
+    padding-top:68px;
+  }
+
+  .hero-meta{
+    top:72px;
+  }
+
+  .hero-copy{
+    padding-top:105px;
+  }
+
+  .hero-you{
+    margin-right:8%;
+  }
+
+  .hero-sound{
+    font-size:
+      clamp(
+        155px,
+        48vw,
+        218px
+      );
+  }
+
+  .type-title{
+    font-size:56px;
+  }
+
+  .grid,
+  .info{
+    grid-template-columns:1fr;
+  }
+
+  .field.full{
+    grid-column:auto;
+  }
+
+  .box:nth-child(odd){
+    border-right:0;
+  }
+
+  .box:nth-child(even){
+    padding-left:0;
+  }
+
+  .orb,
+  .vinyl-shine{
+    width:230px;
+  }
+
+  .turntable{
+    height:295px;
+  }
+
+  .arm{
+    height:140px;
+
+    left:
+      calc(50% + 99px);
+  }
+
 }
 
+
+/* ================================
+   REDUCED MOTION
+================================ */
+
 @media(prefers-reduced-motion:reduce){
-*:not(.orb),*:before,*:after{animation-duration:.01ms!important;animation-iteration-count:1!important}
+
+  *,
+  *:before,
+  *:after{
+    animation-duration:.01ms!important;
+
+    animation-iteration-count:1!important;
+
+    scroll-behavior:auto!important;
+  }
+
 }
+
 </style>
 </head>
 
+
 <body>
+
 
 <div class="app">
 
+
 <header>
-<div class="brand">YOUR SOUND</div>
-<div class="issue">MUSIC CURATION / 2026</div>
+
+  <div class="brand">
+    YOUR SOUND
+  </div>
+
+  <div class="issue">
+    DISCOVER / 2026
+  </div>
+
 </header>
 
-<section class="hero">
-<div class="hero-disc"></div>
-<div class="vertical-copy">性格　恋愛　感情　そして音楽</div>
-<div class="hero-number">YS — 001<br>PERSONAL<br>MUSIC</div>
 
-<h1 class="hero-title">
-<span class="hero-pre">あなたを、</span>
-<span class="hero-music">音楽</span>
-<span class="hero-post">にすると。</span>
-</h1>
+<section class="hero">
+
+
+<div class="hero-meta">
+
+  <span>
+    PERSONAL MUSIC CURATION
+  </span>
+
+  <span>
+    YS / 001
+  </span>
+
+</div>
+
+
+<div class="hero-orbit"></div>
+
+
+<div class="hero-copy">
+
+  <div class="hero-small">
+    まだ知らない、
+  </div>
+
+  <div class="hero-you">
+    あなたの
+  </div>
+
+  <div class="hero-sound">
+    音<span>。</span>
+  </div>
+
+</div>
+
+
+<div class="hero-vertical">
+  性格　恋愛　感情<br>
+  そして音楽
+</div>
+
+
+<div class="hero-number">
+  PERSONAL<br>
+  MUSIC<br>
+  CURATION
+</div>
+
 
 <p class="hero-description">
-性格・恋愛傾向・今の気持ちから、実在する音楽の中に「今のあなたに刺さる曲」を探します。
+  性格や今の気持ちを手がかりに、
+  まだ出会っていない音楽を探します。
 </p>
+
+
 </section>
+
+
 
 <div class="modes">
-<button class="mode active" data-mode="auto">01<b>おまかせ診断</b><span>性格や恋愛傾向から選曲する。</span></button>
-<button class="mode" data-mode="manual">02<b>マニュアル選曲</b><span>気分や場面まで細かく指定する。</span></button>
+
+
+<button
+  class="mode active"
+  data-mode="auto"
+>
+
+  <b>
+    おまかせ診断
+  </b>
+
+  <span>
+    性格や恋愛傾向から、
+    今のあなたに合う音楽を探す。
+  </span>
+
+</button>
+
+
+<button
+  class="mode"
+  data-mode="manual"
+>
+
+  <b>
+    マニュアル選曲
+  </b>
+
+  <span>
+    気分や場面を指定して、
+    聴きたい音を探す。
+  </span>
+
+</button>
+
+
 </div>
 
-<section id="auto" class="panel">
-<div class="head"><h2>あなたについて</h2><small>QUICK DIAGNOSIS</small></div>
+
+
+<section
+  id="auto"
+  class="panel"
+>
+
+
+<div class="head">
+
+  <h2>
+    あなたについて
+  </h2>
+
+  <small>
+    QUICK DIAGNOSIS
+  </small>
+
+</div>
+
+
 
 <div class="grid">
 
-<div class="field">
-<label>01 / MBTI</label>
-<select id="mbti">
-<option value="">選択してください</option>
-<option>INTJ</option><option>INTP</option><option>ENTJ</option><option>ENTP</option>
-<option>INFJ</option><option>INFP</option><option>ENFJ</option><option>ENFP</option>
-<option>ISTJ</option><option>ISFJ</option><option>ESTJ</option><option>ESFJ</option>
-<option>ISTP</option><option>ISFP</option><option>ESTP</option><option>ESFP</option>
-</select>
-</div>
 
 <div class="field">
-<label>02 / 恋愛タイプ</label>
-<div class="seg">
-<button class="ls active" data-l="simple">かんたん</button>
-<button class="ls" data-l="l16">LoveType16</button>
+
+<label>
+  01 / MBTI
+</label>
+
+<select id="mbti">
+
+<option value="">
+  選択してください
+</option>
+
+<option>INTJ</option>
+<option>INTP</option>
+<option>ENTJ</option>
+<option>ENTP</option>
+
+<option>INFJ</option>
+<option>INFP</option>
+<option>ENFJ</option>
+<option>ENFP</option>
+
+<option>ISTJ</option>
+<option>ISFJ</option>
+<option>ESTJ</option>
+<option>ESFJ</option>
+
+<option>ISTP</option>
+<option>ISFP</option>
+<option>ESTP</option>
+<option>ESFP</option>
+
+</select>
+
 </div>
+
+
+
+<div class="field">
+
+<label>
+  02 / 恋愛タイプ
+</label>
+
+
+<div class="seg">
+
+<button
+  class="ls active"
+  data-l="simple"
+>
+  かんたん
+</button>
+
+<button
+  class="ls"
+  data-l="l16"
+>
+  LoveType16
+</button>
+
+</div>
+
 
 <select id="simple">
-<option value="">選択してください</option>
-<option>一途に愛する</option><option>追いかけたい</option><option>追われたい</option>
-<option>甘えたい</option><option>尽くしたい</option><option>じっくり進めたい</option>
-<option>自由な恋愛が好き</option><option>安心感を大切にする</option>
+
+<option value="">
+  選択してください
+</option>
+
+<option>一途に愛する</option>
+<option>追いかけたい</option>
+<option>追われたい</option>
+<option>甘えたい</option>
+<option>尽くしたい</option>
+<option>じっくり進めたい</option>
+<option>自由な恋愛が好き</option>
+<option>安心感を大切にする</option>
+
 </select>
 
-<select id="l16" class="hidden">
-<option value="">LoveType16を選択</option>
-<option>LCRO｜ボス猫</option><option>LCRE｜隠れベイビー</option>
-<option>LCPO｜主役体質</option><option>LCPE｜ツンデレヤンキー</option>
-<option>LARO｜憧れの先輩</option><option>LARE｜カリスマバランサー</option>
-<option>LAPO｜パーフェクトカメレオン</option><option>LAPE｜キャプテンライオン</option>
-<option>FCRO｜ロマンスマジシャン</option><option>FCRE｜ちゃっかりうさぎ</option>
-<option>FCPO｜恋愛モンスター</option><option>FCPE｜忠犬ハチ公</option>
-<option>FARO｜不思議生命体</option><option>FARE｜敏腕マネージャー</option>
-<option>FAPO｜デビル天使</option><option>FAPE｜最後の恋人</option>
+
+<select
+  id="l16"
+  class="hidden"
+>
+
+<option value="">
+  LoveType16を選択
+</option>
+
+<option>LCRO｜ボス猫</option>
+<option>LCRE｜隠れベイビー</option>
+<option>LCPO｜主役体質</option>
+<option>LCPE｜ツンデレヤンキー</option>
+<option>LARO｜憧れの先輩</option>
+<option>LARE｜カリスマバランサー</option>
+<option>LAPO｜パーフェクトカメレオン</option>
+<option>LAPE｜キャプテンライオン</option>
+<option>FCRO｜ロマンスマジシャン</option>
+<option>FCRE｜ちゃっかりうさぎ</option>
+<option>FCPO｜恋愛モンスター</option>
+<option>FCPE｜忠犬ハチ公</option>
+<option>FARO｜不思議生命体</option>
+<option>FARE｜敏腕マネージャー</option>
+<option>FAPO｜デビル天使</option>
+<option>FAPE｜最後の恋人</option>
+
 </select>
+
+
 </div>
 
+
+
 <div class="field">
-<label>03 / 性別</label>
+
+<label>
+  03 / 性別
+</label>
+
 <select id="gender">
-<option value="">選択してください</option>
-<option>男性</option><option>女性</option><option>その他</option><option>回答しない</option>
+
+<option value="">
+  選択してください
+</option>
+
+<option>男性</option>
+<option>女性</option>
+<option>その他</option>
+<option>回答しない</option>
+
 </select>
+
 </div>
 
+
+
 <div class="field">
-<label>04 / 年代</label>
+
+<label>
+  04 / 年代
+</label>
+
 <select id="age">
-<option value="">選択してください</option>
-<option>10代</option><option>20代</option><option>30代</option><option>40代</option><option>50代以上</option>
+
+<option value="">
+  選択してください
+</option>
+
+<option>10代</option>
+<option>20代</option>
+<option>30代</option>
+<option>40代</option>
+<option>50代以上</option>
+
 </select>
+
 </div>
+
+
 
 <div class="field full">
-<label>05 / 今の気分</label>
+
+<label>
+  05 / 今の気分
+</label>
+
 <select id="mood">
-<option value="">選択してください</option>
-<option>特に指定なし</option><option>恋してる</option><option>幸せ</option>
-<option>失恋した</option><option>切ない</option><option>一人で浸りたい</option>
-<option>少ししんどい</option><option>無気力</option><option>テンションを上げたい</option>
-<option>頑張りたい</option><option>深夜に聴きたい</option>
+
+<option value="">
+  選択してください
+</option>
+
+<option>特に指定なし</option>
+<option>恋してる</option>
+<option>幸せ</option>
+<option>失恋した</option>
+<option>切ない</option>
+<option>一人で浸りたい</option>
+<option>少ししんどい</option>
+<option>無気力</option>
+<option>テンションを上げたい</option>
+<option>頑張りたい</option>
+<option>深夜に聴きたい</option>
+
 </select>
-</div>
 
 </div>
 
-<button id="find" class="primary">私の音楽を探す　→</button>
-<div id="ast" class="status"></div>
+
+</div>
+
+
+
+<button
+  id="find"
+  class="primary"
+>
+  私の音を探す　→
+</button>
+
+
+<div
+  id="ast"
+  class="status"
+></div>
+
+
 </section>
 
-<section id="manual" class="panel hidden">
-<div class="head"><h2>今、聴きたい音</h2><small>MANUAL SELECTION</small></div>
-<p class="manual-note">全部埋めなくてOK。入力した条件を優先して選曲します。</p>
+
+
+<section
+  id="manual"
+  class="panel hidden"
+>
+
+
+<div class="head">
+
+  <h2>
+    今、聴きたい音
+  </h2>
+
+  <small>
+    MANUAL SELECTION
+  </small>
+
+</div>
+
+
+<p class="manual-note">
+  全部埋めなくてもOK。
+  入力した条件を優先して選曲します。
+</p>
+
+
 
 <div class="grid">
 
-<div class="field"><label>01 / 気分</label>
-<select id="mmood"><option value="">指定なし</option><option>幸せ</option><option>切ない</option><option>エモい</option><option>無気力</option><option>イライラ</option><option>ワクワク</option><option>前向きになりたい</option></select></div>
 
-<div class="field"><label>02 / シチュエーション</label>
-<select id="scene"><option value="">指定なし</option><option>通学・通勤</option><option>ドライブ</option><option>深夜</option><option>勉強</option><option>筋トレ</option><option>デート</option><option>一人で散歩</option><option>寝る前</option></select></div>
+<div class="field">
 
-<div class="field"><label>03 / 恋愛状況</label>
-<select id="romance"><option value="">指定なし</option><option>片思い</option><option>両思い</option><option>失恋</option><option>復縁したい</option><option>忘れたい</option><option>曖昧な関係</option><option>恋愛以外</option></select></div>
+<label>
+  01 / 気分
+</label>
 
-<div class="field"><label>04 / ジャンル</label>
-<select id="genre"><option value="">指定なし</option><option>J-POP</option><option>ロック</option><option>HIPHOP</option><option>R&B</option><option>ボカロ</option><option>アニソン</option><option>K-POP</option><option>洋楽</option></select></div>
+<select id="mmood">
 
-<div class="field"><label>05 / 知名度</label>
-<select id="fame"><option value="">指定なし</option><option>有名曲中心</option><option>バランスよく</option><option>隠れた名曲も</option></select></div>
+<option value="">指定なし</option>
+<option>幸せ</option>
+<option>切ない</option>
+<option>エモい</option>
+<option>無気力</option>
+<option>イライラ</option>
+<option>ワクワク</option>
+<option>前向きになりたい</option>
 
-<div class="field"><label>06 / 重視</label>
-<select id="focus"><option value="">指定なし</option><option>歌詞最優先</option><option>歌詞寄り</option><option>バランス</option><option>サウンド寄り</option><option>サウンド最優先</option></select></div>
-
-<div class="field full"><label>07 / 参考曲</label><input id="reference" placeholder="例：HANABIの切なさとサビ"></div>
-
-<div class="field full"><label>08 / 自由に伝える</label><textarea id="free" maxlength="300" placeholder="例：深夜に一人で歩きながら昔好きだった人を思い出す。でも最後は少し前向きになれる曲。"></textarea></div>
+</select>
 
 </div>
 
-<button id="mfind" class="primary">この条件で音楽を探す　→</button>
-<div id="mst" class="status"></div>
+
+
+<div class="field">
+
+<label>
+  02 / シチュエーション
+</label>
+
+<select id="scene">
+
+<option value="">指定なし</option>
+<option>通学・通勤</option>
+<option>ドライブ</option>
+<option>深夜</option>
+<option>勉強</option>
+<option>筋トレ</option>
+<option>デート</option>
+<option>一人で散歩</option>
+<option>寝る前</option>
+
+</select>
+
+</div>
+
+
+
+<div class="field">
+
+<label>
+  03 / 恋愛状況
+</label>
+
+<select id="romance">
+
+<option value="">指定なし</option>
+<option>片思い</option>
+<option>両思い</option>
+<option>失恋</option>
+<option>復縁したい</option>
+<option>忘れたい</option>
+<option>曖昧な関係</option>
+<option>恋愛以外</option>
+
+</select>
+
+</div>
+
+
+
+<div class="field">
+
+<label>
+  04 / ジャンル
+</label>
+
+<select id="genre">
+
+<option value="">指定なし</option>
+<option>J-POP</option>
+<option>ロック</option>
+<option>HIPHOP</option>
+<option>R&B</option>
+<option>ボカロ</option>
+<option>アニソン</option>
+<option>K-POP</option>
+<option>洋楽</option>
+
+</select>
+
+</div>
+
+
+
+<div class="field">
+
+<label>
+  05 / 知名度
+</label>
+
+<select id="fame">
+
+<option value="">指定なし</option>
+<option>有名曲中心</option>
+<option>バランスよく</option>
+<option>隠れた名曲も</option>
+
+</select>
+
+</div>
+
+
+
+<div class="field">
+
+<label>
+  06 / 重視
+</label>
+
+<select id="focus">
+
+<option value="">指定なし</option>
+<option>歌詞最優先</option>
+<option>歌詞寄り</option>
+<option>バランス</option>
+<option>サウンド寄り</option>
+<option>サウンド最優先</option>
+
+</select>
+
+</div>
+
+
+
+<div class="field full">
+
+<label>
+  07 / 参考曲
+</label>
+
+<input
+  id="reference"
+  placeholder="例：HANABIの切なさとサビ"
+>
+
+</div>
+
+
+
+<div class="field full">
+
+<label>
+  08 / 自由に伝える
+</label>
+
+<textarea
+  id="free"
+  maxlength="300"
+  placeholder="例：深夜に一人で歩きながら昔好きだった人を思い出す。でも最後は少し前向きになれる曲。"
+></textarea>
+
+</div>
+
+
+</div>
+
+
+
+<button
+  id="mfind"
+  class="primary"
+>
+  この条件で音を探す　→
+</button>
+
+
+<div
+  id="mst"
+  class="status"
+></div>
+
+
 </section>
 
-<section id="results" class="results">
+
+
+<section
+  id="results"
+  class="results"
+>
+
 
 <div class="type">
-<div class="eyebrow">YOUR MUSIC TYPE</div>
-<h2 id="type"></h2>
-<p id="desc"></p>
+
+<div class="eyebrow">
+  YOUR MUSIC TYPE / 001
 </div>
 
-<div class="head"><h2>Recommended</h2><small>SWIPE / SELECT</small></div>
-<div id="carousel" class="carousel"></div>
-<div id="dots" class="dots"></div>
-<article id="detail" class="detail"></article>
+<h2
+  id="type"
+  class="type-title"
+></h2>
+
+<p id="desc"></p>
+
+</div>
+
+
+
+<div class="head">
+
+<h2>
+  Recommended
+</h2>
+
+<small>
+  SWIPE / SELECT
+</small>
+
+</div>
+
+
+<div
+  id="carousel"
+  class="carousel"
+></div>
+
+
+<div
+  id="dots"
+  class="dots"
+></div>
+
+
+<article
+  id="detail"
+  class="detail"
+></article>
+
 
 <div class="actions">
-<button id="reroll" class="secondary">↻ 別の5曲</button>
-<button id="change" class="secondary">条件を変える</button>
+
+<button
+  id="reroll"
+  class="secondary"
+>
+  ↻ 別の5曲
+</button>
+
+<button
+  id="change"
+  class="secondary"
+>
+  条件を変える
+</button>
+
 </div>
+
 
 </section>
+
+
 </div>
+
+
 
 <!-- LOADING -->
-<div id="loading" class="loading">
-<div class="marquee">SEARCHING YOUR SOUND — SEARCHING YOUR SOUND — SEARCHING YOUR SOUND —</div>
+
+<div
+  id="loading"
+  class="loading"
+>
+
+
+<div class="marquee">
+  SEARCHING YOUR SOUND —
+  SEARCHING YOUR SOUND —
+  SEARCHING YOUR SOUND —
+</div>
+
 
 <div class="load">
+
+
 <div class="turntable">
-<div class="orb"></div>
-<div class="vinyl-shine"></div>
-<div class="arm"></div>
+
+  <div class="orb"></div>
+
+  <div class="vinyl-shine"></div>
+
+  <div class="arm"></div>
+
 </div>
 
-<div id="loadStage" class="load-stage">ANALYSING PERSONALITY</div>
-<h2>あなたの音楽を探しています</h2>
-<p id="lt">性格と今の気持ちを読み解いています…</p>
+
+<div
+  id="loadStage"
+  class="load-stage"
+>
+  ANALYSING PERSONALITY
 </div>
 
-<div class="ticker">PERSONALITY / EMOTION / LOVE / SOUND / CURATION / PERSONALITY / EMOTION / LOVE / SOUND / CURATION</div>
+
+<h2>
+  あなたの音を探しています
+</h2>
+
+
+<p id="lt">
+  性格と今の気持ちを読み解いています…
+</p>
+
+
 </div>
+
+
+<div class="ticker">
+  PERSONALITY /
+  EMOTION /
+  LOVE /
+  SOUND /
+  CURATION /
+  PERSONALITY /
+  EMOTION /
+  LOVE /
+  SOUND /
+  CURATION
+</div>
+
+
+</div>
+
+
 
 <!-- RESULT REVEAL -->
-<div id="reveal" class="reveal">
+
+<div
+  id="reveal"
+  class="reveal"
+>
+
 <div class="reveal-inner">
-<div class="reveal-kicker">IF YOU WERE A PIECE OF MUSIC —</div>
-<div id="revealCopy" class="reveal-copy"></div>
-<div id="revealType" class="reveal-type"></div>
+
+  <div class="reveal-kicker">
+    FOUND / YOUR SOUND
+  </div>
+
+  <div
+    id="revealCopy"
+    class="reveal-copy"
+  ></div>
+
+  <div
+    id="revealType"
+    class="reveal-type"
+  ></div>
+
 </div>
+
 </div>
+
+
 
 <script>
-const $=x=>document.getElementById(x);
 
-let mode="auto",lm="simple",last=null,songs=[],idx=0,timer,stageTimer;
+const $ =
+  id =>
+  document.getElementById(id);
 
-const msgs=[
-["ANALYSING PERSONALITY","性格と今の気持ちを読み解いています…"],
-["READING EMOTION","今の感情の温度を探っています…"],
-["SEARCHING MUSIC","あなたに重なる音楽を探しています…"],
-["VERIFYING TRACKS","実在する曲を確認しています…"],
-["CURATING YOUR SOUND","刺さるポイントを分析しています…"]
+
+let mode =
+  "auto";
+
+let loveMode =
+  "simple";
+
+let lastRequest =
+  null;
+
+let songs =
+  [];
+
+let currentIndex =
+  0;
+
+let loadingTimer;
+
+
+/* ================================
+   LOADING TEXT
+================================ */
+
+const loadingMessages = [
+
+  [
+    "ANALYSING PERSONALITY",
+    "性格と今の気持ちを読み解いています…"
+  ],
+
+  [
+    "READING EMOTION",
+    "今の感情の温度を探っています…"
+  ],
+
+  [
+    "SEARCHING MUSIC",
+    "まだ知らない音楽を探しています…"
+  ],
+
+  [
+    "VERIFYING TRACKS",
+    "実在する曲を確認しています…"
+  ],
+
+  [
+    "CURATING YOUR SOUND",
+    "あなたに刺さる理由を分析しています…"
+  ]
+
 ];
 
-document.querySelectorAll(".mode").forEach(b=>b.onclick=()=>{
-mode=b.dataset.mode;
-document.querySelectorAll(".mode").forEach(x=>x.classList.toggle("active",x===b));
-$("auto").classList.toggle("hidden",mode!="auto");
-$("manual").classList.toggle("hidden",mode!="manual");
+
+/* ================================
+   MODES
+================================ */
+
+document
+.querySelectorAll(".mode")
+.forEach(button => {
+
+  button.onclick =
+  () => {
+
+    mode =
+      button.dataset.mode;
+
+
+    document
+    .querySelectorAll(".mode")
+    .forEach(item => {
+
+      item.classList.toggle(
+        "active",
+        item === button
+      );
+
+    });
+
+
+    $("auto")
+    .classList
+    .toggle(
+      "hidden",
+      mode !== "auto"
+    );
+
+
+    $("manual")
+    .classList
+    .toggle(
+      "hidden",
+      mode !== "manual"
+    );
+
+  };
+
 });
 
-document.querySelectorAll(".ls").forEach(b=>b.onclick=()=>{
-lm=b.dataset.l;
-document.querySelectorAll(".ls").forEach(x=>x.classList.toggle("active",x===b));
-$("simple").classList.toggle("hidden",lm!="simple");
-$("l16").classList.toggle("hidden",lm!="l16");
+
+/* ================================
+   LOVE TYPE
+================================ */
+
+document
+.querySelectorAll(".ls")
+.forEach(button => {
+
+  button.onclick =
+  () => {
+
+    loveMode =
+      button.dataset.l;
+
+
+    document
+    .querySelectorAll(".ls")
+    .forEach(item => {
+
+      item.classList.toggle(
+        "active",
+        item === button
+      );
+
+    });
+
+
+    $("simple")
+    .classList
+    .toggle(
+      "hidden",
+      loveMode !== "simple"
+    );
+
+
+    $("l16")
+    .classList
+    .toggle(
+      "hidden",
+      loveMode !== "l16"
+    );
+
+  };
+
 });
 
-function st(id,s,e=0){
-let x=$(id);
-x.style.display="block";
-x.textContent=s;
-x.className="status"+(e?" error":"");
+
+/* ================================
+   STATUS
+================================ */
+
+function setStatus(
+  id,
+  text,
+  error = false
+){
+
+  const element =
+    $(id);
+
+
+  element.style.display =
+    "block";
+
+
+  element.textContent =
+    text;
+
+
+  element.className =
+    error
+    ?
+    "status error"
+    :
+    "status";
+
 }
 
-function load(on){
-if(on){
-let i=0;
-$("loading").classList.add("show");
-$("loadStage").textContent=msgs[0][0];
-$("lt").textContent=msgs[0][1];
 
-timer=setInterval(()=>{
-i=(i+1)%msgs.length;
-$("lt").style.opacity="0";
-$("lt").style.transform="translateY(5px)";
+/* ================================
+   LOADING
+================================ */
 
-setTimeout(()=>{
-$("loadStage").textContent=msgs[i][0];
-$("lt").textContent=msgs[i][1];
-$("lt").style.opacity="1";
-$("lt").style.transform="none";
-},220);
-},1800);
-}else{
-clearInterval(timer);
-$("loading").classList.remove("show");
+function setLoading(
+  active
+){
+
+  if(active){
+
+    let index =
+      0;
+
+
+    $("loading")
+    .classList
+    .add("show");
+
+
+    $("loadStage")
+    .textContent =
+      loadingMessages[0][0];
+
+
+    $("lt")
+    .textContent =
+      loadingMessages[0][1];
+
+
+    loadingTimer =
+      setInterval(
+        () => {
+
+          index =
+            (
+              index + 1
+            )
+            %
+            loadingMessages.length;
+
+
+          $("lt")
+          .style.opacity =
+            "0";
+
+
+          $("lt")
+          .style.transform =
+            "translateY(5px)";
+
+
+          setTimeout(
+            () => {
+
+              $("loadStage")
+              .textContent =
+                loadingMessages[index][0];
+
+
+              $("lt")
+              .textContent =
+                loadingMessages[index][1];
+
+
+              $("lt")
+              .style.opacity =
+                "1";
+
+
+              $("lt")
+              .style.transform =
+                "none";
+
+            },
+            220
+          );
+
+        },
+        1800
+      );
+
+  }
+  else{
+
+    clearInterval(
+      loadingTimer
+    );
+
+
+    $("loading")
+    .classList
+    .remove("show");
+
+  }
+
 }
+
+
+/* ================================
+   HTML ESCAPE
+================================ */
+
+function escapeHTML(
+  value = ""
+){
+
+  return String(value)
+  .replace(
+    /[&<>"']/g,
+    char => ({
+
+      "&":"&amp;",
+      "<":"&lt;",
+      ">":"&gt;",
+      '"':"&quot;",
+      "'":"&#039;"
+
+    }[char])
+  );
+
 }
 
-function esc(s=""){
-return String(s).replace(/[&<>"']/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"}[m]));
-}
 
-$("find").onclick=()=>{
-let p={
-mode:"auto",
-mbti:$("mbti").value,
-love:lm=="simple"?$("simple").value:$("l16").value,
-gender:$("gender").value,
-age:$("age").value,
-mood:$("mood").value
+/* ================================
+   AUTO FORM
+================================ */
+
+$("find")
+.onclick =
+() => {
+
+  const payload = {
+
+    mode:"auto",
+
+    mbti:
+      $("mbti").value,
+
+    love:
+      loveMode === "simple"
+      ?
+      $("simple").value
+      :
+      $("l16").value,
+
+    gender:
+      $("gender").value,
+
+    age:
+      $("age").value,
+
+    mood:
+      $("mood").value
+
+  };
+
+
+  if(
+    !payload.mbti ||
+    !payload.love ||
+    !payload.gender ||
+    !payload.age ||
+    !payload.mood
+  ){
+
+    setStatus(
+      "ast",
+      "すべて選んでください。",
+      true
+    );
+
+    return;
+
+  }
+
+
+  requestMusic(
+    payload,
+    "ast"
+  );
+
 };
 
-if(Object.values(p).some((v,i)=>i&&!v))
-return st("ast","すべて選んでください。",1);
 
-go(p,"ast");
+/* ================================
+   MANUAL FORM
+================================ */
+
+$("mfind")
+.onclick =
+() => {
+
+  const payload = {
+
+    mode:"manual",
+
+    mood:
+      $("mmood").value,
+
+    scene:
+      $("scene").value,
+
+    romance:
+      $("romance").value,
+
+    genre:
+      $("genre").value,
+
+    fame:
+      $("fame").value,
+
+    focus:
+      $("focus").value,
+
+    reference:
+      $("reference")
+      .value
+      .trim(),
+
+    freeText:
+      $("free")
+      .value
+      .trim()
+
+  };
+
+
+  const hasCondition =
+    Object
+    .values(payload)
+    .slice(1)
+    .some(Boolean);
+
+
+  if(!hasCondition){
+
+    setStatus(
+      "mst",
+      "少なくとも1つ条件を入れてください。",
+      true
+    );
+
+    return;
+
+  }
+
+
+  requestMusic(
+    payload,
+    "mst"
+  );
+
 };
 
-$("mfind").onclick=()=>{
-let p={
-mode:"manual",
-mood:$("mmood").value,
-scene:$("scene").value,
-romance:$("romance").value,
-genre:$("genre").value,
-fame:$("fame").value,
-focus:$("focus").value,
-reference:$("reference").value.trim(),
-freeText:$("free").value.trim()
-};
 
-if(!Object.values(p).slice(1).some(Boolean))
-return st("mst","少なくとも1つ条件を入れてください。",1);
+/* ================================
+   API
+================================ */
 
-go(p,"mst");
-};
+async function requestMusic(
+  payload,
+  statusId
+){
 
-async function go(p,sid){
-last=p;
-load(1);
+  lastRequest =
+    payload;
 
-try{
-let r=await fetch("/api/recommend",{
-method:"POST",
-headers:{"Content-Type":"application/json"},
-body:JSON.stringify(p)
-});
 
-let d=await r.json();
+  setLoading(
+    true
+  );
 
-if(!r.ok)throw Error(d.error||"取得に失敗しました");
-if(!d.recommendations?.length)throw Error("曲を確認できませんでした。もう一度試してください。");
 
-songs=d.recommendations;
+  try{
 
-$("type").textContent=d.listenerType||"今のあなたのための5曲";
-$("desc").textContent=d.listenerDescription||"";
+    const response =
+      await fetch(
+        "/api/recommend",
+        {
 
-render();
-pick(0);
+          method:"POST",
 
-load(0);
+          headers:{
+            "Content-Type":
+              "application/json"
+          },
 
-await revealResult(d);
+          body:
+            JSON.stringify(payload)
 
-$("results").style.display="block";
-$("results").classList.remove("enter");
-void $("results").offsetWidth;
-$("results").classList.add("enter");
+        }
+      );
 
-setTimeout(()=>$("results").scrollIntoView({behavior:"smooth"}),150);
 
-st(sid,"選曲が完成しました。");
-}catch(e){
-load(0);
-st(sid,e.message,1);
+    let data;
+
+
+    try{
+
+      data =
+        await response.json();
+
+    }
+    catch{
+
+      throw new Error(
+        "サーバーから正しい応答を受け取れませんでした。"
+      );
+
+    }
+
+
+    if(!response.ok){
+
+      throw new Error(
+        data.error ||
+        "選曲に失敗しました。"
+      );
+
+    }
+
+
+    if(
+      !Array.isArray(
+        data.recommendations
+      )
+      ||
+      !data.recommendations.length
+    ){
+
+      throw new Error(
+        "曲を確認できませんでした。もう一度試してください。"
+      );
+
+    }
+
+
+    songs =
+      data.recommendations;
+
+
+    setMusicType(
+      data.listenerType ||
+      "未知音探索派"
+    );
+
+
+    $("desc")
+    .textContent =
+      data.listenerDescription ||
+      "";
+
+
+    renderCards();
+
+
+    selectSong(
+      0
+    );
+
+
+    setLoading(
+      false
+    );
+
+
+    await showReveal(
+      data
+    );
+
+
+    $("results")
+    .style.display =
+      "block";
+
+
+    $("results")
+    .classList
+    .remove("enter");
+
+
+    void
+      $("results")
+      .offsetWidth;
+
+
+    $("results")
+    .classList
+    .add("enter");
+
+
+    requestAnimationFrame(
+      () => {
+
+        setMusicType(
+          data.listenerType ||
+          "未知音探索派"
+        );
+
+      }
+    );
+
+
+    setTimeout(
+      () => {
+
+        $("results")
+        .scrollIntoView({
+          behavior:"smooth"
+        });
+
+      },
+      120
+    );
+
+
+    setStatus(
+      statusId,
+      "あなたの音が見つかりました。"
+    );
+
+  }
+  catch(error){
+
+    setLoading(
+      false
+    );
+
+
+    setStatus(
+      statusId,
+      error.message ||
+      "選曲に失敗しました。",
+      true
+    );
+
+  }
+
 }
+
+
+/* ================================
+   ONE-LINE MUSIC TYPE
+================================ */
+
+function setMusicType(
+  text
+){
+
+  const element =
+    $("type");
+
+
+  element.textContent =
+    text;
+
+
+  element.style.fontSize =
+    "";
+
+
+  requestAnimationFrame(
+    () => {
+
+      let size =
+        window.innerWidth <= 650
+        ?
+        56
+        :
+        68;
+
+
+      const minimum =
+        17;
+
+
+      element.style.fontSize =
+        size + "px";
+
+
+      while(
+        element.scrollWidth >
+        element.clientWidth
+        &&
+        size > minimum
+      ){
+
+        size -= 1;
+
+
+        element.style.fontSize =
+          size + "px";
+
+      }
+
+    }
+  );
+
 }
 
-function revealResult(d){
-return new Promise(resolve=>{
-const first=songs[0]||{};
-const type=d.listenerType||"今のあなたの音楽";
 
-$("revealCopy").textContent=makeCopy(first,type);
-$("revealType").textContent="YOUR MUSIC TYPE / "+type;
+/* ================================
+   RESULT REVEAL
+================================ */
 
-$("reveal").classList.add("show");
+function showReveal(
+  data
+){
 
-setTimeout(()=>{
-$("reveal").animate(
-[{opacity:1},{opacity:0}],
-{duration:700,easing:"ease",fill:"forwards"}
-).onfinish=()=>{
-$("reveal").classList.remove("show");
-$("reveal").style.opacity="";
-resolve();
-};
-},2600);
-});
+  return new Promise(
+    resolve => {
+
+      const first =
+        songs[0] ||
+        {};
+
+
+      const type =
+        data.listenerType ||
+        "今のあなたの音";
+
+
+      $("revealCopy")
+      .textContent =
+        createRevealCopy(
+          first,
+          type
+        );
+
+
+      $("revealType")
+      .textContent =
+        "YOUR MUSIC TYPE / " +
+        type;
+
+
+      $("reveal")
+      .classList
+      .add("show");
+
+
+      setTimeout(
+        () => {
+
+          const animation =
+            $("reveal")
+            .animate(
+              [
+                {
+                  opacity:1
+                },
+                {
+                  opacity:0
+                }
+              ],
+              {
+                duration:650,
+                easing:"ease",
+                fill:"forwards"
+              }
+            );
+
+
+          animation.onfinish =
+          () => {
+
+            $("reveal")
+            .classList
+            .remove("show");
+
+
+            $("reveal")
+            .style.opacity =
+              "";
+
+
+            resolve();
+
+          };
+
+        },
+        2100
+      );
+
+    }
+  );
+
 }
 
-function makeCopy(song,type){
-const why=String(song.why||"").trim();
 
-if(why){
-let clean=why.replace(/[。！？].*$/,"");
-if(clean.length>34)clean=clean.slice(0,34)+"…";
-return clean+"。";
+/* ================================
+   REVEAL COPY
+================================ */
+
+function createRevealCopy(
+  song,
+  type
+){
+
+  const reason =
+    String(
+      song.why ||
+      ""
+    )
+    .trim();
+
+
+  if(reason){
+
+    let text =
+      reason
+      .split(/[。！？]/)[0]
+      .trim();
+
+
+    if(
+      text.length > 31
+    ){
+
+      text =
+        text.slice(
+          0,
+          31
+        )
+        +
+        "…";
+
+    }
+
+
+    if(text){
+
+      return text + "。";
+
+    }
+
+  }
+
+
+  return type + "。";
+
 }
 
-return type+"。";
+
+/* ================================
+   CARDS
+================================ */
+
+function renderCards(){
+
+  $("carousel")
+  .innerHTML =
+    songs
+    .map(
+      (song,index) => `
+
+<article
+  class="card"
+  data-index="${index}"
+>
+
+${
+  song.artwork
+  ?
+  `<img
+    class="art"
+    src="${escapeHTML(song.artwork)}"
+    alt="${escapeHTML(song.title)}"
+  >`
+  :
+  `<div class="art"></div>`
 }
 
-function render(){
-$("carousel").innerHTML=songs.map((s,i)=>`
-<article class="card" data-i="${i}">
-${s.artwork?`<img class="art" src="${esc(s.artwork)}" alt="${esc(s.title)}">`:`<div class="art"></div>`}
-${i===0?'<span class="best">YOUR BEST MATCH</span>':""}
-<h3>${esc(s.title)}</h3>
-<div class="artist">${esc(s.artist)}</div>
-</article>`).join("");
-
-document.querySelectorAll(".card").forEach(c=>c.onclick=()=>{
-pick(+c.dataset.i);
-c.scrollIntoView({behavior:"smooth",inline:"center",block:"nearest"});
-});
-
-let q;
-$("carousel").onscroll=()=>{
-clearTimeout(q);
-q=setTimeout(()=>{
-let c=$("carousel"),center=c.scrollLeft+c.clientWidth/2,b=0,d=1e9;
-
-[...c.children].forEach((e,i)=>{
-let x=Math.abs(e.offsetLeft+e.offsetWidth/2-center);
-if(x<d){d=x;b=i}
-});
-
-pick(b);
-},90);
-};
+${
+  index === 0
+  ?
+  `<span class="best">
+    YOUR BEST MATCH
+  </span>`
+  :
+  ""
 }
 
-function favs(){
-try{return JSON.parse(localStorage.getItem("ysFavs")||"{}")}
-catch{return{}}
+<h3>
+  ${escapeHTML(song.title)}
+</h3>
+
+<div class="artist">
+  ${escapeHTML(song.artist)}
+</div>
+
+</article>
+
+`
+    )
+    .join("");
+
+
+  document
+  .querySelectorAll(".card")
+  .forEach(card => {
+
+    card.onclick =
+    () => {
+
+      const index =
+        Number(
+          card.dataset.index
+        );
+
+
+      selectSong(
+        index
+      );
+
+
+      card.scrollIntoView({
+        behavior:"smooth",
+        inline:"center",
+        block:"nearest"
+      });
+
+    };
+
+  });
+
+
+  let scrollTimer;
+
+
+  $("carousel")
+  .onscroll =
+  () => {
+
+    clearTimeout(
+      scrollTimer
+    );
+
+
+    scrollTimer =
+      setTimeout(
+        () => {
+
+          const carousel =
+            $("carousel");
+
+
+          const center =
+            carousel.scrollLeft +
+            carousel.clientWidth / 2;
+
+
+          let nearest =
+            0;
+
+
+          let nearestDistance =
+            Infinity;
+
+
+          [
+            ...carousel.children
+          ]
+          .forEach(
+            (element,index) => {
+
+              const distance =
+                Math.abs(
+                  element.offsetLeft +
+                  element.offsetWidth / 2 -
+                  center
+                );
+
+
+              if(
+                distance <
+                nearestDistance
+              ){
+
+                nearestDistance =
+                  distance;
+
+
+                nearest =
+                  index;
+
+              }
+
+            }
+          );
+
+
+          if(
+            nearest !==
+            currentIndex
+          ){
+
+            selectSong(
+              nearest
+            );
+
+          }
+
+        },
+        90
+      );
+
+  };
+
 }
 
-function key(s){return(s.artist+"__"+s.title).toLowerCase()}
 
-function pick(i){
-if(!songs[i])return;
-idx=i;
+/* ================================
+   FAVORITES
+================================ */
 
-document.querySelectorAll(".card").forEach((c,n)=>c.classList.toggle("active",n===i));
+function getFavorites(){
 
-let s=songs[i],f=favs(),q=encodeURIComponent(s.artist+" "+s.title);
+  try{
 
-$("dots").textContent=songs.map((_,n)=>n===i?"●":"○").join("  ");
+    return JSON.parse(
+      localStorage
+      .getItem(
+        "ysFavs"
+      )
+      ||
+      "{}"
+    );
 
-$("detail").innerHTML=`
+  }
+  catch{
+
+    return {};
+
+  }
+
+}
+
+
+function songKey(
+  song
+){
+
+  return (
+    song.artist +
+    "__" +
+    song.title
+  )
+  .toLowerCase();
+
+}
+
+
+/* ================================
+   SELECT SONG
+================================ */
+
+function selectSong(
+  index
+){
+
+  if(
+    !songs[index]
+  ){
+
+    return;
+
+  }
+
+
+  currentIndex =
+    index;
+
+
+  document
+  .querySelectorAll(".card")
+  .forEach(
+    (card,cardIndex) => {
+
+      card.classList
+      .toggle(
+        "active",
+        cardIndex === index
+      );
+
+    }
+  );
+
+
+  const song =
+    songs[index];
+
+
+  const favorites =
+    getFavorites();
+
+
+  const query =
+    encodeURIComponent(
+      song.artist +
+      " " +
+      song.title
+    );
+
+
+  $("dots")
+  .textContent =
+    songs
+    .map(
+      (_,dotIndex) =>
+      dotIndex === index
+      ?
+      "●"
+      :
+      "○"
+    )
+    .join("  ");
+
+
+  $("detail")
+  .innerHTML = `
+
 <div class="detail-head">
+
 <div>
-<div class="eyebrow">${i?"CURATED SELECTION":"YOUR BEST MATCH"}</div>
-<h2>${esc(s.title)}</h2>
-<div class="artist">${esc(s.artist)}</div>
+
+  <div class="eyebrow">
+
+    ${
+      index === 0
+      ?
+      "YOUR BEST MATCH"
+      :
+      "CURATED SELECTION"
+    }
+
+  </div>
+
+  <h2>
+    ${escapeHTML(song.title)}
+  </h2>
+
+  <div class="artist">
+    ${escapeHTML(song.artist)}
+  </div>
+
 </div>
-<button id="heart" class="heart" aria-label="お気に入り">${f[key(s)]?"♥":"♡"}</button>
+
+
+<button
+  id="heart"
+  class="heart"
+  aria-label="お気に入り"
+>
+
+${
+  favorites[
+    songKey(song)
+  ]
+  ?
+  "♥"
+  :
+  "♡"
+}
+
+</button>
+
 </div>
+
+
 
 <div class="info">
-<div class="box"><h4>01 / この曲について</h4><p>${esc(s.summary)}</p></div>
-<div class="box"><h4>02 / なぜあなたに合う？</h4><p>${esc(s.why)}</p></div>
-<div class="box"><h4>03 / 特に刺さるポイント</h4><p>${esc(s.lyricPoint)}</p></div>
-<div class="box"><h4>04 / ここを意識して聴いて</h4><p>${esc(s.listenPoint)}</p></div>
+
+
+<div class="box">
+
+<h4>
+  01 / この曲について
+</h4>
+
+<p>
+  ${escapeHTML(song.summary || "")}
+</p>
+
 </div>
 
+
+<div class="box">
+
+<h4>
+  02 / なぜあなたに合う？
+</h4>
+
+<p>
+  ${escapeHTML(song.why || "")}
+</p>
+
+</div>
+
+
+<div class="box">
+
+<h4>
+  03 / 特に刺さるポイント
+</h4>
+
+<p>
+  ${escapeHTML(song.lyricPoint || "")}
+</p>
+
+</div>
+
+
+<div class="box">
+
+<h4>
+  04 / ここを意識して聴いて
+</h4>
+
+<p>
+  ${escapeHTML(song.listenPoint || "")}
+</p>
+
+</div>
+
+
+</div>
+
+
+
 <div class="links">
-${s.appleMusic?`<a href="${esc(s.appleMusic)}" target="_blank" rel="noopener">APPLE MUSIC ↗</a>`:""}
-<a href="https://www.youtube.com/results?search_query=${q}" target="_blank" rel="noopener">YOUTUBE ↗</a>
-<a href="https://open.spotify.com/search/${q}" target="_blank" rel="noopener">SPOTIFY ↗</a>
-</div>`;
 
-$("detail").classList.remove("animate");
-void $("detail").offsetWidth;
-$("detail").classList.add("animate");
 
-$("heart").onclick=()=>{
-let x=favs(),k=key(s);
-x[k]?delete x[k]:x[k]={title:s.title,artist:s.artist,artwork:s.artwork};
-localStorage.setItem("ysFavs",JSON.stringify(x));
-pick(i);
-};
-
-mood(s.mood);
+${
+  song.appleMusic
+  ?
+  `<a
+    href="${escapeHTML(song.appleMusic)}"
+    target="_blank"
+    rel="noopener"
+  >
+    APPLE MUSIC ↗
+  </a>`
+  :
+  ""
 }
 
-function mood(m=""){
-m=String(m).toLowerCase();
 
-let c=["#d7eef2","#e7e1f4","#f2dfe7"];
+<a
+  href="https://www.youtube.com/results?search_query=${query}"
+  target="_blank"
+  rel="noopener"
+>
+  YOUTUBE ↗
+</a>
 
-if(/rock|energy/.test(m))c=["#e9a59b","#eec49a","#bcb6ce"];
-else if(/sad/.test(m))c=["#aec4da","#c7bfd7","#dcc6d1"];
-else if(/night/.test(m))c=["#7f94ac","#958ca8","#718292"];
-else if(/dark/.test(m))c=["#727d85","#88818e","#68757a"];
-else if(/love/.test(m))c=["#efbfd0","#eed0ca","#d9c7e7"];
-else if(/happy/.test(m))c=["#eccda5","#efe1bd","#eac4cd"];
-else if(/chill/.test(m))c=["#b8ded9","#c4dde2","#d5d4e4"];
-else if(/hope/.test(m))c=["#c4dfe8","#e9d9aa","#eee6cf"];
 
-["--b1","--b2","--b3"].forEach((x,i)=>document.documentElement.style.setProperty(x,c[i]));
+<a
+  href="https://open.spotify.com/search/${query}"
+  target="_blank"
+  rel="noopener"
+>
+  SPOTIFY ↗
+</a>
+
+
+</div>
+
+`;
+
+
+  $("detail")
+  .classList
+  .remove("animate");
+
+
+  void
+    $("detail")
+    .offsetWidth;
+
+
+  $("detail")
+  .classList
+  .add("animate");
+
+
+  $("heart")
+  .onclick =
+  () => {
+
+    const current =
+      getFavorites();
+
+
+    const key =
+      songKey(song);
+
+
+    if(current[key]){
+
+      delete current[key];
+
+    }
+    else{
+
+      current[key] = {
+
+        title:
+          song.title,
+
+        artist:
+          song.artist,
+
+        artwork:
+          song.artwork
+
+      };
+
+    }
+
+
+    localStorage
+    .setItem(
+      "ysFavs",
+      JSON.stringify(current)
+    );
+
+
+    selectSong(
+      index
+    );
+
+  };
+
+
+  applyMood(
+    song.mood
+  );
+
 }
 
-$("reroll").onclick=()=>{
-if(last)go({...last,reroll:true},mode==="auto"?"ast":"mst");
+
+/* ================================
+   MOOD THEMES
+================================ */
+
+function applyMood(
+  rawMood = ""
+){
+
+  const mood =
+    String(rawMood)
+    .toLowerCase();
+
+
+  let theme = {
+
+    ink:
+      "#101315",
+
+    muted:
+      "#616a70",
+
+    line:
+      "rgba(16,19,21,.19)",
+
+    base:
+      "#eaf4f5",
+
+    b1:
+      "#7ed6e5",
+
+    b2:
+      "#d2a2e4",
+
+    b3:
+      "#ffbecf",
+
+    glow:
+      "rgba(75,202,228,.76)"
+
+  };
+
+
+  /* ROCK */
+
+  if(
+    /rock|energy/.test(mood)
+  ){
+
+    theme = {
+
+      ink:
+        "#17100e",
+
+      muted:
+        "#44322d",
+
+      line:
+        "rgba(23,16,14,.25)",
+
+      base:
+        "#ee684d",
+
+      b1:
+        "#ff321c",
+
+      b2:
+        "#ffad32",
+
+      b3:
+        "#923047",
+
+      glow:
+        "rgba(255,62,26,.9)"
+
+    };
+
+  }
+
+
+  /* SAD */
+
+  else if(
+    /sad/.test(mood)
+  ){
+
+    theme = {
+
+      ink:
+        "#101827",
+
+      muted:
+        "#344052",
+
+      line:
+        "rgba(16,24,39,.22)",
+
+      base:
+        "#8fa8ce",
+
+      b1:
+        "#4775b3",
+
+      b2:
+        "#9575cf",
+
+      b3:
+        "#e7aac8",
+
+      glow:
+        "rgba(85,101,220,.82)"
+
+    };
+
+  }
+
+
+  /* NIGHT */
+
+  else if(
+    /night/.test(mood)
+  ){
+
+    theme = {
+
+      ink:
+        "#f2f1f8",
+
+      muted:
+        "#c2bfd0",
+
+      line:
+        "rgba(242,241,248,.25)",
+
+      base:
+        "#10182b",
+
+      b1:
+        "#163f79",
+
+      b2:
+        "#683897",
+
+      b3:
+        "#1b1637",
+
+      glow:
+        "rgba(116,70,230,.84)"
+
+    };
+
+  }
+
+
+  /* DARK */
+
+  else if(
+    /dark/.test(mood)
+  ){
+
+    theme = {
+
+      ink:
+        "#f1f1f3",
+
+      muted:
+        "#c1bec6",
+
+      line:
+        "rgba(241,241,243,.23)",
+
+      base:
+        "#18191c",
+
+      b1:
+        "#363d47",
+
+      b2:
+        "#583960",
+
+      b3:
+        "#121316",
+
+      glow:
+        "rgba(110,63,135,.76)"
+
+    };
+
+  }
+
+
+  /* LOVE */
+
+  else if(
+    /love/.test(mood)
+  ){
+
+    theme = {
+
+      ink:
+        "#2b1020",
+
+      muted:
+        "#6a3850",
+
+      line:
+        "rgba(43,16,32,.22)",
+
+      base:
+        "#f389ac",
+
+      b1:
+        "#ff4f88",
+
+      b2:
+        "#ff9563",
+
+      b3:
+        "#d15ce1",
+
+      glow:
+        "rgba(255,64,130,.88)"
+
+    };
+
+  }
+
+
+  /* HAPPY */
+
+  else if(
+    /happy/.test(mood)
+  ){
+
+    theme = {
+
+      ink:
+        "#251c09",
+
+      muted:
+        "#64572e",
+
+      line:
+        "rgba(37,28,9,.2)",
+
+      base:
+        "#f4ca58",
+
+      b1:
+        "#ffe342",
+
+      b2:
+        "#ff9863",
+
+      b3:
+        "#f7e8a2",
+
+      glow:
+        "rgba(255,191,45,.86)"
+
+    };
+
+  }
+
+
+  /* CHILL */
+
+  else if(
+    /chill/.test(mood)
+  ){
+
+    theme = {
+
+      ink:
+        "#102d2d",
+
+      muted:
+        "#356260",
+
+      line:
+        "rgba(16,45,45,.21)",
+
+      base:
+        "#78d2ca",
+
+      b1:
+        "#40d8c9",
+
+      b2:
+        "#65c9ec",
+
+      b3:
+        "#b7a9e9",
+
+      glow:
+        "rgba(40,213,199,.84)"
+
+    };
+
+  }
+
+
+  /* HOPE */
+
+  else if(
+    /hope/.test(mood)
+  ){
+
+    theme = {
+
+      ink:
+        "#162b36",
+
+      muted:
+        "#46616b",
+
+      line:
+        "rgba(22,43,54,.2)",
+
+      base:
+        "#a1d9ed",
+
+      b1:
+        "#64c8ed",
+
+      b2:
+        "#ffe052",
+
+      b3:
+        "#fff0ae",
+
+      glow:
+        "rgba(255,211,48,.84)"
+
+    };
+
+  }
+
+
+  const root =
+    document.documentElement;
+
+
+  Object
+  .entries(theme)
+  .forEach(
+    ([key,value]) => {
+
+      root.style
+      .setProperty(
+        "--" + key,
+        value
+      );
+
+    }
+  );
+
+
+  document.body
+  .classList
+  .remove(
+    "mood-hit"
+  );
+
+
+  void
+    document.body
+    .offsetWidth;
+
+
+  document.body
+  .classList
+  .add(
+    "mood-hit"
+  );
+
+
+  setTimeout(
+    () => {
+
+      document.body
+      .classList
+      .remove(
+        "mood-hit"
+      );
+
+    },
+    600
+  );
+
+}
+
+
+/* ================================
+   REROLL
+================================ */
+
+$("reroll")
+.onclick =
+() => {
+
+  if(!lastRequest){
+
+    return;
+
+  }
+
+
+  requestMusic(
+    {
+      ...lastRequest,
+      reroll:true
+    },
+    mode === "auto"
+    ?
+    "ast"
+    :
+    "mst"
+  );
+
 };
 
-$("change").onclick=()=>window.scrollTo({top:0,behavior:"smooth"});
+
+/* ================================
+   CHANGE CONDITIONS
+================================ */
+
+$("change")
+.onclick =
+() => {
+
+  window.scrollTo({
+    top:0,
+    behavior:"smooth"
+  });
+
+};
+
+
+/* ================================
+   RESIZE
+================================ */
+
+window
+.addEventListener(
+  "resize",
+  () => {
+
+    if(
+      $("type")
+      .textContent
+    ){
+
+      setMusicType(
+        $("type")
+        .textContent
+      );
+
+    }
+
+  }
+);
+
 </script>
+
 
 </body>
 </html>
