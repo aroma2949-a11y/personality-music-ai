@@ -7,7 +7,371 @@
 
 <title>YOUR SOUND — あなたを、音楽にすると。</title>
 <meta name="description" content="性格・恋愛傾向・今の気持ちから、あなたに刺さる音楽を探すYOUR SOUND。">
+/* ==================================================
+   YOUR SOUND — VINYL LOADING EXPERIENCE
+================================================== */
 
+.loading{
+  overflow:hidden;
+  background:rgba(235,244,245,.94);
+}
+
+.loading:before{
+  content:"SEARCHING  YOUR  SOUND  /  SEARCHING  YOUR  SOUND  /  SEARCHING  YOUR  SOUND  /";
+  position:absolute;
+  top:10%;
+  left:0;
+  width:max-content;
+  white-space:nowrap;
+
+  font-size:clamp(54px,15vw,150px);
+  font-weight:900;
+  letter-spacing:-.08em;
+
+  color:rgba(17,19,21,.035);
+
+  animation:loadMarquee 13s linear infinite;
+}
+
+.loading:after{
+  content:"PERSONALITY / EMOTION / LOVE / SOUND / PERSONALITY / EMOTION / LOVE / SOUND";
+  position:absolute;
+  bottom:8%;
+  right:0;
+
+  width:max-content;
+  white-space:nowrap;
+
+  font-size:9px;
+  font-weight:900;
+  letter-spacing:.35em;
+
+  color:rgba(17,19,21,.35);
+
+  animation:loadMarqueeReverse 18s linear infinite;
+}
+
+@keyframes loadMarquee{
+  from{transform:translateX(8vw)}
+  to{transform:translateX(-55%)}
+}
+
+@keyframes loadMarqueeReverse{
+  from{transform:translateX(5%)}
+  to{transform:translateX(55%)}
+}
+
+
+/* ローディング本体 */
+
+.load{
+  position:relative;
+  z-index:2;
+
+  width:min(92vw,520px);
+  min-height:520px;
+
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+
+  padding:30px 20px;
+}
+
+
+/* レコード */
+
+.orb{
+  position:relative;
+
+  width:min(62vw,270px);
+  height:auto;
+  aspect-ratio:1;
+
+  margin:0 auto 34px;
+
+  border-radius:50%;
+
+  background:
+    radial-gradient(
+      circle at center,
+      #e8eef0 0 4%,
+      #17191b 4.5% 5.7%,
+      #cbd8db 6% 16%,
+      #151719 16.5% 17.5%,
+      #202326 18% 22%,
+      #111315 22.5% 100%
+    );
+
+  box-shadow:
+    0 35px 70px rgba(17,19,21,.22),
+    inset 0 0 0 1px rgba(255,255,255,.08);
+
+  animation:
+    vinylSpin 5.4s linear infinite;
+
+  overflow:visible;
+}
+
+
+/* レコード溝 */
+
+.orb:before{
+  content:"";
+
+  position:absolute;
+  inset:7%;
+
+  border-radius:50%;
+
+  background:
+    repeating-radial-gradient(
+      circle at center,
+      transparent 0,
+      transparent 4px,
+      rgba(255,255,255,.055) 5px,
+      transparent 6px
+    );
+
+  box-shadow:
+    inset 0 0 45px rgba(255,255,255,.04);
+}
+
+
+/* 中央ラベル */
+
+.orb:after{
+  content:"YOUR\A SOUND";
+  white-space:pre;
+
+  position:absolute;
+
+  width:28%;
+  aspect-ratio:1;
+
+  left:50%;
+  top:50%;
+
+  display:grid;
+  place-items:center;
+
+  transform:translate(-50%,-50%);
+
+  border-radius:50%;
+
+  background:#d9e9eb;
+
+  border:1px solid rgba(255,255,255,.55);
+
+  color:#111315;
+
+  font-size:8px;
+  line-height:1.2;
+  font-weight:900;
+  letter-spacing:.12em;
+
+  text-align:center;
+}
+
+@keyframes vinylSpin{
+  from{transform:rotate(0)}
+  to{transform:rotate(360deg)}
+}
+
+
+/* 光がレコードを横切る */
+
+.load:before{
+  content:"";
+
+  position:absolute;
+
+  width:min(62vw,270px);
+  aspect-ratio:1;
+
+  top:50%;
+  left:50%;
+
+  transform:
+    translate(-50%,-73%)
+    rotate(-30deg);
+
+  border-radius:50%;
+
+  pointer-events:none;
+
+  background:
+    linear-gradient(
+      100deg,
+      transparent 34%,
+      rgba(255,255,255,.03) 42%,
+      rgba(255,255,255,.23) 49%,
+      rgba(255,255,255,.04) 56%,
+      transparent 65%
+    );
+
+  z-index:4;
+
+  animation:
+    vinylLight 3.7s ease-in-out infinite alternate;
+}
+
+@keyframes vinylLight{
+  from{
+    opacity:.35;
+    transform:
+      translate(-50%,-73%)
+      rotate(-42deg);
+  }
+
+  to{
+    opacity:.9;
+    transform:
+      translate(-50%,-73%)
+      rotate(-18deg);
+  }
+}
+
+
+/* レコード針 */
+
+.load:after{
+  content:"";
+
+  position:absolute;
+
+  width:7px;
+  height:155px;
+
+  left:calc(50% + 112px);
+  top:115px;
+
+  border-radius:10px;
+
+  background:#202326;
+
+  box-shadow:
+    0 5px 12px rgba(0,0,0,.2);
+
+  transform-origin:50% 10px;
+
+  transform:rotate(27deg);
+
+  animation:
+    toneArm 3.8s ease-in-out infinite alternate;
+
+  z-index:5;
+}
+
+@keyframes toneArm{
+  from{
+    transform:rotate(24deg);
+  }
+
+  to{
+    transform:rotate(29deg);
+  }
+}
+
+
+/* テキスト */
+
+.load h2{
+  position:relative;
+
+  margin:0 0 12px;
+
+  font-size:clamp(22px,6vw,32px);
+  font-weight:900;
+
+  letter-spacing:-.06em;
+
+  animation:none;
+}
+
+.load h2:before{
+  content:"CURATING / YOUR SOUND";
+
+  display:block;
+
+  margin-bottom:8px;
+
+  font-size:8px;
+  font-weight:900;
+  letter-spacing:.25em;
+
+  opacity:.45;
+}
+
+.load p{
+  min-height:22px;
+
+  margin:0;
+
+  font-size:11px;
+  letter-spacing:.03em;
+
+  color:#626b6e;
+
+  transition:
+    opacity .3s,
+    transform .3s;
+}
+
+
+/* 点滅する小さいインジケーター */
+
+.load h2:after{
+  content:"●";
+
+  display:inline-block;
+
+  margin-left:10px;
+
+  font-size:8px;
+
+  vertical-align:middle;
+
+  animation:
+    searchBlink 1s steps(1) infinite;
+}
+
+@keyframes searchBlink{
+  0%,49%{opacity:1}
+  50%,100%{opacity:.15}
+}
+
+
+/* iPhone向け */
+
+@media(max-width:650px){
+
+  .load{
+    min-height:500px;
+  }
+
+  .orb{
+    width:230px;
+  }
+
+  .load:before{
+    width:230px;
+
+    transform:
+      translate(-50%,-77%)
+      rotate(-30deg);
+  }
+
+  .load:after{
+    height:135px;
+
+    left:calc(50% + 94px);
+
+    top:125px;
+  }
+
+}
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@400;500;700;900&display=swap');
 
