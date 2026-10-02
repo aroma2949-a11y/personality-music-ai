@@ -3,22 +3,23 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta name="theme-color" content="#e7f2ff">
+<meta name="theme-color" content="#eaf3f4">
 
-<title>YOUR SOUND</title>
+<title>YOUR SOUND — あなたを、音楽にすると。</title>
+<meta name="description" content="性格・恋愛傾向・今の気持ちから、あなたに刺さる音楽を探すYOUR SOUND。">
 
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@400;500;700;900&display=swap');
 
 :root{
-  --ink:#182039;
-  --muted:#69738e;
-  --glass:#ffffff99;
-  --accent:#727cff;
+  --ink:#111315;
+  --muted:#686d72;
+  --paper:#edf5f6;
+  --line:rgba(17,19,21,.18);
 
-  --b1:#dff4ff;
-  --b2:#e7e0ff;
-  --b3:#ffe0ef;
+  --b1:#d7eef2;
+  --b2:#e7e1f4;
+  --b3:#f2dfe7;
 }
 
 *{
@@ -31,70 +32,78 @@ html{
 
 body{
   margin:0;
-  color:var(--ink);
-  font-family:"Zen Kaku Gothic New","Hiragino Kaku Gothic ProN","Yu Gothic",sans-serif;
-  background:#edf5ff;
   min-height:100vh;
   overflow-x:hidden;
-}
 
-/* =========================
-   BACKGROUND
-========================= */
+  color:var(--ink);
+
+  font-family:
+    "Zen Kaku Gothic New",
+    "Hiragino Kaku Gothic ProN",
+    "Yu Gothic",
+    sans-serif;
+
+  background:#edf5f6;
+}
 
 body:before{
   content:"";
+
   position:fixed;
   inset:-25%;
+
   z-index:-2;
 
   background:
-    radial-gradient(circle at 15% 12%,var(--b1),transparent 35%),
-    radial-gradient(circle at 88% 18%,var(--b2),transparent 38%),
-    radial-gradient(circle at 50% 88%,var(--b3),transparent 42%),
-    #eff7ff;
+    radial-gradient(circle at 12% 10%,var(--b1),transparent 32%),
+    radial-gradient(circle at 90% 20%,var(--b2),transparent 35%),
+    radial-gradient(circle at 55% 90%,var(--b3),transparent 38%),
+    #edf5f6;
 
-  transition:
-    background 1.4s ease,
-    filter 1.4s ease;
+  transition:background 1.4s ease;
 
   animation:
-    bgMove 13s ease-in-out infinite alternate;
+    ambient
+    15s
+    ease-in-out
+    infinite
+    alternate;
 }
 
 body:after{
   content:"";
+
   position:fixed;
   inset:0;
-  z-index:-1;
+
   pointer-events:none;
 
-  background:
-    linear-gradient(
-      120deg,
-      rgba(255,255,255,.13),
-      rgba(255,255,255,0),
-      rgba(255,255,255,.12)
+  z-index:-1;
+
+  opacity:.16;
+
+  background-image:
+    repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 2px,
+      rgba(0,0,0,.025) 3px
     );
-
-  opacity:.65;
 }
 
-@keyframes bgMove{
-  0%{
-    transform:translate(-1%,0) scale(1.03) rotate(0deg);
+@keyframes ambient{
+  from{
+    transform:
+      translate(-1%,0)
+      scale(1.03);
   }
-  50%{
-    transform:translate(2%,-1%) scale(1.07) rotate(1deg);
-  }
-  100%{
-    transform:translate(-1%,2%) scale(1.04) rotate(-1deg);
+
+  to{
+    transform:
+      translate(2%,-2%)
+      scale(1.08);
   }
 }
-
-/* =========================
-   BASE
-========================= */
 
 button,
 select,
@@ -104,170 +113,358 @@ textarea{
 }
 
 button{
+  color:inherit;
   -webkit-tap-highlight-color:transparent;
 }
 
 .app{
-  max-width:960px;
+  width:min(1120px,100%);
   margin:auto;
-  padding:20px 16px 90px;
+
+  padding:
+    18px
+    18px
+    110px;
 }
 
-.glass{
-  background:var(--glass);
-  border:1px solid #ffffffc9;
-  box-shadow:0 22px 60px #4250791c;
 
-  backdrop-filter:blur(22px);
-  -webkit-backdrop-filter:blur(22px);
-}
-
-/* =========================
+/* ==============================
    HEADER
-========================= */
+============================== */
 
 header{
   display:flex;
   justify-content:space-between;
   align-items:center;
 
-  font-size:10px;
+  min-height:55px;
+
+  padding:
+    8px
+    1px
+    14px;
+
+  border-bottom:
+    1px solid
+    var(--ink);
+
+  font-size:9px;
   font-weight:900;
-  letter-spacing:.18em;
 
-  padding:8px 2px;
+  letter-spacing:.22em;
 
-  animation:headerIn 1s cubic-bezier(.2,.8,.2,1) both;
+  animation:
+    topIn
+    .9s
+    ease
+    both;
 }
 
-@keyframes headerIn{
+.brand{
+  font-size:12px;
+}
+
+.issue{
+  opacity:.48;
+}
+
+@keyframes topIn{
   from{
     opacity:0;
-    transform:translateY(-10px);
+    transform:translateY(-8px);
   }
+
   to{
     opacity:1;
     transform:none;
   }
 }
 
-/* =========================
+
+/* ==============================
    HERO
-========================= */
+============================== */
 
 .hero{
-  text-align:center;
-  padding:64px 8px 40px;
-}
+  position:relative;
 
-.eyebrow{
-  font-size:10px;
-  letter-spacing:.2em;
-  font-weight:900;
-  color:#76809b;
-}
-
-.hero .eyebrow{
-  opacity:0;
-  animation:fadeUp .8s .1s ease forwards;
-}
-
-/*
-  タイトルを「文章」ではなく
-  タイポグラフィとして見せる
-*/
-
-.hero-title{
-  margin:18px auto 20px;
-  line-height:.92;
-  letter-spacing:-.065em;
-  font-weight:900;
+  min-height:650px;
 
   display:flex;
   flex-direction:column;
-  align-items:center;
+  justify-content:center;
+
+  padding:
+    90px
+    5px
+    100px;
+
+  overflow:hidden;
 }
 
-.hero-small{
-  display:block;
-  font-size:clamp(28px,7vw,48px);
+
+/* 巨大なレコード / 円 */
+
+.hero-disc{
+  position:absolute;
+
+  width:min(76vw,650px);
+  aspect-ratio:1;
+
+  left:50%;
+  top:49%;
+
+  transform:
+    translate(-50%,-50%);
+
+  border-radius:50%;
+
+  border:
+    1px solid
+    rgba(17,19,21,.17);
+
+  background:
+    radial-gradient(
+      circle at center,
+      rgba(237,245,246,.94) 0 7%,
+      rgba(17,19,21,.16) 7.2% 7.7%,
+      transparent 8% 19%,
+      rgba(17,19,21,.08) 19.3% 19.7%,
+      transparent 20% 31%,
+      rgba(17,19,21,.065) 31.3% 31.6%,
+      transparent 32% 43%,
+      rgba(17,19,21,.055) 43.3% 43.6%,
+      transparent 44%
+    ),
+    radial-gradient(
+      circle at 35% 28%,
+      rgba(255,255,255,.9),
+      rgba(188,218,224,.45) 35%,
+      rgba(90,110,120,.12) 65%,
+      rgba(255,255,255,.12)
+    );
+
+  box-shadow:
+    inset 20px 20px 80px rgba(255,255,255,.55),
+    inset -30px -25px 90px rgba(30,50,60,.08);
+
+  animation:
+    discFloat
+    8s
+    ease-in-out
+    infinite
+    alternate;
+}
+
+.hero-disc:after{
+  content:"";
+
+  position:absolute;
+
+  width:13%;
+  aspect-ratio:1;
+
+  left:50%;
+  top:50%;
+
+  transform:
+    translate(-50%,-50%);
+
+  border-radius:50%;
+
+  background:#edf5f6;
+
+  border:
+    1px solid
+    rgba(17,19,21,.2);
+}
+
+@keyframes discFloat{
+  from{
+    transform:
+      translate(-50%,-50%)
+      rotate(-3deg)
+      scale(.95);
+  }
+
+  to{
+    transform:
+      translate(-50%,-52%)
+      rotate(4deg)
+      scale(1);
+  }
+}
+
+
+/* 左の縦文字 */
+
+.vertical-copy{
+  position:absolute;
+
+  left:2px;
+  top:105px;
+
+  writing-mode:vertical-rl;
+
+  font-size:8px;
+
+  font-weight:700;
+
+  letter-spacing:.28em;
+
+  opacity:.48;
+
+  animation:
+    fadeUp
+    1s
+    .5s
+    both;
+}
+
+
+/* 右の番号 */
+
+.hero-number{
+  position:absolute;
+
+  right:3px;
+  top:100px;
+
+  text-align:right;
+
+  font-size:8px;
+
+  line-height:1.8;
+
+  letter-spacing:.18em;
+
+  opacity:.45;
+
+  animation:
+    fadeUp
+    1s
+    .65s
+    both;
+}
+
+
+/* HEROタイトル */
+
+.hero-title{
+  position:relative;
+
+  z-index:2;
+
+  margin:0;
+
+  display:flex;
+  flex-direction:column;
+
+  line-height:.88;
+
+  letter-spacing:-.08em;
+}
+
+.hero-pre{
+  align-self:flex-start;
+
+  margin-left:7%;
+
+  font-size:
+    clamp(25px,5vw,46px);
+
   font-weight:500;
-  letter-spacing:-.055em;
 
   opacity:0;
-  transform:translateY(22px);
-  animation:titleIn .9s .25s cubic-bezier(.16,1,.3,1) forwards;
+
+  animation:
+    copyIn
+    .9s
+    .15s
+    cubic-bezier(.16,1,.3,1)
+    forwards;
 }
 
 .hero-music{
+  align-self:center;
+
   position:relative;
-  display:inline-block;
 
-  font-size:clamp(76px,21vw,150px);
+  margin:0;
+
+  font-size:
+    clamp(100px,25vw,230px);
+
+  line-height:.78;
+
   font-weight:900;
-  line-height:.92;
-  letter-spacing:-.09em;
 
-  margin:2px 0 7px;
+  letter-spacing:-.13em;
 
-  color:transparent;
-
-  background:
-    linear-gradient(
-      115deg,
-      #17213c 0%,
-      #3b4569 25%,
-      #6d72a6 48%,
-      #222c4d 70%,
-      #111a34 100%
-    );
-
-  background-size:200% 200%;
-  -webkit-background-clip:text;
-  background-clip:text;
+  color:var(--ink);
 
   opacity:0;
+
   transform:
-    translateY(32px)
-    scale(.94);
+    translateY(55px)
+    scaleX(.82)
+    scaleY(1.15);
 
   animation:
-    musicIn 1.15s .42s cubic-bezier(.16,1,.3,1) forwards,
-    textTexture 9s 1.5s ease-in-out infinite alternate;
+    musicIn
+    1.15s
+    .35s
+    cubic-bezier(.16,1,.3,1)
+    forwards;
 }
 
-.hero-music:after{
-  content:"";
-  position:absolute;
-  left:5%;
-  right:5%;
-  bottom:-4px;
-  height:1px;
+.hero-music:before{
+  content:"MUSIC";
 
-  background:linear-gradient(
-    90deg,
-    transparent,
-    #737ea6,
-    transparent
-  );
+  position:absolute;
+
+  left:4%;
+  top:-8px;
+
+  font-size:7px;
+
+  font-weight:900;
+
+  letter-spacing:.28em;
 
   opacity:.35;
 }
 
-.hero-end{
-  display:block;
+.hero-post{
+  align-self:flex-end;
 
-  font-size:clamp(31px,8vw,54px);
-  font-weight:700;
-  letter-spacing:-.06em;
+  margin:
+    14px
+    8%
+    0
+    0;
+
+  font-size:
+    clamp(29px,7vw,62px);
+
+  font-weight:500;
 
   opacity:0;
-  transform:translateY(20px);
 
-  animation:titleIn .9s .7s cubic-bezier(.16,1,.3,1) forwards;
+  animation:
+    copyIn
+    .9s
+    .7s
+    cubic-bezier(.16,1,.3,1)
+    forwards;
 }
 
-@keyframes titleIn{
+@keyframes copyIn{
+  from{
+    opacity:0;
+    transform:translateY(20px);
+  }
+
   to{
     opacity:1;
     transform:none;
@@ -277,149 +474,265 @@ header{
 @keyframes musicIn{
   0%{
     opacity:0;
-    transform:translateY(35px) scale(.92);
-    filter:blur(10px);
-  }
 
-  65%{
-    opacity:1;
-    filter:blur(0);
+    transform:
+      translateY(55px)
+      scaleX(.82)
+      scaleY(1.15);
+
+    filter:blur(10px);
   }
 
   100%{
     opacity:1;
+
     transform:none;
+
     filter:none;
   }
 }
 
-@keyframes textTexture{
-  from{
-    background-position:0% 50%;
-  }
 
-  to{
-    background-position:100% 50%;
-  }
-}
+/* HERO説明 */
 
-.hero p{
-  max-width:620px;
-  margin:22px auto 0;
+.hero-description{
+  position:absolute;
 
-  color:var(--muted);
+  right:2px;
+  bottom:45px;
+
+  width:min(300px,67vw);
+
+  padding-top:12px;
+
+  border-top:
+    1px solid
+    var(--ink);
+
+  font-size:11px;
+
   line-height:1.9;
-  font-size:13px;
 
   opacity:0;
-  transform:translateY(15px);
 
-  animation:fadeUp .9s .95s ease forwards;
+  animation:
+    fadeUp
+    .9s
+    1s
+    forwards;
+}
+
+.hero-description:before{
+  content:"ABOUT / YOUR SOUND";
+
+  display:block;
+
+  margin-bottom:7px;
+
+  font-size:7px;
+
+  font-weight:900;
+
+  letter-spacing:.2em;
+
+  opacity:.45;
 }
 
 @keyframes fadeUp{
+  from{
+    opacity:0;
+    transform:translateY(12px);
+  }
+
   to{
     opacity:1;
     transform:none;
   }
 }
 
-/* =========================
-   MODES
-========================= */
+
+/* ==============================
+   MODE SELECT
+============================== */
 
 .modes{
   display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:13px;
 
-  opacity:0;
-  transform:translateY(20px);
+  grid-template-columns:
+    1fr
+    1fr;
 
-  animation:fadeUp .9s 1.1s ease forwards;
+  border-top:
+    1px solid
+    var(--ink);
+
+  border-bottom:
+    1px solid
+    var(--ink);
+
+  margin-top:25px;
 }
 
 .mode{
+  position:relative;
+
+  min-height:135px;
+
+  padding:
+    22px
+    20px;
+
   border:0;
-  border-radius:24px;
-  padding:21px;
+
+  border-right:
+    1px solid
+    var(--line);
+
+  border-radius:0;
+
+  background:transparent;
+
   text-align:left;
 
-  color:var(--ink);
-  cursor:pointer;
-
   transition:
-    transform .35s cubic-bezier(.2,.8,.2,1),
     background .35s,
-    box-shadow .35s;
+    color .35s;
 }
 
-.mode:active{
-  transform:scale(.98);
-}
-
-.mode.active{
-  background:#ffffffd1;
-  transform:translateY(-2px);
+.mode:last-child{
+  border-right:0;
 }
 
 .mode b{
   display:block;
-  font-size:18px;
-  margin:12px 0 5px;
+
+  margin:
+    18px
+    0
+    6px;
+
+  font-size:20px;
+
+  letter-spacing:-.05em;
 }
 
 .mode span{
-  font-size:12px;
+  display:block;
+
+  font-size:10px;
+
   color:var(--muted);
+
+  line-height:1.6;
 }
 
-/* =========================
+.mode.active{
+  color:white;
+
+  background:var(--ink);
+}
+
+.mode.active span{
+  color:
+    rgba(255,255,255,.6);
+}
+
+
+/* ==============================
    PANELS
-========================= */
+============================== */
 
 .panel{
-  border-radius:28px;
-  padding:21px;
-  margin-top:15px;
+  margin-top:50px;
+
+  padding:
+    32px
+    0
+    10px;
+
+  border-top:
+    1px solid
+    var(--ink);
+}
+
+.hidden{
+  display:none!important;
 }
 
 .head{
   display:flex;
+
   justify-content:space-between;
-  align-items:end;
-  margin-bottom:17px;
+  align-items:flex-end;
+
+  gap:15px;
+
+  margin-bottom:32px;
 }
 
 .head h2{
   margin:0;
-  font-size:25px;
-  letter-spacing:-.04em;
+
+  font-size:
+    clamp(29px,5vw,48px);
+
+  line-height:1;
+
+  font-weight:700;
+
+  letter-spacing:-.07em;
 }
 
 .head small{
-  color:var(--muted);
-  letter-spacing:.12em;
+  font-size:8px;
+
+  letter-spacing:.2em;
+
+  opacity:.5;
 }
+
+
+/* ==============================
+   FORMS
+============================== */
 
 .grid{
   display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:13px;
+
+  grid-template-columns:
+    1fr
+    1fr;
+
+  gap:
+    25px
+    30px;
 }
 
 .field.full{
-  grid-column:1/-1;
+  grid-column:
+    1/-1;
+}
+
+.field{
+  padding-top:9px;
+
+  border-top:
+    1px solid
+    var(--line);
 }
 
 .field label{
   display:block;
 
-  font-size:11px;
-  font-weight:850;
-  color:#66718c;
+  margin-bottom:9px;
 
-  margin-bottom:7px;
+  font-size:9px;
+
+  font-weight:700;
+
+  letter-spacing:.14em;
+
+  opacity:.55;
 }
 
 .field select,
@@ -427,136 +740,182 @@ header{
 .field textarea{
   width:100%;
 
-  border:1px solid #7180a526;
-  background:#ffffffad;
-  color:var(--ink);
+  padding:
+    12px
+    2px;
 
-  border-radius:15px;
-  padding:14px;
+  border:0;
+
+  border-bottom:
+    1px solid
+    var(--ink);
+
+  border-radius:0;
+
   outline:none;
 
-  transition:
-    border .25s,
-    background .25s,
-    transform .25s;
+  background:transparent;
+
+  color:var(--ink);
+
+  font-size:15px;
+}
+
+.field select{
+  height:50px;
+}
+
+.field textarea{
+  min-height:100px;
+
+  resize:vertical;
 }
 
 .field select:focus,
 .field input:focus,
 .field textarea:focus{
-  border-color:#727cff66;
-  background:#ffffffd8;
+  background:
+    rgba(255,255,255,.25);
 }
 
-.field select{
-  height:52px;
-}
 
-.field textarea{
-  min-height:96px;
-  resize:vertical;
-}
+/* LOVE TYPE */
 
 .seg{
   display:flex;
-  background:#ffffff75;
-  padding:4px;
-  border-radius:14px;
-  margin-bottom:8px;
+
+  margin-bottom:6px;
+
+  border:
+    1px solid
+    var(--ink);
 }
 
 .seg button{
   flex:1;
 
-  border:0;
-  background:transparent;
-  border-radius:11px;
-
   padding:9px;
 
-  color:var(--muted);
-  font-size:12px;
-  font-weight:800;
+  border:0;
 
-  transition:.25s;
+  border-radius:0;
+
+  background:transparent;
+
+  font-size:10px;
+
+  font-weight:700;
 }
 
 .seg button.active{
-  background:white;
-  color:var(--ink);
+  color:white;
+
+  background:var(--ink);
 }
 
-/* =========================
-   PRIMARY BUTTON
-========================= */
+
+/* ==============================
+   BUTTONS
+============================== */
 
 .primary{
   width:100%;
-  border:0;
-  border-radius:17px;
 
-  padding:16px;
-  margin-top:17px;
+  min-height:67px;
 
-  background:
-    linear-gradient(
-      120deg,
-      #707cff,
-      #a873ff
-    );
+  margin-top:36px;
+
+  border:
+    1px solid
+    var(--ink);
+
+  border-radius:0;
+
+  background:var(--ink);
 
   color:white;
+
+  font-size:12px;
+
   font-weight:900;
 
-  box-shadow:0 12px 28px #747cff3d;
+  letter-spacing:.1em;
 
   transition:
-    transform .25s,
-    box-shadow .25s;
+    background .25s,
+    color .25s,
+    transform .2s;
 }
 
 .primary:active{
-  transform:scale(.985);
-  box-shadow:0 7px 18px #747cff35;
-}
+  transform:scale(.99);
 
-.hidden{
-  display:none!important;
+  background:transparent;
+
+  color:var(--ink);
 }
 
 .status{
   display:none;
+
   margin-top:12px;
-  padding:12px;
 
-  border-radius:13px;
+  padding:
+    10px
+    0;
 
-  background:#ffffff78;
+  border-bottom:
+    1px solid
+    var(--line);
 
   color:var(--muted);
-  font-size:12px;
+
+  font-size:11px;
 }
 
 .error{
-  color:#a52e55;
+  color:#9d2845;
 }
 
-/* =========================
+.manual-note{
+  max-width:550px;
+
+  margin:
+    -12px
+    0
+    28px;
+
+  font-size:11px;
+
+  line-height:1.8;
+
+  color:var(--muted);
+}
+
+
+/* ==============================
    LOADING
-========================= */
+============================== */
 
 .loading{
   position:fixed;
+
   inset:0;
-  z-index:20;
+
+  z-index:100;
 
   display:none;
+
   place-items:center;
 
-  background:#edf6ffc7;
+  background:
+    rgba(237,245,246,.82);
 
-  backdrop-filter:blur(25px);
-  -webkit-backdrop-filter:blur(25px);
+  backdrop-filter:
+    blur(25px);
+
+  -webkit-backdrop-filter:
+    blur(25px);
 }
 
 .loading.show{
@@ -564,85 +923,112 @@ header{
 }
 
 .load{
+  width:min(500px,85vw);
+
   text-align:center;
-  padding:25px;
 }
 
 .orb{
-  width:90px;
-  height:90px;
+  position:relative;
+
+  width:130px;
+  aspect-ratio:1;
+
   margin:auto;
 
   border-radius:50%;
 
+  border:
+    1px solid
+    var(--ink);
+
   background:
-    linear-gradient(
-      135deg,
-      #8fe7ff,
-      #9b8bff,
-      #ffb5da
+    radial-gradient(
+      circle,
+      transparent 0 14%,
+      rgba(17,19,21,.15) 14.5% 15%,
+      transparent 15.5% 35%,
+      rgba(17,19,21,.09) 35.5% 36%,
+      transparent 36.5%
     );
 
-  background-size:200% 200%;
-
-  box-shadow:
-    0 0 50px #7777ff45,
-    inset 0 0 30px #ffffff55;
-
   animation:
-    orbPulse 1.6s ease-in-out infinite alternate,
-    orbColor 5s linear infinite;
+    loadingDisc
+    2.4s
+    linear
+    infinite;
 }
 
-@keyframes orbPulse{
+.orb:after{
+  content:"";
+
+  position:absolute;
+
+  width:12px;
+  height:12px;
+
+  left:50%;
+  top:50%;
+
+  transform:
+    translate(-50%,-50%);
+
+  border-radius:50%;
+
+  background:var(--ink);
+}
+
+@keyframes loadingDisc{
   to{
-    transform:scale(1.12) rotate(20deg);
-    border-radius:38% 62% 55% 45%;
+    transform:rotate(360deg);
   }
-}
-
-@keyframes orbColor{
-  0%{background-position:0% 50%}
-  50%{background-position:100% 50%}
-  100%{background-position:0% 50%}
 }
 
 .load h2{
   margin-top:25px;
-  letter-spacing:-.04em;
 
-  animation:loadingText 1.8s ease-in-out infinite alternate;
-}
+  font-size:22px;
 
-@keyframes loadingText{
-  from{opacity:.65}
-  to{opacity:1}
+  letter-spacing:-.05em;
 }
 
 .load p{
-  color:var(--muted);
-  font-size:13px;
+  font-size:11px;
 
-  transition:opacity .3s;
+  color:var(--muted);
+
+  transition:opacity .25s;
 }
 
-/* =========================
+
+/* ==============================
    RESULTS
-========================= */
+============================== */
 
 .results{
   display:none;
-  padding-top:34px;
+
+  margin-top:75px;
+
+  padding-top:40px;
+
+  border-top:
+    1px solid
+    var(--ink);
 }
 
-.results.show-result{
-  animation:resultEnter .8s cubic-bezier(.16,1,.3,1) both;
+.results.enter{
+  animation:
+    resultIn
+    .8s
+    cubic-bezier(.16,1,.3,1)
+    both;
 }
 
-@keyframes resultEnter{
+@keyframes resultIn{
   from{
     opacity:0;
-    transform:translateY(25px);
+    transform:translateY(30px);
   }
 
   to{
@@ -651,44 +1037,116 @@ header{
   }
 }
 
-.type,
-.detail{
-  border-radius:28px;
-  padding:23px;
+
+/* MUSIC TYPE */
+
+.type{
+  position:relative;
+
+  padding:
+    10px
+    0
+    55px;
+}
+
+.type:after{
+  content:"YOUR PROFILE";
+
+  position:absolute;
+
+  right:0;
+  top:10px;
+
+  writing-mode:vertical-rl;
+
+  font-size:7px;
+
+  font-weight:900;
+
+  letter-spacing:.25em;
+
+  opacity:.35;
+}
+
+.eyebrow{
+  font-size:8px;
+
+  font-weight:900;
+
+  letter-spacing:.22em;
+
+  opacity:.45;
 }
 
 .type h2{
-  font-size:30px;
-  letter-spacing:-.04em;
-  margin:7px 0;
+  max-width:800px;
+
+  margin:
+    14px
+    0
+    22px;
+
+  font-size:
+    clamp(42px,8vw,82px);
+
+  line-height:.98;
+
+  letter-spacing:-.08em;
 }
 
 .type p{
+  max-width:620px;
+
+  margin:0;
+
+  padding-top:14px;
+
+  border-top:
+    1px solid
+    var(--line);
+
+  font-size:12px;
+
+  line-height:1.9;
+
   color:var(--muted);
-  line-height:1.75;
-  font-size:13px;
 }
 
-/* =========================
+
+/* ==============================
    CAROUSEL
-========================= */
+============================== */
+
+.results > .head{
+  margin-top:20px;
+
+  padding-top:13px;
+
+  border-top:
+    1px solid
+    var(--ink);
+}
 
 .carousel{
   display:flex;
-  gap:14px;
+
+  gap:28px;
 
   overflow-x:auto;
 
-  scroll-snap-type:x mandatory;
-
-  padding:
-    18px
-    calc(50% - 132px)
-    28px;
-
-  margin:0 -16px;
+  scroll-snap-type:
+    x mandatory;
 
   scrollbar-width:none;
+
+  margin:
+    0
+    -18px;
+
+  padding:
+    30px
+    calc(50% - 142px)
+    45px;
 }
 
 .carousel::-webkit-scrollbar{
@@ -696,23 +1154,31 @@ header{
 }
 
 .card{
-  flex:0 0 264px;
+  flex:
+    0
+    0
+    284px;
+
+  position:relative;
 
   scroll-snap-align:center;
 
-  border-radius:28px;
-  padding:12px;
-
-  opacity:.45;
+  opacity:.25;
 
   transform:
-    scale(.88)
-    translateY(9px);
+    scale(.82)
+    rotate(-2deg);
 
   transition:
-    opacity .45s,
-    transform .45s cubic-bezier(.16,1,.3,1),
-    box-shadow .45s;
+    opacity .55s,
+    transform .55s
+    cubic-bezier(.16,1,.3,1);
+}
+
+.card:nth-child(even){
+  transform:
+    scale(.82)
+    rotate(2deg);
 }
 
 .card.active{
@@ -720,351 +1186,628 @@ header{
 
   transform:
     scale(1)
-    translateY(0);
+    rotate(0deg);
 }
 
 .art{
+  display:block;
+
   width:100%;
   aspect-ratio:1;
 
   object-fit:cover;
 
-  border-radius:21px;
+  border-radius:50%;
 
-  background:#e2e8ff;
+  border:
+    1px solid
+    rgba(17,19,21,.25);
+
+  background:#dde8e9;
 
   box-shadow:
-    0 18px 35px #35406d2b;
+    0
+    25px
+    60px
+    rgba(20,35,40,.16);
 
-  transition:
-    transform .5s cubic-bezier(.16,1,.3,1),
-    filter .5s;
+  filter:
+    saturate(.88);
 }
 
 .card.active .art{
-  transform:scale(1.015);
+  animation:
+    coverFloat
+    5s
+    ease-in-out
+    infinite
+    alternate;
+}
+
+@keyframes coverFloat{
+  from{
+    transform:
+      translateY(0)
+      rotate(-1deg);
+  }
+
+  to{
+    transform:
+      translateY(-8px)
+      rotate(2deg);
+  }
 }
 
 .best{
-  display:inline-block;
+  position:absolute;
 
-  margin-top:11px;
-  padding:6px 9px;
+  right:-4px;
+  top:8px;
 
-  border-radius:999px;
+  z-index:3;
 
-  background:
-    linear-gradient(
-      120deg,
-      #707cff,
-      #a873ff
-    );
+  padding:
+    8px
+    9px;
+
+  background:var(--ink);
 
   color:white;
 
-  font-size:9px;
+  font-size:7px;
+
   font-weight:900;
-  letter-spacing:.12em;
+
+  letter-spacing:.13em;
+
+  transform:rotate(5deg);
 }
 
 .card h3{
-  font-size:19px;
+  margin:
+    17px
+    0
+    3px;
 
-  margin:9px 2px 2px;
+  overflow:hidden;
 
   white-space:nowrap;
-  overflow:hidden;
+
   text-overflow:ellipsis;
 
-  letter-spacing:-.03em;
+  font-size:21px;
+
+  letter-spacing:-.055em;
 }
 
 .artist{
+  font-size:10px;
+
+  letter-spacing:.06em;
+
   color:var(--muted);
-  font-size:12px;
 }
 
 .dots{
+  margin:
+    -13px
+    0
+    30px;
+
   text-align:center;
-  color:#7d86a0;
 
-  margin:-14px 0 18px;
+  font-size:8px;
 
-  letter-spacing:.08em;
+  letter-spacing:.35em;
+
+  opacity:.55;
 }
 
-/* =========================
-   DETAIL ANIMATION
-========================= */
 
-.detail.detail-change{
-  animation:detailChange .55s cubic-bezier(.16,1,.3,1);
+/* ==============================
+   DETAIL
+============================== */
+
+.detail{
+  padding:
+    35px
+    0;
+
+  border-top:
+    1px solid
+    var(--ink);
+
+  border-bottom:
+    1px solid
+    var(--ink);
 }
 
-@keyframes detailChange{
-  0%{
-    opacity:.2;
-    transform:translateY(12px);
+.detail.animate{
+  animation:
+    detailIn
+    .55s
+    cubic-bezier(.16,1,.3,1);
+}
+
+@keyframes detailIn{
+  from{
+    opacity:.15;
+
+    transform:
+      translateY(14px);
+
     filter:blur(5px);
   }
 
-  100%{
+  to{
     opacity:1;
+
     transform:none;
+
     filter:none;
   }
 }
 
 .detail-head{
   display:flex;
-  justify-content:space-between;
-  gap:12px;
+
+  justify-content:
+    space-between;
+
+  align-items:flex-start;
+
+  gap:15px;
 }
 
 .detail h2{
-  font-size:28px;
-  margin:4px 0;
+  max-width:760px;
 
-  letter-spacing:-.045em;
+  margin:
+    6px
+    0;
+
+  font-size:
+    clamp(38px,7vw,72px);
+
+  line-height:.96;
+
+  letter-spacing:-.08em;
 }
 
 .heart{
-  flex:0 0 45px;
+  flex:
+    0
+    0
+    47px;
 
-  width:45px;
-  height:45px;
+  width:47px;
+  height:47px;
 
-  border:0;
+  border:
+    1px solid
+    var(--ink);
+
   border-radius:50%;
 
-  background:#ffffffb8;
+  background:transparent;
 
   font-size:20px;
-
-  transition:
-    transform .2s,
-    background .2s;
-}
-
-.heart:active{
-  transform:scale(.88);
 }
 
 .info{
   display:grid;
-  grid-template-columns:1fr 1fr;
 
-  gap:11px;
-  margin-top:18px;
+  grid-template-columns:
+    1fr
+    1fr;
+
+  gap:0;
+
+  margin-top:35px;
+
+  border-top:
+    1px solid
+    var(--line);
 }
 
 .box{
-  background:#ffffff70;
+  padding:
+    21px
+    18px
+    21px
+    0;
 
-  border-radius:18px;
-  padding:15px;
+  border-bottom:
+    1px solid
+    var(--line);
+}
+
+.box:nth-child(odd){
+  border-right:
+    1px solid
+    var(--line);
+}
+
+.box:nth-child(even){
+  padding-left:18px;
 }
 
 .box h4{
-  margin:0 0 7px;
-  font-size:12px;
+  margin:
+    0
+    0
+    9px;
+
+  font-size:10px;
 }
 
 .box p{
   margin:0;
 
-  color:#5e6881;
+  font-size:11px;
 
-  font-size:12px;
-  line-height:1.7;
+  line-height:1.85;
+
+  color:var(--muted);
 }
 
-/* =========================
-   LINKS
-========================= */
+
+/* LINKS */
 
 .links{
   display:flex;
-  gap:8px;
+
   flex-wrap:wrap;
 
-  margin-top:15px;
+  gap:0;
+
+  margin-top:25px;
+
+  border:
+    1px solid
+    var(--ink);
 }
 
-.links a,
-.secondary{
-  border:1px solid #63709b21;
+.links a{
+  flex:1;
 
-  background:#ffffffa8;
+  min-width:120px;
+
+  padding:13px;
+
+  border-right:
+    1px solid
+    var(--ink);
+
   color:var(--ink);
+
+  text-align:center;
 
   text-decoration:none;
 
-  border-radius:12px;
+  font-size:9px;
 
-  padding:10px 12px;
+  font-weight:900;
 
-  font-size:11px;
-  font-weight:850;
-
-  transition:
-    transform .2s,
-    background .2s;
+  letter-spacing:.08em;
 }
 
-.links a:active,
-.secondary:active{
-  transform:scale(.96);
+.links a:last-child{
+  border-right:0;
 }
+
+.links a:active{
+  background:var(--ink);
+
+  color:white;
+}
+
+
+/* ==============================
+   BOTTOM ACTIONS
+============================== */
 
 .actions{
   display:grid;
-  grid-template-columns:1fr 1fr;
 
-  gap:9px;
-  margin-top:13px;
+  grid-template-columns:
+    1fr
+    1fr;
+
+  margin-top:20px;
+
+  border:
+    1px solid
+    var(--ink);
 }
 
 .secondary{
-  text-align:center;
+  min-height:50px;
+
+  border:0;
+
+  border-right:
+    1px solid
+    var(--ink);
+
+  background:transparent;
+
+  font-size:10px;
+
+  font-weight:900;
 }
 
-.manual-note{
-  color:var(--muted);
-
-  font-size:12px;
-  line-height:1.7;
+.secondary:last-child{
+  border-right:0;
 }
 
-/* =========================
+.secondary:active{
+  background:var(--ink);
+
+  color:white;
+}
+
+
+/* ==============================
    MOBILE
-========================= */
+============================== */
 
 @media(max-width:650px){
 
-  .modes,
+  .app{
+    padding:
+      15px
+      15px
+      90px;
+  }
+
+  .hero{
+    min-height:620px;
+
+    padding-top:70px;
+  }
+
+  .hero-disc{
+    width:92vw;
+  }
+
+  .hero-pre{
+    margin-left:5%;
+  }
+
+  .hero-post{
+    margin-right:5%;
+  }
+
+  .hero-music{
+    font-size:
+      clamp(100px,31vw,150px);
+  }
+
+  .vertical-copy{
+    top:90px;
+  }
+
+  .hero-description{
+    bottom:35px;
+  }
+
   .grid,
   .info{
-    grid-template-columns:1fr;
+    grid-template-columns:
+      1fr;
   }
 
   .field.full{
     grid-column:auto;
   }
 
-  .hero{
-    padding-top:52px;
+  .box:nth-child(odd){
+    border-right:0;
   }
 
-  .panel{
-    padding:18px;
+  .box:nth-child(even){
+    padding-left:0;
   }
 
-  .hero-music{
-    font-size:clamp(78px,25vw,125px);
+  .head{
+    align-items:flex-start;
   }
+
+  .head small{
+    margin-top:7px;
+  }
+
 }
+
+
+/* 動きを減らす設定 */
 
 @media(prefers-reduced-motion:reduce){
 
   *,
   *:before,
   *:after{
-    animation-duration:.01ms!important;
-    animation-iteration-count:1!important;
-    scroll-behavior:auto!important;
+    animation-duration:
+      .01ms!important;
+
+    animation-iteration-count:
+      1!important;
+
+    scroll-behavior:
+      auto!important;
   }
+
 }
 
 </style>
 </head>
 
+
 <body>
 
 <div class="app">
 
+
 <header>
-  <div>YOUR SOUND</div>
-  <div>MUSIC CURATION</div>
+
+<div class="brand">
+YOUR SOUND
+</div>
+
+<div class="issue">
+MUSIC CURATION / 2026
+</div>
+
 </header>
+
+
+<!-- =========================
+     HERO
+========================= -->
 
 <section class="hero">
 
-  <div class="eyebrow">
-    PERSONALITY × FEELING × MUSIC
-  </div>
+<div class="hero-disc"></div>
 
-  <h1 class="hero-title">
-    <span class="hero-small">あなたを、</span>
-    <span class="hero-music">音楽</span>
-    <span class="hero-end">にすると。</span>
-  </h1>
+<div class="vertical-copy">
+性格　恋愛　感情　そして音楽
+</div>
 
-  <p>
-    性格・恋愛傾向・今の気持ちから、
-    実在する音楽の中に「今のあなたに刺さる曲」を探します。
-  </p>
+<div class="hero-number">
+YS — 001<br>
+PERSONAL<br>
+MUSIC
+</div>
+
+
+<h1 class="hero-title">
+
+<span class="hero-pre">
+あなたを、
+</span>
+
+<span class="hero-music">
+音楽
+</span>
+
+<span class="hero-post">
+にすると。
+</span>
+
+</h1>
+
+
+<p class="hero-description">
+性格・恋愛傾向・今の気持ちから、
+実在する音楽の中に
+「今のあなたに刺さる曲」を探します。
+</p>
 
 </section>
 
 
+<!-- =========================
+     MODES
+========================= -->
+
 <div class="modes">
 
 <button
-  class="mode glass active"
-  data-mode="auto"
+class="mode active"
+data-mode="auto"
 >
-🪄
-<b>おまかせ診断</b>
-<span>性格や恋愛傾向から選曲する。</span>
+
+01
+
+<b>
+おまかせ診断
+</b>
+
+<span>
+性格や恋愛傾向から選曲する。
+</span>
+
 </button>
 
+
 <button
-  class="mode glass"
-  data-mode="manual"
+class="mode"
+data-mode="manual"
 >
-🎛️
-<b>マニュアル選曲</b>
-<span>気分や場面まで細かく指定する。</span>
+
+02
+
+<b>
+マニュアル選曲
+</b>
+
+<span>
+気分や場面まで細かく指定する。
+</span>
+
 </button>
 
 </div>
 
 
+<!-- =========================
+     AUTO
+========================= -->
+
 <section
-  id="auto"
-  class="panel glass"
+id="auto"
+class="panel"
 >
 
 <div class="head">
-  <h2>あなたについて</h2>
-  <small>QUICK DIAGNOSIS</small>
+
+<h2>
+あなたについて
+</h2>
+
+<small>
+QUICK DIAGNOSIS
+</small>
+
 </div>
+
 
 <div class="grid">
 
+
 <div class="field">
 
-<label>MBTI</label>
+<label>
+01 / MBTI
+</label>
 
 <select id="mbti">
-<option value="">選択してください</option>
+
+<option value="">
+選択してください
+</option>
+
 <option>INTJ</option>
 <option>INTP</option>
 <option>ENTJ</option>
 <option>ENTP</option>
+
 <option>INFJ</option>
 <option>INFP</option>
 <option>ENFJ</option>
 <option>ENFP</option>
+
 <option>ISTJ</option>
 <option>ISFJ</option>
 <option>ESTJ</option>
 <option>ESFJ</option>
+
 <option>ISTP</option>
 <option>ISFP</option>
 <option>ESTP</option>
 <option>ESFP</option>
+
 </select>
 
 </div>
@@ -1072,20 +1815,23 @@ header{
 
 <div class="field">
 
-<label>恋愛タイプ</label>
+<label>
+02 / 恋愛タイプ
+</label>
+
 
 <div class="seg">
 
 <button
-  class="ls active"
-  data-l="simple"
+class="ls active"
+data-l="simple"
 >
 かんたん
 </button>
 
 <button
-  class="ls"
-  data-l="l16"
+class="ls"
+data-l="l16"
 >
 LoveType16
 </button>
@@ -1112,8 +1858,8 @@ LoveType16
 
 
 <select
-  id="l16"
-  class="hidden"
+id="l16"
+class="hidden"
 >
 
 <option value="">
@@ -1147,7 +1893,9 @@ LoveType16を選択
 
 <div class="field">
 
-<label>性別</label>
+<label>
+03 / 性別
+</label>
 
 <select id="gender">
 
@@ -1167,7 +1915,9 @@ LoveType16を選択
 
 <div class="field">
 
-<label>年代</label>
+<label>
+04 / 年代
+</label>
 
 <select id="age">
 
@@ -1188,7 +1938,9 @@ LoveType16を選択
 
 <div class="field full">
 
-<label>今の気分</label>
+<label>
+05 / 今の気分
+</label>
 
 <select id="mood">
 
@@ -1216,24 +1968,30 @@ LoveType16を選択
 
 
 <button
-  id="find"
-  class="primary"
+id="find"
+class="primary"
 >
-私の音楽を探す ✦
+私の音楽を探す　→
 </button>
 
+
 <div
-  id="ast"
-  class="status"
+id="ast"
+class="status"
 ></div>
 
 </section>
 
 
+<!-- =========================
+     MANUAL
+========================= -->
+
 <section
-  id="manual"
-  class="panel glass hidden"
+id="manual"
+class="panel hidden"
 >
+
 
 <div class="head">
 
@@ -1242,14 +2000,15 @@ LoveType16を選択
 </h2>
 
 <small>
-MANUAL
+MANUAL SELECTION
 </small>
 
 </div>
 
 
 <p class="manual-note">
-全部埋めなくてOK。入力した条件を優先して選曲します。
+全部埋めなくてOK。
+入力した条件を優先して選曲します。
 </p>
 
 
@@ -1259,7 +2018,7 @@ MANUAL
 <div class="field">
 
 <label>
-気分
+01 / 気分
 </label>
 
 <select id="mmood">
@@ -1284,7 +2043,7 @@ MANUAL
 <div class="field">
 
 <label>
-シチュエーション
+02 / シチュエーション
 </label>
 
 <select id="scene">
@@ -1310,7 +2069,7 @@ MANUAL
 <div class="field">
 
 <label>
-恋愛状況
+03 / 恋愛状況
 </label>
 
 <select id="romance">
@@ -1335,7 +2094,7 @@ MANUAL
 <div class="field">
 
 <label>
-ジャンル
+04 / ジャンル
 </label>
 
 <select id="genre">
@@ -1361,7 +2120,7 @@ MANUAL
 <div class="field">
 
 <label>
-知名度
+05 / 知名度
 </label>
 
 <select id="fame">
@@ -1382,7 +2141,7 @@ MANUAL
 <div class="field">
 
 <label>
-重視
+06 / 重視
 </label>
 
 <select id="focus">
@@ -1405,12 +2164,12 @@ MANUAL
 <div class="field full">
 
 <label>
-参考曲
+07 / 参考曲
 </label>
 
 <input
-  id="reference"
-  placeholder="例：HANABIの切なさとサビ"
+id="reference"
+placeholder="例：HANABIの切なさとサビ"
 >
 
 </div>
@@ -1419,13 +2178,13 @@ MANUAL
 <div class="field full">
 
 <label>
-自由に伝える
+08 / 自由に伝える
 </label>
 
 <textarea
-  id="free"
-  maxlength="300"
-  placeholder="例：深夜に一人で歩きながら昔好きだった人を思い出す。でも最後は少し前向きになれる曲。"
+id="free"
+maxlength="300"
+placeholder="例：深夜に一人で歩きながら昔好きだった人を思い出す。でも最後は少し前向きになれる曲。"
 ></textarea>
 
 </div>
@@ -1434,26 +2193,32 @@ MANUAL
 
 
 <button
-  id="mfind"
-  class="primary"
+id="mfind"
+class="primary"
 >
-この条件で音楽を探す ✦
+この条件で音楽を探す　→
 </button>
 
+
 <div
-  id="mst"
-  class="status"
+id="mst"
+class="status"
 ></div>
 
 </section>
 
 
+<!-- =========================
+     RESULTS
+========================= -->
+
 <section
-  id="results"
-  class="results"
+id="results"
+class="results"
 >
 
-<div class="type glass">
+
+<div class="type">
 
 <div class="eyebrow">
 YOUR MUSIC TYPE
@@ -1466,66 +2231,69 @@ YOUR MUSIC TYPE
 </div>
 
 
-<div
-  class="head"
-  style="margin-top:24px"
->
+<div class="head">
 
 <h2>
-Recommended for you
+Recommended
 </h2>
 
 <small>
-SWIPE
+SWIPE / SELECT
 </small>
 
 </div>
 
 
 <div
-  id="carousel"
-  class="carousel"
+id="carousel"
+class="carousel"
 ></div>
 
 
 <div
-  id="dots"
-  class="dots"
+id="dots"
+class="dots"
 ></div>
 
 
 <article
-  id="detail"
-  class="detail glass"
+id="detail"
+class="detail"
 ></article>
 
 
 <div class="actions">
 
 <button
-  id="reroll"
-  class="secondary"
+id="reroll"
+class="secondary"
 >
 ↻ 別の5曲
 </button>
 
 <button
-  id="change"
-  class="secondary"
+id="change"
+class="secondary"
 >
 条件を変える
 </button>
 
 </div>
 
+
 </section>
+
 
 </div>
 
 
+<!-- =========================
+     LOADING
+========================= -->
+
 <div
-  id="loading"
-  class="loading"
+id="loading"
+class="loading"
 >
 
 <div class="load">
@@ -1547,20 +2315,34 @@ SWIPE
 
 <script>
 
-const $=x=>document.getElementById(x);
+const $=
+x=>
+document.getElementById(x);
+
 
 let mode="auto";
+
 let lm="simple";
+
 let last=null;
+
 let songs=[];
+
 let idx=0;
+
 let timer;
 
+
 const msgs=[
-  "性格と今の気持ちを読み解いています…",
-  "あなたに重なる音楽を探しています…",
-  "実在する曲を確認しています…",
-  "刺さるポイントを分析しています…"
+
+"性格と今の気持ちを読み解いています…",
+
+"あなたに重なる音楽を探しています…",
+
+"実在する曲を確認しています…",
+
+"刺さるポイントを分析しています…"
+
 ];
 
 
@@ -1568,38 +2350,45 @@ const msgs=[
    MODE
 ========================= */
 
+
 document
 .querySelectorAll(".mode")
 .forEach(b=>{
 
-  b.onclick=()=>{
+b.onclick=()=>{
 
-    mode=b.dataset.mode;
+mode=
+b.dataset.mode;
 
-    document
-    .querySelectorAll(".mode")
-    .forEach(x=>
-      x.classList.toggle(
-        "active",
-        x===b
-      )
-    );
 
-    $("auto")
-    .classList
-    .toggle(
-      "hidden",
-      mode!="auto"
-    );
+document
+.querySelectorAll(".mode")
+.forEach(x=>
 
-    $("manual")
-    .classList
-    .toggle(
-      "hidden",
-      mode!="manual"
-    );
+x.classList.toggle(
+"active",
+x===b
+)
 
-  };
+);
+
+
+$("auto")
+.classList
+.toggle(
+"hidden",
+mode!="auto"
+);
+
+
+$("manual")
+.classList
+.toggle(
+"hidden",
+mode!="manual"
+);
+
+};
 
 });
 
@@ -1608,38 +2397,45 @@ document
    LOVE TYPE
 ========================= */
 
+
 document
 .querySelectorAll(".ls")
 .forEach(b=>{
 
-  b.onclick=()=>{
+b.onclick=()=>{
 
-    lm=b.dataset.l;
+lm=
+b.dataset.l;
 
-    document
-    .querySelectorAll(".ls")
-    .forEach(x=>
-      x.classList.toggle(
-        "active",
-        x===b
-      )
-    );
 
-    $("simple")
-    .classList
-    .toggle(
-      "hidden",
-      lm!="simple"
-    );
+document
+.querySelectorAll(".ls")
+.forEach(x=>
 
-    $("l16")
-    .classList
-    .toggle(
-      "hidden",
-      lm!="l16"
-    );
+x.classList.toggle(
+"active",
+x===b
+)
 
-  };
+);
+
+
+$("simple")
+.classList
+.toggle(
+"hidden",
+lm!="simple"
+);
+
+
+$("l16")
+.classList
+.toggle(
+"hidden",
+lm!="l16"
+);
+
+};
 
 });
 
@@ -1648,17 +2444,19 @@ document
    STATUS
 ========================= */
 
+
 function st(id,s,e=0){
 
-  let x=$(id);
+let x=$(id);
 
-  x.style.display="block";
+x.style.display=
+"block";
 
-  x.textContent=s;
+x.textContent=s;
 
-  x.className=
-    "status"+
-    (e?" error":"");
+x.className=
+"status"+
+(e?" error":"");
 
 }
 
@@ -1667,46 +2465,59 @@ function st(id,s,e=0){
    LOADING
 ========================= */
 
+
 function load(on){
 
-  if(on){
+if(on){
 
-    let i=0;
+let i=0;
 
-    $("loading")
-    .classList
-    .add("show");
+$("loading")
+.classList
+.add("show");
 
-    $("lt").textContent=msgs[0];
 
-    timer=setInterval(()=>{
+$("lt")
+.textContent=
+msgs[0];
 
-      i++;
 
-      const el=$("lt");
+timer=
+setInterval(()=>{
 
-      el.style.opacity="0";
+i++;
 
-      setTimeout(()=>{
+const el=
+$("lt");
 
-        el.textContent=
-          msgs[i%msgs.length];
+el.style.opacity=
+"0";
 
-        el.style.opacity="1";
+setTimeout(()=>{
 
-      },220);
+el.textContent=
+msgs[
+i%msgs.length
+];
 
-    },1700);
+el.style.opacity=
+"1";
 
-  }else{
+},200);
 
-    clearInterval(timer);
+},1700);
 
-    $("loading")
-    .classList
-    .remove("show");
+}
 
-  }
+else{
+
+clearInterval(timer);
+
+$("loading")
+.classList
+.remove("show");
+
+}
 
 }
 
@@ -1715,19 +2526,29 @@ function load(on){
    ESCAPE
 ========================= */
 
+
 function esc(s=""){
 
-  return String(s)
-  .replace(
-    /[&<>"']/g,
-    m=>({
-      "&":"&amp;",
-      "<":"&lt;",
-      ">":"&gt;",
-      '"':"&quot;",
-      "'":"&#039;"
-    }[m])
-  );
+return String(s)
+.replace(
+
+/[&<>"']/g,
+
+m=>({
+
+"&":"&amp;",
+
+"<":"&lt;",
+
+">":"&gt;",
+
+'"':"&quot;",
+
+"'":"&#039;"
+
+}[m])
+
+);
 
 }
 
@@ -1736,49 +2557,64 @@ function esc(s=""){
    AUTO
 ========================= */
 
-$("find").onclick=()=>{
 
-  let p={
+$("find")
+.onclick=()=>{
 
-    mode:"auto",
+let p={
 
-    mbti:
-      $("mbti").value,
+mode:"auto",
 
-    love:
-      lm=="simple"
-      ?$("simple").value
-      :$("l16").value,
+mbti:
+$("mbti").value,
 
-    gender:
-      $("gender").value,
+love:
+lm=="simple"
+?
+$("simple").value
+:
+$("l16").value,
 
-    age:
-      $("age").value,
+gender:
+$("gender").value,
 
-    mood:
-      $("mood").value
+age:
+$("age").value,
 
-  };
+mood:
+$("mood").value
 
-  if(
-    Object
-    .values(p)
-    .some(
-      (v,i)=>
-      i&&!v
-    )
-  ){
+};
 
-    return st(
-      "ast",
-      "すべて選んでください。",
-      1
-    );
 
-  }
+if(
 
-  go(p,"ast");
+Object
+.values(p)
+.some(
+(v,i)=>
+i&&!v
+)
+
+){
+
+return st(
+
+"ast",
+
+"すべて選んでください。",
+
+1
+
+);
+
+}
+
+
+go(
+p,
+"ast"
+);
 
 };
 
@@ -1787,300 +2623,380 @@ $("find").onclick=()=>{
    MANUAL
 ========================= */
 
-$("mfind").onclick=()=>{
 
-  let p={
+$("mfind")
+.onclick=()=>{
 
-    mode:"manual",
+let p={
 
-    mood:
-      $("mmood").value,
+mode:"manual",
 
-    scene:
-      $("scene").value,
+mood:
+$("mmood").value,
 
-    romance:
-      $("romance").value,
+scene:
+$("scene").value,
 
-    genre:
-      $("genre").value,
+romance:
+$("romance").value,
 
-    fame:
-      $("fame").value,
+genre:
+$("genre").value,
 
-    focus:
-      $("focus").value,
+fame:
+$("fame").value,
 
-    reference:
-      $("reference")
-      .value
-      .trim(),
+focus:
+$("focus").value,
 
-    freeText:
-      $("free")
-      .value
-      .trim()
+reference:
+$("reference")
+.value
+.trim(),
 
-  };
+freeText:
+$("free")
+.value
+.trim()
 
-  if(
-    !Object
-    .values(p)
-    .slice(1)
-    .some(Boolean)
-  ){
+};
 
-    return st(
-      "mst",
-      "少なくとも1つ条件を入れてください。",
-      1
-    );
 
-  }
+if(
 
-  go(p,"mst");
+!Object
+.values(p)
+.slice(1)
+.some(Boolean)
+
+){
+
+return st(
+
+"mst",
+
+"少なくとも1つ条件を入れてください。",
+
+1
+
+);
+
+}
+
+
+go(
+p,
+"mst"
+);
 
 };
 
 
 /* =========================
-   REQUEST
+   API
 ========================= */
+
 
 async function go(p,sid){
 
-  last=p;
+last=p;
 
-  load(1);
+load(1);
 
-  try{
 
-    let r=
-      await fetch(
-        "/api/recommend",
-        {
-          method:"POST",
+try{
 
-          headers:{
-            "Content-Type":
-            "application/json"
-          },
+let r=
 
-          body:
-            JSON.stringify(p)
-        }
-      );
+await fetch(
 
-    let d=
-      await r.json();
+"/api/recommend",
 
-    if(!r.ok){
+{
 
-      throw Error(
-        d.error||
-        "取得に失敗しました"
-      );
+method:
+"POST",
 
-    }
+headers:{
 
-    if(
-      !d.recommendations?.length
-    ){
+"Content-Type":
+"application/json"
 
-      throw Error(
-        "曲を確認できませんでした。もう一度試してください。"
-      );
+},
 
-    }
+body:
+JSON.stringify(p)
 
-    songs=
-      d.recommendations;
+}
 
-    $("type")
-    .textContent=
-      d.listenerType||
-      "今のあなたのための5曲";
+);
 
-    $("desc")
-    .textContent=
-      d.listenerDescription||
-      "";
 
-    render();
+let d=
+await r.json();
 
-    pick(0);
 
-    const results=
-      $("results");
+if(!r.ok){
 
-    results.style.display="block";
+throw Error(
 
-    results
-    .classList
-    .remove("show-result");
+d.error||
+"取得に失敗しました"
 
-    void results.offsetWidth;
+);
 
-    results
-    .classList
-    .add("show-result");
+}
 
-    setTimeout(
-      ()=>
-      results.scrollIntoView({
-        behavior:"smooth"
-      }),
-      100
-    );
 
-    st(
-      sid,
-      "選曲が完成しました。"
-    );
+if(
+!d.recommendations?.length
+){
 
-  }
+throw Error(
 
-  catch(e){
+"曲を確認できませんでした。もう一度試してください。"
 
-    st(
-      sid,
-      e.message,
-      1
-    );
+);
 
-  }
+}
 
-  finally{
 
-    load(0);
+songs=
+d.recommendations;
 
-  }
+
+$("type")
+.textContent=
+
+d.listenerType||
+"今のあなたのための5曲";
+
+
+$("desc")
+.textContent=
+
+d.listenerDescription||
+"";
+
+
+render();
+
+pick(0);
+
+
+const results=
+$("results");
+
+
+results.style.display=
+"block";
+
+
+results
+.classList
+.remove("enter");
+
+
+void results.offsetWidth;
+
+
+results
+.classList
+.add("enter");
+
+
+setTimeout(()=>{
+
+results.scrollIntoView({
+
+behavior:
+"smooth"
+
+});
+
+},120);
+
+
+st(
+
+sid,
+
+"選曲が完成しました。"
+
+);
+
+}
+
+
+catch(e){
+
+st(
+
+sid,
+
+e.message,
+
+1
+
+);
+
+}
+
+
+finally{
+
+load(0);
+
+}
 
 }
 
 
 /* =========================
-   CARDS
+   CAROUSEL
 ========================= */
+
 
 function render(){
 
-  $("carousel")
-  .innerHTML=
-    songs
-    .map(
-      (s,i)=>`
+$("carousel")
+.innerHTML=
 
-      <article
-        class="card glass"
-        data-i="${i}"
-      >
+songs
+.map((s,i)=>`
 
-      ${
-        s.artwork
-        ?`
-        <img
-          class="art"
-          src="${esc(s.artwork)}"
-          alt="${esc(s.title)}"
-        >
-        `
-        :
-        `<div class="art"></div>`
-      }
+<article
+class="card"
+data-i="${i}"
+>
 
-      ${
-        i==0
-        ?`
-        <span class="best">
-        YOUR BEST MATCH
-        </span>
-        `
-        :""
-      }
+${
+s.artwork
+?
+`
+<img
+class="art"
+src="${esc(s.artwork)}"
+alt="${esc(s.title)}"
+>
+`
+:
+`
+<div class="art"></div>
+`
+}
 
-      <h3>
-      ${esc(s.title)}
-      </h3>
+${
+i==0
+?
+`
+<span class="best">
+YOUR BEST MATCH
+</span>
+`
+:
+""
+}
 
-      <div class="artist">
-      ${esc(s.artist)}
-      </div>
+<h3>
+${esc(s.title)}
+</h3>
 
-      </article>
+<div class="artist">
+${esc(s.artist)}
+</div>
 
-      `
-    )
-    .join("");
+</article>
 
-
-  document
-  .querySelectorAll(".card")
-  .forEach(c=>{
-
-    c.onclick=()=>{
-
-      pick(
-        +c.dataset.i
-      );
-
-      c.scrollIntoView({
-        behavior:"smooth",
-        inline:"center",
-        block:"nearest"
-      });
-
-    };
-
-  });
+`)
+.join("");
 
 
-  let q;
+document
+.querySelectorAll(".card")
+.forEach(c=>{
+
+c.onclick=()=>{
+
+pick(
++c.dataset.i
+);
+
+c.scrollIntoView({
+
+behavior:
+"smooth",
+
+inline:
+"center",
+
+block:
+"nearest"
+
+});
+
+};
+
+});
 
 
-  $("carousel")
-  .onscroll=()=>{
-
-    clearTimeout(q);
-
-    q=setTimeout(()=>{
-
-      let c=
-        $("carousel");
-
-      let center=
-        c.scrollLeft+
-        c.clientWidth/2;
-
-      let b=0;
-
-      let d=1e9;
+let q;
 
 
-      [...c.children]
-      .forEach((e,i)=>{
+$("carousel")
+.onscroll=()=>{
 
-        let x=
-          Math.abs(
-            e.offsetLeft+
-            e.offsetWidth/2-
-            center
-          );
+clearTimeout(q);
 
-        if(x<d){
 
-          d=x;
-          b=i;
+q=
+setTimeout(()=>{
 
-        }
+let c=
+$("carousel");
 
-      });
 
-      pick(b);
+let center=
 
-    },90);
+c.scrollLeft+
+c.clientWidth/2;
 
-  };
+
+let b=0;
+
+let d=1e9;
+
+
+[...c.children]
+.forEach((e,i)=>{
+
+let x=
+
+Math.abs(
+
+e.offsetLeft+
+e.offsetWidth/2-
+center
+
+);
+
+
+if(x<d){
+
+d=x;
+
+b=i;
+
+}
+
+});
+
+
+pick(b);
+
+},90);
+
+};
 
 }
 
@@ -2089,473 +3005,556 @@ function render(){
    FAVORITES
 ========================= */
 
+
 function favs(){
 
-  try{
+try{
 
-    return JSON.parse(
-      localStorage
-      .getItem("ysFavs")||
-      "{}"
-    );
+return JSON.parse(
 
-  }
+localStorage
+.getItem(
+"ysFavs"
+)
+||
+"{}"
 
-  catch{
+);
 
-    return {};
+}
 
-  }
+catch{
+
+return {};
+
+}
 
 }
 
 
 function key(s){
 
-  return(
-    s.artist+
-    "__"+
-    s.title
-  )
-  .toLowerCase();
+return(
+
+s.artist+
+"__"+
+s.title
+
+)
+.toLowerCase();
 
 }
 
 
 /* =========================
-   PICK SONG
+   SONG PICK
 ========================= */
+
 
 function pick(i){
 
-  if(!songs[i])return;
+if(!songs[i])
+return;
 
-  idx=i;
 
+idx=i;
 
-  document
-  .querySelectorAll(".card")
-  .forEach(
-    (c,n)=>
-    c.classList.toggle(
-      "active",
-      n==i
-    )
-  );
 
+document
+.querySelectorAll(".card")
+.forEach(
+(c,n)=>
 
-  let s=songs[i];
+c.classList.toggle(
+"active",
+n==i
+)
 
-  let f=favs();
+);
 
-  let q=
-    encodeURIComponent(
-      s.artist+
-      " "+
-      s.title
-    );
 
+let s=
+songs[i];
 
-  $("dots")
-  .textContent=
-    songs
-    .map(
-      (_,n)=>
-      n==i
-      ?"●"
-      :"○"
-    )
-    .join("  ");
 
+let f=
+favs();
 
-  const detail=
-    $("detail");
 
+let q=
 
-  detail.innerHTML=`
+encodeURIComponent(
 
-  <div class="detail-head">
+s.artist+
+" "+
+s.title
 
-  <div>
+);
 
-  <div class="eyebrow">
-  ${
-    i
-    ?"AI CURATED"
-    :"YOUR BEST MATCH"
-  }
-  </div>
 
-  <h2>
-  ${esc(s.title)}
-  </h2>
+$("dots")
+.textContent=
 
-  <div class="artist">
-  ${esc(s.artist)}
-  </div>
+songs
+.map(
 
-  </div>
+(_,n)=>
 
+n==i
+?
+"●"
+:
+"○"
 
-  <button
-    id="heart"
-    class="heart"
-    aria-label="お気に入り"
-  >
-  ${
-    f[key(s)]
-    ?"♥"
-    :"♡"
-  }
-  </button>
+)
+.join("  ");
 
-  </div>
 
+const detail=
+$("detail");
 
-  <div class="info">
 
+detail.innerHTML=`
 
-  <div class="box">
+<div class="detail-head">
 
-  <h4>
-  📖 この曲について
-  </h4>
+<div>
 
-  <p>
-  ${esc(s.summary)}
-  </p>
+<div class="eyebrow">
 
-  </div>
+${
+i
+?
+"CURATED SELECTION"
+:
+"YOUR BEST MATCH"
+}
 
+</div>
 
-  <div class="box">
+<h2>
+${esc(s.title)}
+</h2>
 
-  <h4>
-  💘 なぜあなたに合う？
-  </h4>
+<div class="artist">
+${esc(s.artist)}
+</div>
 
-  <p>
-  ${esc(s.why)}
-  </p>
+</div>
 
-  </div>
 
+<button
+id="heart"
+class="heart"
+aria-label="お気に入り"
+>
 
-  <div class="box">
+${
+f[key(s)]
+?
+"♥"
+:
+"♡"
+}
 
-  <h4>
-  🔥 特に刺さるポイント
-  </h4>
+</button>
 
-  <p>
-  ${esc(s.lyricPoint)}
-  </p>
+</div>
 
-  </div>
 
+<div class="info">
 
-  <div class="box">
 
-  <h4>
-  🎧 ここを意識して聴いて
-  </h4>
+<div class="box">
 
-  <p>
-  ${esc(s.listenPoint)}
-  </p>
+<h4>
+01 / この曲について
+</h4>
 
-  </div>
+<p>
+${esc(s.summary)}
+</p>
 
+</div>
 
-  </div>
 
+<div class="box">
 
-  <div class="links">
+<h4>
+02 / なぜあなたに合う？
+</h4>
 
-  ${
-    s.appleMusic
-    ?`
-    <a
-      href="${esc(s.appleMusic)}"
-      target="_blank"
-      rel="noopener"
-    >
-    Apple Music ↗
-    </a>
-    `
-    :""
-  }
+<p>
+${esc(s.why)}
+</p>
 
-  <a
-    href="https://www.youtube.com/results?search_query=${q}"
-    target="_blank"
-    rel="noopener"
-  >
-  YouTube ↗
-  </a>
+</div>
 
-  <a
-    href="https://open.spotify.com/search/${q}"
-    target="_blank"
-    rel="noopener"
-  >
-  Spotify ↗
-  </a>
 
-  </div>
+<div class="box">
 
-  `;
+<h4>
+03 / 特に刺さるポイント
+</h4>
 
+<p>
+${esc(s.lyricPoint)}
+</p>
 
-  detail
-  .classList
-  .remove("detail-change");
+</div>
 
-  void detail.offsetWidth;
 
-  detail
-  .classList
-  .add("detail-change");
+<div class="box">
 
+<h4>
+04 / ここを意識して聴いて
+</h4>
 
-  $("heart")
-  .onclick=()=>{
+<p>
+${esc(s.listenPoint)}
+</p>
 
-    let x=favs();
+</div>
 
-    let k=key(s);
 
-    if(x[k]){
+</div>
 
-      delete x[k];
 
-    }else{
+<div class="links">
 
-      x[k]={
-        title:s.title,
-        artist:s.artist,
-        artwork:s.artwork
-      };
+${
+s.appleMusic
+?
+`
+<a
+href="${esc(s.appleMusic)}"
+target="_blank"
+rel="noopener"
+>
+APPLE MUSIC ↗
+</a>
+`
+:
+""
+}
 
-    }
 
-    localStorage
-    .setItem(
-      "ysFavs",
-      JSON.stringify(x)
-    );
+<a
+href="https://www.youtube.com/results?search_query=${q}"
+target="_blank"
+rel="noopener"
+>
+YOUTUBE ↗
+</a>
 
-    pick(i);
 
-  };
+<a
+href="https://open.spotify.com/search/${q}"
+target="_blank"
+rel="noopener"
+>
+SPOTIFY ↗
+</a>
 
 
-  mood(s.mood);
+</div>
+
+`;
+
+
+detail
+.classList
+.remove("animate");
+
+
+void detail.offsetWidth;
+
+
+detail
+.classList
+.add("animate");
+
+
+$("heart")
+.onclick=()=>{
+
+let x=
+favs();
+
+
+let k=
+key(s);
+
+
+if(x[k]){
+
+delete x[k];
+
+}
+
+else{
+
+x[k]={
+
+title:
+s.title,
+
+artist:
+s.artist,
+
+artwork:
+s.artwork
+
+};
+
+}
+
+
+localStorage
+.setItem(
+
+"ysFavs",
+
+JSON.stringify(x)
+
+);
+
+
+pick(i);
+
+};
+
+
+mood(
+s.mood
+);
 
 }
 
 
 /* =========================
-   MUSIC MOOD BACKGROUND
+   MOOD BACKGROUND
 ========================= */
+
 
 function mood(m=""){
 
-  m=
-    String(m)
-    .toLowerCase();
+m=
+String(m)
+.toLowerCase();
 
 
-  let c=[
-    "#dff4ff",
-    "#e7e0ff",
-    "#ffe0ef"
-  ];
+let c=[
+
+"#d7eef2",
+
+"#e7e1f4",
+
+"#f2dfe7"
+
+];
 
 
-  /*
-    ROCK / ENERGY
-    熱、ライブ、勢い
-  */
+/* ROCK */
 
-  if(
-    /rock|energy/.test(m)
-  ){
+if(
+/rock|energy/.test(m)
+){
 
-    c=[
-      "#ffb4a9",
-      "#ffd19b",
-      "#c8bfff"
-    ];
+c=[
 
-  }
+"#e9a59b",
 
+"#eec49a",
 
-  /*
-    SAD
-    失恋・切なさ
-  */
+"#bcb6ce"
 
-  else if(
-    /sad/.test(m)
-  ){
+];
 
-    c=[
-      "#aac8ee",
-      "#c9bce9",
-      "#e9cadf"
-    ];
-
-  }
+}
 
 
-  /*
-    NIGHT
-    深夜
-  */
+/* SAD */
 
-  else if(
-    /night/.test(m)
-  ){
+else if(
+/sad/.test(m)
+){
 
-    c=[
-      "#8395bd",
-      "#a28fc3",
-      "#7285ad"
-    ];
+c=[
 
-  }
+"#aec4da",
 
+"#c7bfd7",
 
-  /*
-    DARK
-    重い・内省
-  */
+"#dcc6d1"
 
-  else if(
-    /dark/.test(m)
-  ){
+];
 
-    c=[
-      "#76859e",
-      "#9186aa",
-      "#68788e"
-    ];
-
-  }
+}
 
 
-  /*
-    LOVE
-    恋
-  */
+/* NIGHT */
 
-  else if(
-    /love/.test(m)
-  ){
+else if(
+/night/.test(m)
+){
 
-    c=[
-      "#ffc2d8",
-      "#ffd8d0",
-      "#e6c8ff"
-    ];
+c=[
 
-  }
+"#7f94ac",
 
+"#958ca8",
 
-  /*
-    HAPPY
-    明るい・幸福
-  */
+"#718292"
 
-  else if(
-    /happy/.test(m)
-  ){
+];
 
-    c=[
-      "#ffd8a5",
-      "#ffebc6",
-      "#ffcbd9"
-    ];
-
-  }
+}
 
 
-  /*
-    CHILL
-    水・空気・静けさ
-  */
+/* DARK */
 
-  else if(
-    /chill/.test(m)
-  ){
+else if(
+/dark/.test(m)
+){
 
-    c=[
-      "#bcece3",
-      "#c9e9ef",
-      "#dedcf5"
-    ];
+c=[
 
-  }
+"#727d85",
 
+"#88818e",
 
-  /*
-    HOPE
-    朝・希望
-  */
+"#68757a"
 
-  else if(
-    /hope/.test(m)
-  ){
+];
 
-    c=[
-      "#c9ebff",
-      "#ffe8a9",
-      "#fff5d8"
-    ];
-
-  }
+}
 
 
-  [
-    "--b1",
-    "--b2",
-    "--b3"
-  ]
-  .forEach(
-    (x,i)=>
-    document
-    .documentElement
-    .style
-    .setProperty(
-      x,
-      c[i]
-    )
-  );
+/* LOVE */
+
+else if(
+/love/.test(m)
+){
+
+c=[
+
+"#efbfd0",
+
+"#eed0ca",
+
+"#d9c7e7"
+
+];
+
+}
+
+
+/* HAPPY */
+
+else if(
+/happy/.test(m)
+){
+
+c=[
+
+"#eccda5",
+
+"#efe1bd",
+
+"#eac4cd"
+
+];
+
+}
+
+
+/* CHILL */
+
+else if(
+/chill/.test(m)
+){
+
+c=[
+
+"#b8ded9",
+
+"#c4dde2",
+
+"#d5d4e4"
+
+];
+
+}
+
+
+/* HOPE */
+
+else if(
+/hope/.test(m)
+){
+
+c=[
+
+"#c4dfe8",
+
+"#e9d9aa",
+
+"#eee6cf"
+
+];
+
+}
+
+
+[
+"--b1",
+"--b2",
+"--b3"
+]
+.forEach(
+
+(x,i)=>
+
+document
+.documentElement
+.style
+.setProperty(
+x,
+c[i]
+)
+
+);
 
 }
 
 
 /* =========================
-   BUTTONS
+   ACTIONS
 ========================= */
+
 
 $("reroll")
 .onclick=()=>{
 
-  if(last){
+if(last){
 
-    go(
-      {
-        ...last,
-        reroll:true
-      },
-      mode=="auto"
-      ?"ast"
-      :"mst"
-    );
+go(
 
-  }
+{
+...last,
+reroll:true
+},
+
+mode=="auto"
+?
+"ast"
+:
+"mst"
+
+);
+
+}
 
 };
 
@@ -2563,10 +3562,14 @@ $("reroll")
 $("change")
 .onclick=()=>{
 
-  window.scrollTo({
-    top:0,
-    behavior:"smooth"
-  });
+window.scrollTo({
+
+top:0,
+
+behavior:
+"smooth"
+
+});
 
 };
 
