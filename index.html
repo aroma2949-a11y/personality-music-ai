@@ -4,3939 +4,1223 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#eaf3f4">
-
 <title>YOUR SOUND — あなたを、音楽にすると。</title>
 <meta name="description" content="性格・恋愛傾向・今の気持ちから、あなたに刺さる音楽を探すYOUR SOUND。">
-/* ==================================================
-   YOUR SOUND — VINYL LOADING EXPERIENCE
-================================================== */
 
-.loading{
-  overflow:hidden;
-  background:rgba(235,244,245,.94);
-}
-
-.loading:before{
-  content:"SEARCHING  YOUR  SOUND  /  SEARCHING  YOUR  SOUND  /  SEARCHING  YOUR  SOUND  /";
-  position:absolute;
-  top:10%;
-  left:0;
-  width:max-content;
-  white-space:nowrap;
-
-  font-size:clamp(54px,15vw,150px);
-  font-weight:900;
-  letter-spacing:-.08em;
-
-  color:rgba(17,19,21,.035);
-
-  animation:loadMarquee 13s linear infinite;
-}
-
-.loading:after{
-  content:"PERSONALITY / EMOTION / LOVE / SOUND / PERSONALITY / EMOTION / LOVE / SOUND";
-  position:absolute;
-  bottom:8%;
-  right:0;
-
-  width:max-content;
-  white-space:nowrap;
-
-  font-size:9px;
-  font-weight:900;
-  letter-spacing:.35em;
-
-  color:rgba(17,19,21,.35);
-
-  animation:loadMarqueeReverse 18s linear infinite;
-}
-
-@keyframes loadMarquee{
-  from{transform:translateX(8vw)}
-  to{transform:translateX(-55%)}
-}
-
-@keyframes loadMarqueeReverse{
-  from{transform:translateX(5%)}
-  to{transform:translateX(55%)}
-}
-
-
-/* ローディング本体 */
-
-.load{
-  position:relative;
-  z-index:2;
-
-  width:min(92vw,520px);
-  min-height:520px;
-
-  display:flex;
-  flex-direction:column;
-  align-items:center;
-  justify-content:center;
-
-  padding:30px 20px;
-}
-
-
-/* レコード */
-
-.orb{
-  position:relative;
-
-  width:min(62vw,270px);
-  height:auto;
-  aspect-ratio:1;
-
-  margin:0 auto 34px;
-
-  border-radius:50%;
-
-  background:
-    radial-gradient(
-      circle at center,
-      #e8eef0 0 4%,
-      #17191b 4.5% 5.7%,
-      #cbd8db 6% 16%,
-      #151719 16.5% 17.5%,
-      #202326 18% 22%,
-      #111315 22.5% 100%
-    );
-
-  box-shadow:
-    0 35px 70px rgba(17,19,21,.22),
-    inset 0 0 0 1px rgba(255,255,255,.08);
-
-  animation:
-    vinylSpin 5.4s linear infinite;
-
-  overflow:visible;
-}
-
-
-/* レコード溝 */
-
-.orb:before{
-  content:"";
-
-  position:absolute;
-  inset:7%;
-
-  border-radius:50%;
-
-  background:
-    repeating-radial-gradient(
-      circle at center,
-      transparent 0,
-      transparent 4px,
-      rgba(255,255,255,.055) 5px,
-      transparent 6px
-    );
-
-  box-shadow:
-    inset 0 0 45px rgba(255,255,255,.04);
-}
-
-
-/* 中央ラベル */
-
-.orb:after{
-  content:"YOUR\A SOUND";
-  white-space:pre;
-
-  position:absolute;
-
-  width:28%;
-  aspect-ratio:1;
-
-  left:50%;
-  top:50%;
-
-  display:grid;
-  place-items:center;
-
-  transform:translate(-50%,-50%);
-
-  border-radius:50%;
-
-  background:#d9e9eb;
-
-  border:1px solid rgba(255,255,255,.55);
-
-  color:#111315;
-
-  font-size:8px;
-  line-height:1.2;
-  font-weight:900;
-  letter-spacing:.12em;
-
-  text-align:center;
-}
-
-@keyframes vinylSpin{
-  from{transform:rotate(0)}
-  to{transform:rotate(360deg)}
-}
-
-
-/* 光がレコードを横切る */
-
-.load:before{
-  content:"";
-
-  position:absolute;
-
-  width:min(62vw,270px);
-  aspect-ratio:1;
-
-  top:50%;
-  left:50%;
-
-  transform:
-    translate(-50%,-73%)
-    rotate(-30deg);
-
-  border-radius:50%;
-
-  pointer-events:none;
-
-  background:
-    linear-gradient(
-      100deg,
-      transparent 34%,
-      rgba(255,255,255,.03) 42%,
-      rgba(255,255,255,.23) 49%,
-      rgba(255,255,255,.04) 56%,
-      transparent 65%
-    );
-
-  z-index:4;
-
-  animation:
-    vinylLight 3.7s ease-in-out infinite alternate;
-}
-
-@keyframes vinylLight{
-  from{
-    opacity:.35;
-    transform:
-      translate(-50%,-73%)
-      rotate(-42deg);
-  }
-
-  to{
-    opacity:.9;
-    transform:
-      translate(-50%,-73%)
-      rotate(-18deg);
-  }
-}
-
-
-/* レコード針 */
-
-.load:after{
-  content:"";
-
-  position:absolute;
-
-  width:7px;
-  height:155px;
-
-  left:calc(50% + 112px);
-  top:115px;
-
-  border-radius:10px;
-
-  background:#202326;
-
-  box-shadow:
-    0 5px 12px rgba(0,0,0,.2);
-
-  transform-origin:50% 10px;
-
-  transform:rotate(27deg);
-
-  animation:
-    toneArm 3.8s ease-in-out infinite alternate;
-
-  z-index:5;
-}
-
-@keyframes toneArm{
-  from{
-    transform:rotate(24deg);
-  }
-
-  to{
-    transform:rotate(29deg);
-  }
-}
-
-
-/* テキスト */
-
-.load h2{
-  position:relative;
-
-  margin:0 0 12px;
-
-  font-size:clamp(22px,6vw,32px);
-  font-weight:900;
-
-  letter-spacing:-.06em;
-
-  animation:none;
-}
-
-.load h2:before{
-  content:"CURATING / YOUR SOUND";
-
-  display:block;
-
-  margin-bottom:8px;
-
-  font-size:8px;
-  font-weight:900;
-  letter-spacing:.25em;
-
-  opacity:.45;
-}
-
-.load p{
-  min-height:22px;
-
-  margin:0;
-
-  font-size:11px;
-  letter-spacing:.03em;
-
-  color:#626b6e;
-
-  transition:
-    opacity .3s,
-    transform .3s;
-}
-
-
-/* 点滅する小さいインジケーター */
-
-.load h2:after{
-  content:"●";
-
-  display:inline-block;
-
-  margin-left:10px;
-
-  font-size:8px;
-
-  vertical-align:middle;
-
-  animation:
-    searchBlink 1s steps(1) infinite;
-}
-
-@keyframes searchBlink{
-  0%,49%{opacity:1}
-  50%,100%{opacity:.15}
-}
-
-
-/* iPhone向け */
-
-@media(max-width:650px){
-
-  .load{
-    min-height:500px;
-  }
-
-  .orb{
-    width:230px;
-  }
-
-  .load:before{
-    width:230px;
-
-    transform:
-      translate(-50%,-77%)
-      rotate(-30deg);
-  }
-
-  .load:after{
-    height:135px;
-
-    left:calc(50% + 94px);
-
-    top:125px;
-  }
-
-}
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@400;500;700;900&display=swap');
 
 :root{
-  --ink:#111315;
-  --muted:#686d72;
-  --paper:#edf5f6;
-  --line:rgba(17,19,21,.18);
-
-  --b1:#d7eef2;
-  --b2:#e7e1f4;
-  --b3:#f2dfe7;
+--ink:#111315;
+--muted:#666d71;
+--paper:#edf5f6;
+--line:rgba(17,19,21,.18);
+--b1:#d7eef2;
+--b2:#e7e1f4;
+--b3:#f2dfe7
 }
 
-*{
-  box-sizing:border-box;
-}
-
-html{
-  scroll-behavior:smooth;
-}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
 
 body{
-  margin:0;
-  min-height:100vh;
-  overflow-x:hidden;
-
-  color:var(--ink);
-
-  font-family:
-    "Zen Kaku Gothic New",
-    "Hiragino Kaku Gothic ProN",
-    "Yu Gothic",
-    sans-serif;
-
-  background:#edf5f6;
+margin:0;
+min-height:100vh;
+overflow-x:hidden;
+color:var(--ink);
+font-family:"Zen Kaku Gothic New","Hiragino Kaku Gothic ProN","Yu Gothic",sans-serif;
+background:var(--paper)
 }
 
 body:before{
-  content:"";
-
-  position:fixed;
-  inset:-25%;
-
-  z-index:-2;
-
-  background:
-    radial-gradient(circle at 12% 10%,var(--b1),transparent 32%),
-    radial-gradient(circle at 90% 20%,var(--b2),transparent 35%),
-    radial-gradient(circle at 55% 90%,var(--b3),transparent 38%),
-    #edf5f6;
-
-  transition:background 1.4s ease;
-
-  animation:
-    ambient
-    15s
-    ease-in-out
-    infinite
-    alternate;
+content:"";
+position:fixed;
+inset:-25%;
+z-index:-2;
+background:
+radial-gradient(circle at 12% 10%,var(--b1),transparent 32%),
+radial-gradient(circle at 90% 20%,var(--b2),transparent 35%),
+radial-gradient(circle at 55% 90%,var(--b3),transparent 38%),
+#edf5f6;
+transition:background 1.4s ease;
+animation:ambient 15s ease-in-out infinite alternate
 }
 
 body:after{
-  content:"";
-
-  position:fixed;
-  inset:0;
-
-  pointer-events:none;
-
-  z-index:-1;
-
-  opacity:.16;
-
-  background-image:
-    repeating-linear-gradient(
-      0deg,
-      transparent,
-      transparent 2px,
-      rgba(0,0,0,.025) 3px
-    );
+content:"";
+position:fixed;
+inset:0;
+z-index:-1;
+pointer-events:none;
+opacity:.14;
+background-image:repeating-linear-gradient(0deg,transparent,transparent 2px,rgba(0,0,0,.025) 3px)
 }
 
 @keyframes ambient{
-  from{
-    transform:
-      translate(-1%,0)
-      scale(1.03);
-  }
-
-  to{
-    transform:
-      translate(2%,-2%)
-      scale(1.08);
-  }
+from{transform:translate(-1%,0) scale(1.03)}
+to{transform:translate(2%,-2%) scale(1.08)}
 }
 
-button,
-select,
-input,
-textarea{
-  font:inherit;
-}
-
-button{
-  color:inherit;
-  -webkit-tap-highlight-color:transparent;
-}
-
-.app{
-  width:min(1120px,100%);
-  margin:auto;
-
-  padding:
-    18px
-    18px
-    110px;
-}
-
-
-/* ==============================
-   HEADER
-============================== */
+button,select,input,textarea{font:inherit}
+button{color:inherit;-webkit-tap-highlight-color:transparent}
+.app{width:min(1120px,100%);margin:auto;padding:18px 18px 110px}
 
 header{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-
-  min-height:55px;
-
-  padding:
-    8px
-    1px
-    14px;
-
-  border-bottom:
-    1px solid
-    var(--ink);
-
-  font-size:9px;
-  font-weight:900;
-
-  letter-spacing:.22em;
-
-  animation:
-    topIn
-    .9s
-    ease
-    both;
+display:flex;
+justify-content:space-between;
+align-items:center;
+min-height:55px;
+padding:8px 1px 14px;
+border-bottom:1px solid var(--ink);
+font-size:9px;
+font-weight:900;
+letter-spacing:.22em
 }
 
-.brand{
-  font-size:12px;
-}
+.brand{font-size:12px}
+.issue{opacity:.48}
 
-.issue{
-  opacity:.48;
-}
-
-@keyframes topIn{
-  from{
-    opacity:0;
-    transform:translateY(-8px);
-  }
-
-  to{
-    opacity:1;
-    transform:none;
-  }
-}
-
-
-/* ==============================
-   HERO
-============================== */
+/* HERO */
 
 .hero{
-  position:relative;
-
-  min-height:650px;
-
-  display:flex;
-  flex-direction:column;
-  justify-content:center;
-
-  padding:
-    90px
-    5px
-    100px;
-
-  overflow:hidden;
+position:relative;
+min-height:650px;
+display:flex;
+flex-direction:column;
+justify-content:center;
+padding:90px 5px 100px;
+overflow:hidden
 }
 
-
-/* 巨大なレコード / 円 */
-
 .hero-disc{
-  position:absolute;
-
-  width:min(76vw,650px);
-  aspect-ratio:1;
-
-  left:50%;
-  top:49%;
-
-  transform:
-    translate(-50%,-50%);
-
-  border-radius:50%;
-
-  border:
-    1px solid
-    rgba(17,19,21,.17);
-
-  background:
-    radial-gradient(
-      circle at center,
-      rgba(237,245,246,.94) 0 7%,
-      rgba(17,19,21,.16) 7.2% 7.7%,
-      transparent 8% 19%,
-      rgba(17,19,21,.08) 19.3% 19.7%,
-      transparent 20% 31%,
-      rgba(17,19,21,.065) 31.3% 31.6%,
-      transparent 32% 43%,
-      rgba(17,19,21,.055) 43.3% 43.6%,
-      transparent 44%
-    ),
-    radial-gradient(
-      circle at 35% 28%,
-      rgba(255,255,255,.9),
-      rgba(188,218,224,.45) 35%,
-      rgba(90,110,120,.12) 65%,
-      rgba(255,255,255,.12)
-    );
-
-  box-shadow:
-    inset 20px 20px 80px rgba(255,255,255,.55),
-    inset -30px -25px 90px rgba(30,50,60,.08);
-
-  animation:
-    discFloat
-    8s
-    ease-in-out
-    infinite
-    alternate;
+position:absolute;
+width:min(76vw,650px);
+aspect-ratio:1;
+left:50%;
+top:49%;
+transform:translate(-50%,-50%);
+border-radius:50%;
+border:1px solid rgba(17,19,21,.17);
+background:
+radial-gradient(circle at center,
+rgba(237,245,246,.94) 0 7%,
+rgba(17,19,21,.16) 7.2% 7.7%,
+transparent 8% 19%,
+rgba(17,19,21,.08) 19.3% 19.7%,
+transparent 20% 31%,
+rgba(17,19,21,.065) 31.3% 31.6%,
+transparent 32% 43%,
+rgba(17,19,21,.055) 43.3% 43.6%,
+transparent 44%),
+radial-gradient(circle at 35% 28%,rgba(255,255,255,.9),rgba(188,218,224,.45) 35%,rgba(90,110,120,.12) 65%);
+animation:discFloat 10s ease-in-out infinite alternate
 }
 
 .hero-disc:after{
-  content:"";
-
-  position:absolute;
-
-  width:13%;
-  aspect-ratio:1;
-
-  left:50%;
-  top:50%;
-
-  transform:
-    translate(-50%,-50%);
-
-  border-radius:50%;
-
-  background:#edf5f6;
-
-  border:
-    1px solid
-    rgba(17,19,21,.2);
+content:"";
+position:absolute;
+width:13%;
+aspect-ratio:1;
+left:50%;top:50%;
+transform:translate(-50%,-50%);
+border-radius:50%;
+background:#edf5f6;
+border:1px solid rgba(17,19,21,.2)
 }
 
 @keyframes discFloat{
-  from{
-    transform:
-      translate(-50%,-50%)
-      rotate(-3deg)
-      scale(.95);
-  }
-
-  to{
-    transform:
-      translate(-50%,-52%)
-      rotate(4deg)
-      scale(1);
-  }
+from{transform:translate(-50%,-50%) rotate(-3deg) scale(.95)}
+to{transform:translate(-50%,-52%) rotate(4deg) scale(1)}
 }
-
-
-/* 左の縦文字 */
 
 .vertical-copy{
-  position:absolute;
-
-  left:2px;
-  top:105px;
-
-  writing-mode:vertical-rl;
-
-  font-size:8px;
-
-  font-weight:700;
-
-  letter-spacing:.28em;
-
-  opacity:.48;
-
-  animation:
-    fadeUp
-    1s
-    .5s
-    both;
+position:absolute;
+left:2px;top:105px;
+writing-mode:vertical-rl;
+font-size:8px;
+font-weight:700;
+letter-spacing:.28em;
+opacity:0;
+animation:fadeUp 1.4s 4.1s forwards
 }
-
-
-/* 右の番号 */
 
 .hero-number{
-  position:absolute;
-
-  right:3px;
-  top:100px;
-
-  text-align:right;
-
-  font-size:8px;
-
-  line-height:1.8;
-
-  letter-spacing:.18em;
-
-  opacity:.45;
-
-  animation:
-    fadeUp
-    1s
-    .65s
-    both;
+position:absolute;
+right:3px;top:100px;
+text-align:right;
+font-size:8px;
+line-height:1.8;
+letter-spacing:.18em;
+opacity:0;
+animation:fadeUp 1.4s 4.3s forwards
 }
 
-
-/* HEROタイトル */
-
 .hero-title{
-  position:relative;
-
-  z-index:2;
-
-  margin:0;
-
-  display:flex;
-  flex-direction:column;
-
-  line-height:.88;
-
-  letter-spacing:-.08em;
+position:relative;
+z-index:2;
+margin:0;
+display:flex;
+flex-direction:column;
+line-height:.88;
+letter-spacing:-.08em
 }
 
 .hero-pre{
-  align-self:flex-start;
-
-  margin-left:7%;
-
-  font-size:
-    clamp(25px,5vw,46px);
-
-  font-weight:500;
-
-  opacity:0;
-
-  animation:
-    copyIn
-    .9s
-    .15s
-    cubic-bezier(.16,1,.3,1)
-    forwards;
+align-self:flex-start;
+margin-left:7%;
+font-size:clamp(25px,5vw,46px);
+font-weight:500;
+opacity:0;
+animation:copyIn 1.4s .45s cubic-bezier(.16,1,.3,1) forwards
 }
 
 .hero-music{
-  align-self:center;
-
-  position:relative;
-
-  margin:0;
-
-  font-size:
-    clamp(100px,25vw,230px);
-
-  line-height:.78;
-
-  font-weight:900;
-
-  letter-spacing:-.13em;
-
-  color:var(--ink);
-
-  opacity:0;
-
-  transform:
-    translateY(55px)
-    scaleX(.82)
-    scaleY(1.15);
-
-  animation:
-    musicIn
-    1.15s
-    .35s
-    cubic-bezier(.16,1,.3,1)
-    forwards;
+align-self:center;
+position:relative;
+margin:0;
+font-size:clamp(100px,25vw,230px);
+line-height:.78;
+font-weight:900;
+letter-spacing:-.13em;
+opacity:0;
+animation:musicSlow 2.8s 1.25s cubic-bezier(.16,1,.3,1) forwards
 }
 
 .hero-music:before{
-  content:"MUSIC";
-
-  position:absolute;
-
-  left:4%;
-  top:-8px;
-
-  font-size:7px;
-
-  font-weight:900;
-
-  letter-spacing:.28em;
-
-  opacity:.35;
+content:"MUSIC";
+position:absolute;
+left:4%;top:-8px;
+font-size:7px;
+font-weight:900;
+letter-spacing:.28em;
+opacity:.35
 }
 
 .hero-post{
-  align-self:flex-end;
-
-  margin:
-    14px
-    8%
-    0
-    0;
-
-  font-size:
-    clamp(29px,7vw,62px);
-
-  font-weight:500;
-
-  opacity:0;
-
-  animation:
-    copyIn
-    .9s
-    .7s
-    cubic-bezier(.16,1,.3,1)
-    forwards;
+align-self:flex-end;
+margin:14px 8% 0 0;
+font-size:clamp(29px,7vw,62px);
+font-weight:500;
+opacity:0;
+animation:copyIn 1.5s 3.65s cubic-bezier(.16,1,.3,1) forwards
 }
-
-@keyframes copyIn{
-  from{
-    opacity:0;
-    transform:translateY(20px);
-  }
-
-  to{
-    opacity:1;
-    transform:none;
-  }
-}
-
-@keyframes musicIn{
-  0%{
-    opacity:0;
-
-    transform:
-      translateY(55px)
-      scaleX(.82)
-      scaleY(1.15);
-
-    filter:blur(10px);
-  }
-
-  100%{
-    opacity:1;
-
-    transform:none;
-
-    filter:none;
-  }
-}
-
-
-/* HERO説明 */
 
 .hero-description{
-  position:absolute;
-
-  right:2px;
-  bottom:45px;
-
-  width:min(300px,67vw);
-
-  padding-top:12px;
-
-  border-top:
-    1px solid
-    var(--ink);
-
-  font-size:11px;
-
-  line-height:1.9;
-
-  opacity:0;
-
-  animation:
-    fadeUp
-    .9s
-    1s
-    forwards;
+position:absolute;
+right:2px;bottom:45px;
+width:min(300px,67vw);
+padding-top:12px;
+border-top:1px solid var(--ink);
+font-size:11px;
+line-height:1.9;
+opacity:0;
+animation:fadeUp 1.4s 4.7s forwards
 }
 
 .hero-description:before{
-  content:"ABOUT / YOUR SOUND";
+content:"ABOUT / YOUR SOUND";
+display:block;
+margin-bottom:7px;
+font-size:7px;
+font-weight:900;
+letter-spacing:.2em;
+opacity:.45
+}
 
-  display:block;
-
-  margin-bottom:7px;
-
-  font-size:7px;
-
-  font-weight:900;
-
-  letter-spacing:.2em;
-
-  opacity:.45;
+@keyframes copyIn{
+from{opacity:0;transform:translateY(28px)}
+to{opacity:1;transform:none}
 }
 
 @keyframes fadeUp{
-  from{
-    opacity:0;
-    transform:translateY(12px);
-  }
-
-  to{
-    opacity:1;
-    transform:none;
-  }
+from{opacity:0;transform:translateY(15px)}
+to{opacity:1;transform:none}
 }
 
+@keyframes musicSlow{
+0%{opacity:0;transform:translateY(80px) scaleX(.42) scaleY(1.55);filter:blur(18px)}
+35%{opacity:.45;transform:translateY(40px) scaleX(.62) scaleY(1.35);filter:blur(8px)}
+72%{opacity:1;transform:translateY(-6px) scaleX(1.08) scaleY(.94);filter:blur(0)}
+100%{opacity:1;transform:none;filter:none}
+}
 
-/* ==============================
-   MODE SELECT
-============================== */
+/* MODES */
 
 .modes{
-  display:grid;
-
-  grid-template-columns:
-    1fr
-    1fr;
-
-  border-top:
-    1px solid
-    var(--ink);
-
-  border-bottom:
-    1px solid
-    var(--ink);
-
-  margin-top:25px;
+display:grid;
+grid-template-columns:1fr 1fr;
+border-top:1px solid var(--ink);
+border-bottom:1px solid var(--ink);
+margin-top:25px
 }
 
 .mode{
-  position:relative;
-
-  min-height:135px;
-
-  padding:
-    22px
-    20px;
-
-  border:0;
-
-  border-right:
-    1px solid
-    var(--line);
-
-  border-radius:0;
-
-  background:transparent;
-
-  text-align:left;
-
-  transition:
-    background .35s,
-    color .35s;
+min-height:135px;
+padding:22px 20px;
+border:0;
+border-right:1px solid var(--line);
+background:transparent;
+text-align:left;
+transition:.35s
 }
 
-.mode:last-child{
-  border-right:0;
-}
+.mode:last-child{border-right:0}
+.mode b{display:block;margin:18px 0 6px;font-size:20px;letter-spacing:-.05em}
+.mode span{display:block;font-size:10px;color:var(--muted);line-height:1.6}
+.mode.active{color:#fff;background:var(--ink)}
+.mode.active span{color:rgba(255,255,255,.6)}
 
-.mode b{
-  display:block;
-
-  margin:
-    18px
-    0
-    6px;
-
-  font-size:20px;
-
-  letter-spacing:-.05em;
-}
-
-.mode span{
-  display:block;
-
-  font-size:10px;
-
-  color:var(--muted);
-
-  line-height:1.6;
-}
-
-.mode.active{
-  color:white;
-
-  background:var(--ink);
-}
-
-.mode.active span{
-  color:
-    rgba(255,255,255,.6);
-}
-
-
-/* ==============================
-   PANELS
-============================== */
-
-.panel{
-  margin-top:50px;
-
-  padding:
-    32px
-    0
-    10px;
-
-  border-top:
-    1px solid
-    var(--ink);
-}
-
-.hidden{
-  display:none!important;
-}
+.panel{margin-top:50px;padding:32px 0 10px;border-top:1px solid var(--ink)}
+.hidden{display:none!important}
 
 .head{
-  display:flex;
-
-  justify-content:space-between;
-  align-items:flex-end;
-
-  gap:15px;
-
-  margin-bottom:32px;
+display:flex;
+justify-content:space-between;
+align-items:flex-end;
+gap:15px;
+margin-bottom:32px
 }
 
-.head h2{
-  margin:0;
+.head h2{margin:0;font-size:clamp(29px,5vw,48px);line-height:1;font-weight:700;letter-spacing:-.07em}
+.head small{font-size:8px;letter-spacing:.2em;opacity:.5}
 
-  font-size:
-    clamp(29px,5vw,48px);
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:25px 30px}
+.field.full{grid-column:1/-1}
+.field{padding-top:9px;border-top:1px solid var(--line)}
+.field label{display:block;margin-bottom:9px;font-size:9px;font-weight:700;letter-spacing:.14em;opacity:.55}
 
-  line-height:1;
-
-  font-weight:700;
-
-  letter-spacing:-.07em;
+.field select,.field input,.field textarea{
+width:100%;
+padding:12px 2px;
+border:0;
+border-bottom:1px solid var(--ink);
+border-radius:0;
+outline:none;
+background:transparent;
+color:var(--ink);
+font-size:15px
 }
 
-.head small{
-  font-size:8px;
+.field select{height:50px}
+.field textarea{min-height:100px;resize:vertical}
 
-  letter-spacing:.2em;
-
-  opacity:.5;
-}
-
-
-/* ==============================
-   FORMS
-============================== */
-
-.grid{
-  display:grid;
-
-  grid-template-columns:
-    1fr
-    1fr;
-
-  gap:
-    25px
-    30px;
-}
-
-.field.full{
-  grid-column:
-    1/-1;
-}
-
-.field{
-  padding-top:9px;
-
-  border-top:
-    1px solid
-    var(--line);
-}
-
-.field label{
-  display:block;
-
-  margin-bottom:9px;
-
-  font-size:9px;
-
-  font-weight:700;
-
-  letter-spacing:.14em;
-
-  opacity:.55;
-}
-
-.field select,
-.field input,
-.field textarea{
-  width:100%;
-
-  padding:
-    12px
-    2px;
-
-  border:0;
-
-  border-bottom:
-    1px solid
-    var(--ink);
-
-  border-radius:0;
-
-  outline:none;
-
-  background:transparent;
-
-  color:var(--ink);
-
-  font-size:15px;
-}
-
-.field select{
-  height:50px;
-}
-
-.field textarea{
-  min-height:100px;
-
-  resize:vertical;
-}
-
-.field select:focus,
-.field input:focus,
-.field textarea:focus{
-  background:
-    rgba(255,255,255,.25);
-}
-
-
-/* LOVE TYPE */
-
-.seg{
-  display:flex;
-
-  margin-bottom:6px;
-
-  border:
-    1px solid
-    var(--ink);
-}
-
-.seg button{
-  flex:1;
-
-  padding:9px;
-
-  border:0;
-
-  border-radius:0;
-
-  background:transparent;
-
-  font-size:10px;
-
-  font-weight:700;
-}
-
-.seg button.active{
-  color:white;
-
-  background:var(--ink);
-}
-
-
-/* ==============================
-   BUTTONS
-============================== */
+.seg{display:flex;margin-bottom:6px;border:1px solid var(--ink)}
+.seg button{flex:1;padding:9px;border:0;background:transparent;font-size:10px;font-weight:700}
+.seg button.active{color:#fff;background:var(--ink)}
 
 .primary{
-  width:100%;
-
-  min-height:67px;
-
-  margin-top:36px;
-
-  border:
-    1px solid
-    var(--ink);
-
-  border-radius:0;
-
-  background:var(--ink);
-
-  color:white;
-
-  font-size:12px;
-
-  font-weight:900;
-
-  letter-spacing:.1em;
-
-  transition:
-    background .25s,
-    color .25s,
-    transform .2s;
+width:100%;
+min-height:67px;
+margin-top:36px;
+border:1px solid var(--ink);
+background:var(--ink);
+color:#fff;
+font-size:12px;
+font-weight:900;
+letter-spacing:.1em
 }
 
-.primary:active{
-  transform:scale(.99);
+.status{display:none;margin-top:12px;padding:10px 0;border-bottom:1px solid var(--line);color:var(--muted);font-size:11px}
+.error{color:#9d2845}
+.manual-note{max-width:550px;margin:-12px 0 28px;font-size:11px;line-height:1.8;color:var(--muted)}
 
-  background:transparent;
-
-  color:var(--ink);
-}
-
-.status{
-  display:none;
-
-  margin-top:12px;
-
-  padding:
-    10px
-    0;
-
-  border-bottom:
-    1px solid
-    var(--line);
-
-  color:var(--muted);
-
-  font-size:11px;
-}
-
-.error{
-  color:#9d2845;
-}
-
-.manual-note{
-  max-width:550px;
-
-  margin:
-    -12px
-    0
-    28px;
-
-  font-size:11px;
-
-  line-height:1.8;
-
-  color:var(--muted);
-}
-
-
-/* ==============================
-   LOADING
-============================== */
+/* ================================
+   VINYL LOADING
+================================ */
 
 .loading{
-  position:fixed;
-
-  inset:0;
-
-  z-index:100;
-
-  display:none;
-
-  place-items:center;
-
-  background:
-    rgba(237,245,246,.82);
-
-  backdrop-filter:
-    blur(25px);
-
-  -webkit-backdrop-filter:
-    blur(25px);
+position:fixed;
+inset:0;
+z-index:100;
+display:none;
+place-items:center;
+overflow:hidden;
+background:rgba(235,244,245,.96);
+backdrop-filter:blur(24px);
+-webkit-backdrop-filter:blur(24px)
 }
 
-.loading.show{
-  display:grid;
+.loading.show{display:grid}
+
+.loading .marquee{
+position:absolute;
+top:8%;
+left:0;
+width:max-content;
+white-space:nowrap;
+font-size:clamp(65px,18vw,180px);
+line-height:.8;
+font-weight:900;
+letter-spacing:-.09em;
+color:rgba(17,19,21,.04);
+animation:marquee 15s linear infinite
+}
+
+.loading .ticker{
+position:absolute;
+bottom:7%;
+width:max-content;
+white-space:nowrap;
+font-size:8px;
+font-weight:900;
+letter-spacing:.34em;
+opacity:.38;
+animation:ticker 18s linear infinite
+}
+
+@keyframes marquee{
+from{transform:translateX(8vw)}
+to{transform:translateX(-52%)}
+}
+
+@keyframes ticker{
+from{transform:translateX(-35%)}
+to{transform:translateX(15%)}
 }
 
 .load{
-  width:min(500px,85vw);
+position:relative;
+z-index:3;
+width:min(92vw,540px);
+min-height:570px;
+display:flex;
+flex-direction:column;
+justify-content:center;
+align-items:center;
+text-align:center
+}
 
-  text-align:center;
+.turntable{
+position:relative;
+width:min(75vw,350px);
+height:330px
 }
 
 .orb{
-  position:relative;
+position:absolute;
+width:min(62vw,270px);
+aspect-ratio:1;
+left:50%;
+top:20px;
+transform:translateX(-50%);
+border-radius:50%;
+background:
+radial-gradient(circle,#dcebed 0 4%,#111315 4.5% 6%,#cbdcde 6.5% 17%,#151719 17.5% 19%,#111315 19.5% 100%);
+box-shadow:0 32px 70px rgba(17,19,21,.24);
+animation:vinylSpin 5.2s linear infinite
+}
 
-  width:130px;
-  aspect-ratio:1;
-
-  margin:auto;
-
-  border-radius:50%;
-
-  border:
-    1px solid
-    var(--ink);
-
-  background:
-    radial-gradient(
-      circle,
-      transparent 0 14%,
-      rgba(17,19,21,.15) 14.5% 15%,
-      transparent 15.5% 35%,
-      rgba(17,19,21,.09) 35.5% 36%,
-      transparent 36.5%
-    );
-
-  animation:
-    loadingDisc
-    2.4s
-    linear
-    infinite;
+.orb:before{
+content:"";
+position:absolute;
+inset:7%;
+border-radius:50%;
+background:repeating-radial-gradient(circle,transparent 0 4px,rgba(255,255,255,.065) 5px,transparent 6px)
 }
 
 .orb:after{
-  content:"";
-
-  position:absolute;
-
-  width:12px;
-  height:12px;
-
-  left:50%;
-  top:50%;
-
-  transform:
-    translate(-50%,-50%);
-
-  border-radius:50%;
-
-  background:var(--ink);
+content:"YOUR\A SOUND";
+white-space:pre;
+position:absolute;
+width:27%;
+aspect-ratio:1;
+left:50%;top:50%;
+transform:translate(-50%,-50%);
+display:grid;
+place-items:center;
+border-radius:50%;
+background:#d8eaec;
+color:#111315;
+font-size:7px;
+font-weight:900;
+line-height:1.25;
+letter-spacing:.12em
 }
 
-@keyframes loadingDisc{
-  to{
-    transform:rotate(360deg);
-  }
+.vinyl-shine{
+position:absolute;
+width:min(62vw,270px);
+aspect-ratio:1;
+left:50%;top:20px;
+transform:translateX(-50%) rotate(-30deg);
+border-radius:50%;
+background:linear-gradient(100deg,transparent 34%,rgba(255,255,255,.02) 42%,rgba(255,255,255,.23) 49%,rgba(255,255,255,.03) 57%,transparent 65%);
+animation:shine 3.2s ease-in-out infinite alternate;
+pointer-events:none
+}
+
+.arm{
+position:absolute;
+width:8px;
+height:170px;
+left:calc(50% + 120px);
+top:15px;
+border-radius:10px;
+background:#202326;
+transform-origin:50% 8px;
+transform:rotate(25deg);
+box-shadow:0 4px 12px rgba(0,0,0,.18);
+animation:armMove 4.2s ease-in-out infinite alternate
+}
+
+.arm:before{
+content:"";
+position:absolute;
+width:35px;height:35px;
+border-radius:50%;
+background:#111315;
+left:50%;top:-5px;
+transform:translateX(-50%)
+}
+
+.arm:after{
+content:"";
+position:absolute;
+width:20px;height:27px;
+background:#111315;
+bottom:-16px;
+left:50%;
+transform:translateX(-50%) rotate(-8deg)
+}
+
+@keyframes vinylSpin{
+from{transform:translateX(-50%) rotate(0)}
+to{transform:translateX(-50%) rotate(360deg)}
+}
+
+@keyframes shine{
+from{opacity:.3;transform:translateX(-50%) rotate(-42deg)}
+to{opacity:.95;transform:translateX(-50%) rotate(-15deg)}
+}
+
+@keyframes armMove{
+from{transform:rotate(23deg)}
+to{transform:rotate(29deg)}
+}
+
+.load-stage{
+font-size:8px;
+font-weight:900;
+letter-spacing:.25em;
+opacity:.42;
+margin-bottom:9px
 }
 
 .load h2{
-  margin-top:25px;
-
-  font-size:22px;
-
-  letter-spacing:-.05em;
+margin:0 0 10px;
+font-size:clamp(23px,6vw,34px);
+letter-spacing:-.06em
 }
+
+.load h2:after{
+content:"●";
+font-size:7px;
+margin-left:10px;
+vertical-align:middle;
+animation:blink 1s steps(1) infinite
+}
+
+@keyframes blink{50%{opacity:.15}}
 
 .load p{
-  font-size:11px;
-
-  color:var(--muted);
-
-  transition:opacity .25s;
+min-height:22px;
+margin:0;
+font-size:11px;
+color:var(--muted);
+transition:.3s
 }
 
+/* ================================
+   REVEAL / ONE-LINER
+================================ */
 
-/* ==============================
-   RESULTS
-============================== */
-
-.results{
-  display:none;
-
-  margin-top:75px;
-
-  padding-top:40px;
-
-  border-top:
-    1px solid
-    var(--ink);
+.reveal{
+position:fixed;
+inset:0;
+z-index:95;
+display:none;
+place-items:center;
+overflow:hidden;
+background:rgba(237,245,246,.97)
 }
 
-.results.enter{
-  animation:
-    resultIn
-    .8s
-    cubic-bezier(.16,1,.3,1)
-    both;
+.reveal.show{display:grid}
+
+.reveal-inner{
+width:min(900px,88vw);
+text-align:left
 }
+
+.reveal-kicker{
+font-size:8px;
+font-weight:900;
+letter-spacing:.25em;
+opacity:0;
+animation:revealSmall .7s .2s forwards
+}
+
+.reveal-copy{
+margin:22px 0;
+font-size:clamp(43px,10vw,100px);
+line-height:1.02;
+letter-spacing:-.08em;
+font-weight:900;
+opacity:0;
+transform:translateY(50px);
+animation:revealCopy 1.35s .55s cubic-bezier(.16,1,.3,1) forwards
+}
+
+.reveal-type{
+padding-top:12px;
+border-top:1px solid var(--ink);
+font-size:11px;
+opacity:0;
+animation:revealSmall .8s 1.45s forwards
+}
+
+@keyframes revealCopy{
+to{opacity:1;transform:none}
+}
+
+@keyframes revealSmall{
+to{opacity:.55}
+}
+
+/* RESULTS */
+
+.results{display:none;margin-top:75px;padding-top:40px;border-top:1px solid var(--ink)}
+.results.enter{animation:resultIn 1s cubic-bezier(.16,1,.3,1) both}
 
 @keyframes resultIn{
-  from{
-    opacity:0;
-    transform:translateY(30px);
-  }
-
-  to{
-    opacity:1;
-    transform:none;
-  }
+from{opacity:0;transform:translateY(35px)}
+to{opacity:1;transform:none}
 }
 
-
-/* MUSIC TYPE */
-
-.type{
-  position:relative;
-
-  padding:
-    10px
-    0
-    55px;
-}
-
-.type:after{
-  content:"YOUR PROFILE";
-
-  position:absolute;
-
-  right:0;
-  top:10px;
-
-  writing-mode:vertical-rl;
-
-  font-size:7px;
-
-  font-weight:900;
-
-  letter-spacing:.25em;
-
-  opacity:.35;
-}
-
-.eyebrow{
-  font-size:8px;
-
-  font-weight:900;
-
-  letter-spacing:.22em;
-
-  opacity:.45;
-}
+.type{position:relative;padding:10px 0 55px}
+.eyebrow{font-size:8px;font-weight:900;letter-spacing:.22em;opacity:.45}
 
 .type h2{
-  max-width:800px;
-
-  margin:
-    14px
-    0
-    22px;
-
-  font-size:
-    clamp(42px,8vw,82px);
-
-  line-height:.98;
-
-  letter-spacing:-.08em;
+max-width:800px;
+margin:14px 0 22px;
+font-size:clamp(42px,8vw,82px);
+line-height:.98;
+letter-spacing:-.08em
 }
 
 .type p{
-  max-width:620px;
-
-  margin:0;
-
-  padding-top:14px;
-
-  border-top:
-    1px solid
-    var(--line);
-
-  font-size:12px;
-
-  line-height:1.9;
-
-  color:var(--muted);
+max-width:620px;
+margin:0;
+padding-top:14px;
+border-top:1px solid var(--line);
+font-size:12px;
+line-height:1.9;
+color:var(--muted)
 }
 
-
-/* ==============================
-   CAROUSEL
-============================== */
-
-.results > .head{
-  margin-top:20px;
-
-  padding-top:13px;
-
-  border-top:
-    1px solid
-    var(--ink);
-}
+.results>.head{margin-top:20px;padding-top:13px;border-top:1px solid var(--ink)}
 
 .carousel{
-  display:flex;
-
-  gap:28px;
-
-  overflow-x:auto;
-
-  scroll-snap-type:
-    x mandatory;
-
-  scrollbar-width:none;
-
-  margin:
-    0
-    -18px;
-
-  padding:
-    30px
-    calc(50% - 142px)
-    45px;
+display:flex;
+gap:28px;
+overflow-x:auto;
+scroll-snap-type:x mandatory;
+scrollbar-width:none;
+margin:0 -18px;
+padding:30px calc(50% - 142px) 45px
 }
 
-.carousel::-webkit-scrollbar{
-  display:none;
-}
+.carousel::-webkit-scrollbar{display:none}
 
 .card{
-  flex:
-    0
-    0
-    284px;
-
-  position:relative;
-
-  scroll-snap-align:center;
-
-  opacity:.25;
-
-  transform:
-    scale(.82)
-    rotate(-2deg);
-
-  transition:
-    opacity .55s,
-    transform .55s
-    cubic-bezier(.16,1,.3,1);
+flex:0 0 284px;
+position:relative;
+scroll-snap-align:center;
+opacity:.25;
+transform:scale(.82) rotate(-2deg);
+transition:.55s cubic-bezier(.16,1,.3,1)
 }
 
-.card:nth-child(even){
-  transform:
-    scale(.82)
-    rotate(2deg);
-}
-
-.card.active{
-  opacity:1;
-
-  transform:
-    scale(1)
-    rotate(0deg);
-}
+.card:nth-child(even){transform:scale(.82) rotate(2deg)}
+.card.active{opacity:1;transform:scale(1) rotate(0)}
 
 .art{
-  display:block;
-
-  width:100%;
-  aspect-ratio:1;
-
-  object-fit:cover;
-
-  border-radius:50%;
-
-  border:
-    1px solid
-    rgba(17,19,21,.25);
-
-  background:#dde8e9;
-
-  box-shadow:
-    0
-    25px
-    60px
-    rgba(20,35,40,.16);
-
-  filter:
-    saturate(.88);
+display:block;
+width:100%;
+aspect-ratio:1;
+object-fit:cover;
+border-radius:50%;
+border:1px solid rgba(17,19,21,.25);
+background:#dde8e9;
+box-shadow:0 25px 60px rgba(20,35,40,.16);
+filter:saturate(.88)
 }
 
-.card.active .art{
-  animation:
-    coverFloat
-    5s
-    ease-in-out
-    infinite
-    alternate;
-}
+.card.active .art{animation:coverFloat 5s ease-in-out infinite alternate}
 
 @keyframes coverFloat{
-  from{
-    transform:
-      translateY(0)
-      rotate(-1deg);
-  }
-
-  to{
-    transform:
-      translateY(-8px)
-      rotate(2deg);
-  }
+to{transform:translateY(-8px) rotate(2deg)}
 }
 
 .best{
-  position:absolute;
-
-  right:-4px;
-  top:8px;
-
-  z-index:3;
-
-  padding:
-    8px
-    9px;
-
-  background:var(--ink);
-
-  color:white;
-
-  font-size:7px;
-
-  font-weight:900;
-
-  letter-spacing:.13em;
-
-  transform:rotate(5deg);
+position:absolute;
+right:-4px;top:8px;
+z-index:3;
+padding:8px 9px;
+background:var(--ink);
+color:#fff;
+font-size:7px;
+font-weight:900;
+letter-spacing:.13em;
+transform:rotate(5deg)
 }
 
 .card h3{
-  margin:
-    17px
-    0
-    3px;
-
-  overflow:hidden;
-
-  white-space:nowrap;
-
-  text-overflow:ellipsis;
-
-  font-size:21px;
-
-  letter-spacing:-.055em;
+margin:17px 0 3px;
+overflow:hidden;
+white-space:nowrap;
+text-overflow:ellipsis;
+font-size:21px;
+letter-spacing:-.055em
 }
 
-.artist{
-  font-size:10px;
+.artist{font-size:10px;letter-spacing:.06em;color:var(--muted)}
+.dots{margin:-13px 0 30px;text-align:center;font-size:8px;letter-spacing:.35em;opacity:.55}
 
-  letter-spacing:.06em;
-
-  color:var(--muted);
-}
-
-.dots{
-  margin:
-    -13px
-    0
-    30px;
-
-  text-align:center;
-
-  font-size:8px;
-
-  letter-spacing:.35em;
-
-  opacity:.55;
-}
-
-
-/* ==============================
-   DETAIL
-============================== */
-
-.detail{
-  padding:
-    35px
-    0;
-
-  border-top:
-    1px solid
-    var(--ink);
-
-  border-bottom:
-    1px solid
-    var(--ink);
-}
-
-.detail.animate{
-  animation:
-    detailIn
-    .55s
-    cubic-bezier(.16,1,.3,1);
-}
+.detail{padding:35px 0;border-top:1px solid var(--ink);border-bottom:1px solid var(--ink)}
+.detail.animate{animation:detailIn .6s cubic-bezier(.16,1,.3,1)}
 
 @keyframes detailIn{
-  from{
-    opacity:.15;
-
-    transform:
-      translateY(14px);
-
-    filter:blur(5px);
-  }
-
-  to{
-    opacity:1;
-
-    transform:none;
-
-    filter:none;
-  }
+from{opacity:.1;transform:translateY(14px);filter:blur(5px)}
+to{opacity:1;transform:none;filter:none}
 }
 
-.detail-head{
-  display:flex;
-
-  justify-content:
-    space-between;
-
-  align-items:flex-start;
-
-  gap:15px;
-}
-
-.detail h2{
-  max-width:760px;
-
-  margin:
-    6px
-    0;
-
-  font-size:
-    clamp(38px,7vw,72px);
-
-  line-height:.96;
-
-  letter-spacing:-.08em;
-}
+.detail-head{display:flex;justify-content:space-between;align-items:flex-start;gap:15px}
+.detail h2{max-width:760px;margin:6px 0;font-size:clamp(38px,7vw,72px);line-height:.96;letter-spacing:-.08em}
 
 .heart{
-  flex:
-    0
-    0
-    47px;
-
-  width:47px;
-  height:47px;
-
-  border:
-    1px solid
-    var(--ink);
-
-  border-radius:50%;
-
-  background:transparent;
-
-  font-size:20px;
+flex:0 0 47px;
+width:47px;height:47px;
+border:1px solid var(--ink);
+border-radius:50%;
+background:transparent;
+font-size:20px
 }
 
-.info{
-  display:grid;
+.info{display:grid;grid-template-columns:1fr 1fr;gap:0;margin-top:35px;border-top:1px solid var(--line)}
+.box{padding:21px 18px 21px 0;border-bottom:1px solid var(--line)}
+.box:nth-child(odd){border-right:1px solid var(--line)}
+.box:nth-child(even){padding-left:18px}
+.box h4{margin:0 0 9px;font-size:10px}
+.box p{margin:0;font-size:11px;line-height:1.85;color:var(--muted)}
 
-  grid-template-columns:
-    1fr
-    1fr;
-
-  gap:0;
-
-  margin-top:35px;
-
-  border-top:
-    1px solid
-    var(--line);
-}
-
-.box{
-  padding:
-    21px
-    18px
-    21px
-    0;
-
-  border-bottom:
-    1px solid
-    var(--line);
-}
-
-.box:nth-child(odd){
-  border-right:
-    1px solid
-    var(--line);
-}
-
-.box:nth-child(even){
-  padding-left:18px;
-}
-
-.box h4{
-  margin:
-    0
-    0
-    9px;
-
-  font-size:10px;
-}
-
-.box p{
-  margin:0;
-
-  font-size:11px;
-
-  line-height:1.85;
-
-  color:var(--muted);
-}
-
-
-/* LINKS */
-
-.links{
-  display:flex;
-
-  flex-wrap:wrap;
-
-  gap:0;
-
-  margin-top:25px;
-
-  border:
-    1px solid
-    var(--ink);
-}
-
+.links{display:flex;flex-wrap:wrap;margin-top:25px;border:1px solid var(--ink)}
 .links a{
-  flex:1;
-
-  min-width:120px;
-
-  padding:13px;
-
-  border-right:
-    1px solid
-    var(--ink);
-
-  color:var(--ink);
-
-  text-align:center;
-
-  text-decoration:none;
-
-  font-size:9px;
-
-  font-weight:900;
-
-  letter-spacing:.08em;
+flex:1;
+min-width:110px;
+padding:13px;
+border-right:1px solid var(--ink);
+color:var(--ink);
+text-align:center;
+text-decoration:none;
+font-size:9px;
+font-weight:900
 }
+.links a:last-child{border-right:0}
 
-.links a:last-child{
-  border-right:0;
-}
-
-.links a:active{
-  background:var(--ink);
-
-  color:white;
-}
-
-
-/* ==============================
-   BOTTOM ACTIONS
-============================== */
-
-.actions{
-  display:grid;
-
-  grid-template-columns:
-    1fr
-    1fr;
-
-  margin-top:20px;
-
-  border:
-    1px solid
-    var(--ink);
-}
-
-.secondary{
-  min-height:50px;
-
-  border:0;
-
-  border-right:
-    1px solid
-    var(--ink);
-
-  background:transparent;
-
-  font-size:10px;
-
-  font-weight:900;
-}
-
-.secondary:last-child{
-  border-right:0;
-}
-
-.secondary:active{
-  background:var(--ink);
-
-  color:white;
-}
-
-
-/* ==============================
-   MOBILE
-============================== */
+.actions{display:grid;grid-template-columns:1fr 1fr;margin-top:20px;border:1px solid var(--ink)}
+.secondary{min-height:50px;border:0;border-right:1px solid var(--ink);background:transparent;font-size:10px;font-weight:900}
+.secondary:last-child{border-right:0}
 
 @media(max-width:650px){
-
-  .app{
-    padding:
-      15px
-      15px
-      90px;
-  }
-
-  .hero{
-    min-height:620px;
-
-    padding-top:70px;
-  }
-
-  .hero-disc{
-    width:92vw;
-  }
-
-  .hero-pre{
-    margin-left:5%;
-  }
-
-  .hero-post{
-    margin-right:5%;
-  }
-
-  .hero-music{
-    font-size:
-      clamp(100px,31vw,150px);
-  }
-
-  .vertical-copy{
-    top:90px;
-  }
-
-  .hero-description{
-    bottom:35px;
-  }
-
-  .grid,
-  .info{
-    grid-template-columns:
-      1fr;
-  }
-
-  .field.full{
-    grid-column:auto;
-  }
-
-  .box:nth-child(odd){
-    border-right:0;
-  }
-
-  .box:nth-child(even){
-    padding-left:0;
-  }
-
-  .head{
-    align-items:flex-start;
-  }
-
-  .head small{
-    margin-top:7px;
-  }
-
+.app{padding:15px 15px 90px}
+.hero{min-height:620px;padding-top:70px}
+.hero-disc{width:92vw}
+.hero-music{font-size:clamp(100px,31vw,150px)}
+.grid,.info{grid-template-columns:1fr}
+.field.full{grid-column:auto}
+.box:nth-child(odd){border-right:0}
+.box:nth-child(even){padding-left:0}
+.orb,.vinyl-shine{width:230px}
+.turntable{height:295px}
+.arm{height:140px;left:calc(50% + 99px)}
 }
-
-
-/* 動きを減らす設定 */
 
 @media(prefers-reduced-motion:reduce){
-
-  *,
-  *:before,
-  *:after{
-    animation-duration:
-      .01ms!important;
-
-    animation-iteration-count:
-      1!important;
-
-    scroll-behavior:
-      auto!important;
-  }
-
+*:not(.orb),*:before,*:after{animation-duration:.01ms!important;animation-iteration-count:1!important}
 }
-
 </style>
 </head>
-
 
 <body>
 
 <div class="app">
 
-
 <header>
-
-<div class="brand">
-YOUR SOUND
-</div>
-
-<div class="issue">
-MUSIC CURATION / 2026
-</div>
-
+<div class="brand">YOUR SOUND</div>
+<div class="issue">MUSIC CURATION / 2026</div>
 </header>
 
-
-<!-- =========================
-     HERO
-========================= -->
-
 <section class="hero">
-
 <div class="hero-disc"></div>
-
-<div class="vertical-copy">
-性格　恋愛　感情　そして音楽
-</div>
-
-<div class="hero-number">
-YS — 001<br>
-PERSONAL<br>
-MUSIC
-</div>
-
+<div class="vertical-copy">性格　恋愛　感情　そして音楽</div>
+<div class="hero-number">YS — 001<br>PERSONAL<br>MUSIC</div>
 
 <h1 class="hero-title">
-
-<span class="hero-pre">
-あなたを、
-</span>
-
-<span class="hero-music">
-音楽
-</span>
-
-<span class="hero-post">
-にすると。
-</span>
-
+<span class="hero-pre">あなたを、</span>
+<span class="hero-music">音楽</span>
+<span class="hero-post">にすると。</span>
 </h1>
 
-
 <p class="hero-description">
-性格・恋愛傾向・今の気持ちから、
-実在する音楽の中に
-「今のあなたに刺さる曲」を探します。
+性格・恋愛傾向・今の気持ちから、実在する音楽の中に「今のあなたに刺さる曲」を探します。
 </p>
-
 </section>
-
-
-<!-- =========================
-     MODES
-========================= -->
 
 <div class="modes">
-
-<button
-class="mode active"
-data-mode="auto"
->
-
-01
-
-<b>
-おまかせ診断
-</b>
-
-<span>
-性格や恋愛傾向から選曲する。
-</span>
-
-</button>
-
-
-<button
-class="mode"
-data-mode="manual"
->
-
-02
-
-<b>
-マニュアル選曲
-</b>
-
-<span>
-気分や場面まで細かく指定する。
-</span>
-
-</button>
-
+<button class="mode active" data-mode="auto">01<b>おまかせ診断</b><span>性格や恋愛傾向から選曲する。</span></button>
+<button class="mode" data-mode="manual">02<b>マニュアル選曲</b><span>気分や場面まで細かく指定する。</span></button>
 </div>
 
-
-<!-- =========================
-     AUTO
-========================= -->
-
-<section
-id="auto"
-class="panel"
->
-
-<div class="head">
-
-<h2>
-あなたについて
-</h2>
-
-<small>
-QUICK DIAGNOSIS
-</small>
-
-</div>
-
+<section id="auto" class="panel">
+<div class="head"><h2>あなたについて</h2><small>QUICK DIAGNOSIS</small></div>
 
 <div class="grid">
 
-
 <div class="field">
-
-<label>
-01 / MBTI
-</label>
-
+<label>01 / MBTI</label>
 <select id="mbti">
-
-<option value="">
-選択してください
-</option>
-
-<option>INTJ</option>
-<option>INTP</option>
-<option>ENTJ</option>
-<option>ENTP</option>
-
-<option>INFJ</option>
-<option>INFP</option>
-<option>ENFJ</option>
-<option>ENFP</option>
-
-<option>ISTJ</option>
-<option>ISFJ</option>
-<option>ESTJ</option>
-<option>ESFJ</option>
-
-<option>ISTP</option>
-<option>ISFP</option>
-<option>ESTP</option>
-<option>ESFP</option>
-
+<option value="">選択してください</option>
+<option>INTJ</option><option>INTP</option><option>ENTJ</option><option>ENTP</option>
+<option>INFJ</option><option>INFP</option><option>ENFJ</option><option>ENFP</option>
+<option>ISTJ</option><option>ISFJ</option><option>ESTJ</option><option>ESFJ</option>
+<option>ISTP</option><option>ISFP</option><option>ESTP</option><option>ESFP</option>
 </select>
-
 </div>
-
 
 <div class="field">
-
-<label>
-02 / 恋愛タイプ
-</label>
-
-
+<label>02 / 恋愛タイプ</label>
 <div class="seg">
-
-<button
-class="ls active"
-data-l="simple"
->
-かんたん
-</button>
-
-<button
-class="ls"
-data-l="l16"
->
-LoveType16
-</button>
-
+<button class="ls active" data-l="simple">かんたん</button>
+<button class="ls" data-l="l16">LoveType16</button>
 </div>
-
 
 <select id="simple">
-
-<option value="">
-選択してください
-</option>
-
-<option>一途に愛する</option>
-<option>追いかけたい</option>
-<option>追われたい</option>
-<option>甘えたい</option>
-<option>尽くしたい</option>
-<option>じっくり進めたい</option>
-<option>自由な恋愛が好き</option>
-<option>安心感を大切にする</option>
-
+<option value="">選択してください</option>
+<option>一途に愛する</option><option>追いかけたい</option><option>追われたい</option>
+<option>甘えたい</option><option>尽くしたい</option><option>じっくり進めたい</option>
+<option>自由な恋愛が好き</option><option>安心感を大切にする</option>
 </select>
 
-
-<select
-id="l16"
-class="hidden"
->
-
-<option value="">
-LoveType16を選択
-</option>
-
-<option>LCRO｜ボス猫</option>
-<option>LCRE｜隠れベイビー</option>
-<option>LCPO｜主役体質</option>
-<option>LCPE｜ツンデレヤンキー</option>
-
-<option>LARO｜憧れの先輩</option>
-<option>LARE｜カリスマバランサー</option>
-<option>LAPO｜パーフェクトカメレオン</option>
-<option>LAPE｜キャプテンライオン</option>
-
-<option>FCRO｜ロマンスマジシャン</option>
-<option>FCRE｜ちゃっかりうさぎ</option>
-<option>FCPO｜恋愛モンスター</option>
-<option>FCPE｜忠犬ハチ公</option>
-
-<option>FARO｜不思議生命体</option>
-<option>FARE｜敏腕マネージャー</option>
-<option>FAPO｜デビル天使</option>
-<option>FAPE｜最後の恋人</option>
-
+<select id="l16" class="hidden">
+<option value="">LoveType16を選択</option>
+<option>LCRO｜ボス猫</option><option>LCRE｜隠れベイビー</option>
+<option>LCPO｜主役体質</option><option>LCPE｜ツンデレヤンキー</option>
+<option>LARO｜憧れの先輩</option><option>LARE｜カリスマバランサー</option>
+<option>LAPO｜パーフェクトカメレオン</option><option>LAPE｜キャプテンライオン</option>
+<option>FCRO｜ロマンスマジシャン</option><option>FCRE｜ちゃっかりうさぎ</option>
+<option>FCPO｜恋愛モンスター</option><option>FCPE｜忠犬ハチ公</option>
+<option>FARO｜不思議生命体</option><option>FARE｜敏腕マネージャー</option>
+<option>FAPO｜デビル天使</option><option>FAPE｜最後の恋人</option>
 </select>
-
 </div>
 
-
 <div class="field">
-
-<label>
-03 / 性別
-</label>
-
+<label>03 / 性別</label>
 <select id="gender">
-
-<option value="">
-選択してください
-</option>
-
-<option>男性</option>
-<option>女性</option>
-<option>その他</option>
-<option>回答しない</option>
-
+<option value="">選択してください</option>
+<option>男性</option><option>女性</option><option>その他</option><option>回答しない</option>
 </select>
-
 </div>
-
 
 <div class="field">
-
-<label>
-04 / 年代
-</label>
-
+<label>04 / 年代</label>
 <select id="age">
-
-<option value="">
-選択してください
-</option>
-
-<option>10代</option>
-<option>20代</option>
-<option>30代</option>
-<option>40代</option>
-<option>50代以上</option>
-
+<option value="">選択してください</option>
+<option>10代</option><option>20代</option><option>30代</option><option>40代</option><option>50代以上</option>
 </select>
-
 </div>
-
 
 <div class="field full">
-
-<label>
-05 / 今の気分
-</label>
-
+<label>05 / 今の気分</label>
 <select id="mood">
-
-<option value="">
-選択してください
-</option>
-
-<option>特に指定なし</option>
-<option>恋してる</option>
-<option>幸せ</option>
-<option>失恋した</option>
-<option>切ない</option>
-<option>一人で浸りたい</option>
-<option>少ししんどい</option>
-<option>無気力</option>
-<option>テンションを上げたい</option>
-<option>頑張りたい</option>
-<option>深夜に聴きたい</option>
-
+<option value="">選択してください</option>
+<option>特に指定なし</option><option>恋してる</option><option>幸せ</option>
+<option>失恋した</option><option>切ない</option><option>一人で浸りたい</option>
+<option>少ししんどい</option><option>無気力</option><option>テンションを上げたい</option>
+<option>頑張りたい</option><option>深夜に聴きたい</option>
 </select>
-
 </div>
 
 </div>
 
-
-<button
-id="find"
-class="primary"
->
-私の音楽を探す　→
-</button>
-
-
-<div
-id="ast"
-class="status"
-></div>
-
+<button id="find" class="primary">私の音楽を探す　→</button>
+<div id="ast" class="status"></div>
 </section>
 
-
-<!-- =========================
-     MANUAL
-========================= -->
-
-<section
-id="manual"
-class="panel hidden"
->
-
-
-<div class="head">
-
-<h2>
-今、聴きたい音
-</h2>
-
-<small>
-MANUAL SELECTION
-</small>
-
-</div>
-
-
-<p class="manual-note">
-全部埋めなくてOK。
-入力した条件を優先して選曲します。
-</p>
-
+<section id="manual" class="panel hidden">
+<div class="head"><h2>今、聴きたい音</h2><small>MANUAL SELECTION</small></div>
+<p class="manual-note">全部埋めなくてOK。入力した条件を優先して選曲します。</p>
 
 <div class="grid">
 
+<div class="field"><label>01 / 気分</label>
+<select id="mmood"><option value="">指定なし</option><option>幸せ</option><option>切ない</option><option>エモい</option><option>無気力</option><option>イライラ</option><option>ワクワク</option><option>前向きになりたい</option></select></div>
 
-<div class="field">
+<div class="field"><label>02 / シチュエーション</label>
+<select id="scene"><option value="">指定なし</option><option>通学・通勤</option><option>ドライブ</option><option>深夜</option><option>勉強</option><option>筋トレ</option><option>デート</option><option>一人で散歩</option><option>寝る前</option></select></div>
 
-<label>
-01 / 気分
-</label>
+<div class="field"><label>03 / 恋愛状況</label>
+<select id="romance"><option value="">指定なし</option><option>片思い</option><option>両思い</option><option>失恋</option><option>復縁したい</option><option>忘れたい</option><option>曖昧な関係</option><option>恋愛以外</option></select></div>
 
-<select id="mmood">
+<div class="field"><label>04 / ジャンル</label>
+<select id="genre"><option value="">指定なし</option><option>J-POP</option><option>ロック</option><option>HIPHOP</option><option>R&B</option><option>ボカロ</option><option>アニソン</option><option>K-POP</option><option>洋楽</option></select></div>
 
-<option value="">
-指定なし
-</option>
+<div class="field"><label>05 / 知名度</label>
+<select id="fame"><option value="">指定なし</option><option>有名曲中心</option><option>バランスよく</option><option>隠れた名曲も</option></select></div>
 
-<option>幸せ</option>
-<option>切ない</option>
-<option>エモい</option>
-<option>無気力</option>
-<option>イライラ</option>
-<option>ワクワク</option>
-<option>前向きになりたい</option>
+<div class="field"><label>06 / 重視</label>
+<select id="focus"><option value="">指定なし</option><option>歌詞最優先</option><option>歌詞寄り</option><option>バランス</option><option>サウンド寄り</option><option>サウンド最優先</option></select></div>
 
-</select>
+<div class="field full"><label>07 / 参考曲</label><input id="reference" placeholder="例：HANABIの切なさとサビ"></div>
 
-</div>
-
-
-<div class="field">
-
-<label>
-02 / シチュエーション
-</label>
-
-<select id="scene">
-
-<option value="">
-指定なし
-</option>
-
-<option>通学・通勤</option>
-<option>ドライブ</option>
-<option>深夜</option>
-<option>勉強</option>
-<option>筋トレ</option>
-<option>デート</option>
-<option>一人で散歩</option>
-<option>寝る前</option>
-
-</select>
+<div class="field full"><label>08 / 自由に伝える</label><textarea id="free" maxlength="300" placeholder="例：深夜に一人で歩きながら昔好きだった人を思い出す。でも最後は少し前向きになれる曲。"></textarea></div>
 
 </div>
 
-
-<div class="field">
-
-<label>
-03 / 恋愛状況
-</label>
-
-<select id="romance">
-
-<option value="">
-指定なし
-</option>
-
-<option>片思い</option>
-<option>両思い</option>
-<option>失恋</option>
-<option>復縁したい</option>
-<option>忘れたい</option>
-<option>曖昧な関係</option>
-<option>恋愛以外</option>
-
-</select>
-
-</div>
-
-
-<div class="field">
-
-<label>
-04 / ジャンル
-</label>
-
-<select id="genre">
-
-<option value="">
-指定なし
-</option>
-
-<option>J-POP</option>
-<option>ロック</option>
-<option>HIPHOP</option>
-<option>R&B</option>
-<option>ボカロ</option>
-<option>アニソン</option>
-<option>K-POP</option>
-<option>洋楽</option>
-
-</select>
-
-</div>
-
-
-<div class="field">
-
-<label>
-05 / 知名度
-</label>
-
-<select id="fame">
-
-<option value="">
-指定なし
-</option>
-
-<option>有名曲中心</option>
-<option>バランスよく</option>
-<option>隠れた名曲も</option>
-
-</select>
-
-</div>
-
-
-<div class="field">
-
-<label>
-06 / 重視
-</label>
-
-<select id="focus">
-
-<option value="">
-指定なし
-</option>
-
-<option>歌詞最優先</option>
-<option>歌詞寄り</option>
-<option>バランス</option>
-<option>サウンド寄り</option>
-<option>サウンド最優先</option>
-
-</select>
-
-</div>
-
-
-<div class="field full">
-
-<label>
-07 / 参考曲
-</label>
-
-<input
-id="reference"
-placeholder="例：HANABIの切なさとサビ"
->
-
-</div>
-
-
-<div class="field full">
-
-<label>
-08 / 自由に伝える
-</label>
-
-<textarea
-id="free"
-maxlength="300"
-placeholder="例：深夜に一人で歩きながら昔好きだった人を思い出す。でも最後は少し前向きになれる曲。"
-></textarea>
-
-</div>
-
-</div>
-
-
-<button
-id="mfind"
-class="primary"
->
-この条件で音楽を探す　→
-</button>
-
-
-<div
-id="mst"
-class="status"
-></div>
-
+<button id="mfind" class="primary">この条件で音楽を探す　→</button>
+<div id="mst" class="status"></div>
 </section>
 
-
-<!-- =========================
-     RESULTS
-========================= -->
-
-<section
-id="results"
-class="results"
->
-
+<section id="results" class="results">
 
 <div class="type">
-
-<div class="eyebrow">
-YOUR MUSIC TYPE
-</div>
-
+<div class="eyebrow">YOUR MUSIC TYPE</div>
 <h2 id="type"></h2>
-
 <p id="desc"></p>
-
 </div>
 
-
-<div class="head">
-
-<h2>
-Recommended
-</h2>
-
-<small>
-SWIPE / SELECT
-</small>
-
-</div>
-
-
-<div
-id="carousel"
-class="carousel"
-></div>
-
-
-<div
-id="dots"
-class="dots"
-></div>
-
-
-<article
-id="detail"
-class="detail"
-></article>
-
+<div class="head"><h2>Recommended</h2><small>SWIPE / SELECT</small></div>
+<div id="carousel" class="carousel"></div>
+<div id="dots" class="dots"></div>
+<article id="detail" class="detail"></article>
 
 <div class="actions">
-
-<button
-id="reroll"
-class="secondary"
->
-↻ 別の5曲
-</button>
-
-<button
-id="change"
-class="secondary"
->
-条件を変える
-</button>
-
+<button id="reroll" class="secondary">↻ 別の5曲</button>
+<button id="change" class="secondary">条件を変える</button>
 </div>
-
 
 </section>
-
-
 </div>
 
-
-<!-- =========================
-     LOADING
-========================= -->
-
-<div
-id="loading"
-class="loading"
->
+<!-- LOADING -->
+<div id="loading" class="loading">
+<div class="marquee">SEARCHING YOUR SOUND — SEARCHING YOUR SOUND — SEARCHING YOUR SOUND —</div>
 
 <div class="load">
-
+<div class="turntable">
 <div class="orb"></div>
-
-<h2>
-あなたの音楽を探しています
-</h2>
-
-<p id="lt">
-性格と今の気持ちを読み解いています…
-</p>
-
+<div class="vinyl-shine"></div>
+<div class="arm"></div>
 </div>
 
+<div id="loadStage" class="load-stage">ANALYSING PERSONALITY</div>
+<h2>あなたの音楽を探しています</h2>
+<p id="lt">性格と今の気持ちを読み解いています…</p>
 </div>
 
+<div class="ticker">PERSONALITY / EMOTION / LOVE / SOUND / CURATION / PERSONALITY / EMOTION / LOVE / SOUND / CURATION</div>
+</div>
+
+<!-- RESULT REVEAL -->
+<div id="reveal" class="reveal">
+<div class="reveal-inner">
+<div class="reveal-kicker">IF YOU WERE A PIECE OF MUSIC —</div>
+<div id="revealCopy" class="reveal-copy"></div>
+<div id="revealType" class="reveal-type"></div>
+</div>
+</div>
 
 <script>
+const $=x=>document.getElementById(x);
 
-const $=
-x=>
-document.getElementById(x);
-
-
-let mode="auto";
-
-let lm="simple";
-
-let last=null;
-
-let songs=[];
-
-let idx=0;
-
-let timer;
-
+let mode="auto",lm="simple",last=null,songs=[],idx=0,timer,stageTimer;
 
 const msgs=[
-
-"性格と今の気持ちを読み解いています…",
-
-"あなたに重なる音楽を探しています…",
-
-"実在する曲を確認しています…",
-
-"刺さるポイントを分析しています…"
-
+["ANALYSING PERSONALITY","性格と今の気持ちを読み解いています…"],
+["READING EMOTION","今の感情の温度を探っています…"],
+["SEARCHING MUSIC","あなたに重なる音楽を探しています…"],
+["VERIFYING TRACKS","実在する曲を確認しています…"],
+["CURATING YOUR SOUND","刺さるポイントを分析しています…"]
 ];
 
-
-/* =========================
-   MODE
-========================= */
-
-
-document
-.querySelectorAll(".mode")
-.forEach(b=>{
-
-b.onclick=()=>{
-
-mode=
-b.dataset.mode;
-
-
-document
-.querySelectorAll(".mode")
-.forEach(x=>
-
-x.classList.toggle(
-"active",
-x===b
-)
-
-);
-
-
-$("auto")
-.classList
-.toggle(
-"hidden",
-mode!="auto"
-);
-
-
-$("manual")
-.classList
-.toggle(
-"hidden",
-mode!="manual"
-);
-
-};
-
+document.querySelectorAll(".mode").forEach(b=>b.onclick=()=>{
+mode=b.dataset.mode;
+document.querySelectorAll(".mode").forEach(x=>x.classList.toggle("active",x===b));
+$("auto").classList.toggle("hidden",mode!="auto");
+$("manual").classList.toggle("hidden",mode!="manual");
 });
 
-
-/* =========================
-   LOVE TYPE
-========================= */
-
-
-document
-.querySelectorAll(".ls")
-.forEach(b=>{
-
-b.onclick=()=>{
-
-lm=
-b.dataset.l;
-
-
-document
-.querySelectorAll(".ls")
-.forEach(x=>
-
-x.classList.toggle(
-"active",
-x===b
-)
-
-);
-
-
-$("simple")
-.classList
-.toggle(
-"hidden",
-lm!="simple"
-);
-
-
-$("l16")
-.classList
-.toggle(
-"hidden",
-lm!="l16"
-);
-
-};
-
+document.querySelectorAll(".ls").forEach(b=>b.onclick=()=>{
+lm=b.dataset.l;
+document.querySelectorAll(".ls").forEach(x=>x.classList.toggle("active",x===b));
+$("simple").classList.toggle("hidden",lm!="simple");
+$("l16").classList.toggle("hidden",lm!="l16");
 });
-
-
-/* =========================
-   STATUS
-========================= */
-
 
 function st(id,s,e=0){
-
 let x=$(id);
-
-x.style.display=
-"block";
-
+x.style.display="block";
 x.textContent=s;
-
-x.className=
-"status"+
-(e?" error":"");
-
+x.className="status"+(e?" error":"");
 }
-
-
-/* =========================
-   LOADING
-========================= */
-
 
 function load(on){
-
 if(on){
-
 let i=0;
+$("loading").classList.add("show");
+$("loadStage").textContent=msgs[0][0];
+$("lt").textContent=msgs[0][1];
 
-$("loading")
-.classList
-.add("show");
-
-
-$("lt")
-.textContent=
-msgs[0];
-
-
-timer=
-setInterval(()=>{
-
-i++;
-
-const el=
-$("lt");
-
-el.style.opacity=
-"0";
+timer=setInterval(()=>{
+i=(i+1)%msgs.length;
+$("lt").style.opacity="0";
+$("lt").style.transform="translateY(5px)";
 
 setTimeout(()=>{
-
-el.textContent=
-msgs[
-i%msgs.length
-];
-
-el.style.opacity=
-"1";
-
-},200);
-
-},1700);
-
-}
-
-else{
-
+$("loadStage").textContent=msgs[i][0];
+$("lt").textContent=msgs[i][1];
+$("lt").style.opacity="1";
+$("lt").style.transform="none";
+},220);
+},1800);
+}else{
 clearInterval(timer);
-
-$("loading")
-.classList
-.remove("show");
-
+$("loading").classList.remove("show");
 }
-
 }
-
-
-/* =========================
-   ESCAPE
-========================= */
-
 
 function esc(s=""){
-
-return String(s)
-.replace(
-
-/[&<>"']/g,
-
-m=>({
-
-"&":"&amp;",
-
-"<":"&lt;",
-
-">":"&gt;",
-
-'"':"&quot;",
-
-"'":"&#039;"
-
-}[m])
-
-);
-
+return String(s).replace(/[&<>"']/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"}[m]));
 }
 
-
-/* =========================
-   AUTO
-========================= */
-
-
-$("find")
-.onclick=()=>{
-
+$("find").onclick=()=>{
 let p={
-
 mode:"auto",
-
-mbti:
-$("mbti").value,
-
-love:
-lm=="simple"
-?
-$("simple").value
-:
-$("l16").value,
-
-gender:
-$("gender").value,
-
-age:
-$("age").value,
-
-mood:
-$("mood").value
-
+mbti:$("mbti").value,
+love:lm=="simple"?$("simple").value:$("l16").value,
+gender:$("gender").value,
+age:$("age").value,
+mood:$("mood").value
 };
 
+if(Object.values(p).some((v,i)=>i&&!v))
+return st("ast","すべて選んでください。",1);
 
-if(
-
-Object
-.values(p)
-.some(
-(v,i)=>
-i&&!v
-)
-
-){
-
-return st(
-
-"ast",
-
-"すべて選んでください。",
-
-1
-
-);
-
-}
-
-
-go(
-p,
-"ast"
-);
-
+go(p,"ast");
 };
 
-
-/* =========================
-   MANUAL
-========================= */
-
-
-$("mfind")
-.onclick=()=>{
-
+$("mfind").onclick=()=>{
 let p={
-
 mode:"manual",
-
-mood:
-$("mmood").value,
-
-scene:
-$("scene").value,
-
-romance:
-$("romance").value,
-
-genre:
-$("genre").value,
-
-fame:
-$("fame").value,
-
-focus:
-$("focus").value,
-
-reference:
-$("reference")
-.value
-.trim(),
-
-freeText:
-$("free")
-.value
-.trim()
-
+mood:$("mmood").value,
+scene:$("scene").value,
+romance:$("romance").value,
+genre:$("genre").value,
+fame:$("fame").value,
+focus:$("focus").value,
+reference:$("reference").value.trim(),
+freeText:$("free").value.trim()
 };
 
+if(!Object.values(p).slice(1).some(Boolean))
+return st("mst","少なくとも1つ条件を入れてください。",1);
 
-if(
-
-!Object
-.values(p)
-.slice(1)
-.some(Boolean)
-
-){
-
-return st(
-
-"mst",
-
-"少なくとも1つ条件を入れてください。",
-
-1
-
-);
-
-}
-
-
-go(
-p,
-"mst"
-);
-
+go(p,"mst");
 };
-
-
-/* =========================
-   API
-========================= */
-
 
 async function go(p,sid){
-
 last=p;
-
 load(1);
 
-
 try{
-
-let r=
-
-await fetch(
-
-"/api/recommend",
-
-{
-
-method:
-"POST",
-
-headers:{
-
-"Content-Type":
-"application/json"
-
-},
-
-body:
-JSON.stringify(p)
-
-}
-
-);
-
-
-let d=
-await r.json();
-
-
-if(!r.ok){
-
-throw Error(
-
-d.error||
-"取得に失敗しました"
-
-);
-
-}
-
-
-if(
-!d.recommendations?.length
-){
-
-throw Error(
-
-"曲を確認できませんでした。もう一度試してください。"
-
-);
-
-}
-
-
-songs=
-d.recommendations;
-
-
-$("type")
-.textContent=
-
-d.listenerType||
-"今のあなたのための5曲";
-
-
-$("desc")
-.textContent=
-
-d.listenerDescription||
-"";
-
-
-render();
-
-pick(0);
-
-
-const results=
-$("results");
-
-
-results.style.display=
-"block";
-
-
-results
-.classList
-.remove("enter");
-
-
-void results.offsetWidth;
-
-
-results
-.classList
-.add("enter");
-
-
-setTimeout(()=>{
-
-results.scrollIntoView({
-
-behavior:
-"smooth"
-
+let r=await fetch("/api/recommend",{
+method:"POST",
+headers:{"Content-Type":"application/json"},
+body:JSON.stringify(p)
 });
 
-},120);
+let d=await r.json();
 
+if(!r.ok)throw Error(d.error||"取得に失敗しました");
+if(!d.recommendations?.length)throw Error("曲を確認できませんでした。もう一度試してください。");
 
-st(
+songs=d.recommendations;
 
-sid,
+$("type").textContent=d.listenerType||"今のあなたのための5曲";
+$("desc").textContent=d.listenerDescription||"";
 
-"選曲が完成しました。"
-
-);
-
-}
-
-
-catch(e){
-
-st(
-
-sid,
-
-e.message,
-
-1
-
-);
-
-}
-
-
-finally{
+render();
+pick(0);
 
 load(0);
 
+await revealResult(d);
+
+$("results").style.display="block";
+$("results").classList.remove("enter");
+void $("results").offsetWidth;
+$("results").classList.add("enter");
+
+setTimeout(()=>$("results").scrollIntoView({behavior:"smooth"}),150);
+
+st(sid,"選曲が完成しました。");
+}catch(e){
+load(0);
+st(sid,e.message,1);
+}
 }
 
+function revealResult(d){
+return new Promise(resolve=>{
+const first=songs[0]||{};
+const type=d.listenerType||"今のあなたの音楽";
+
+$("revealCopy").textContent=makeCopy(first,type);
+$("revealType").textContent="YOUR MUSIC TYPE / "+type;
+
+$("reveal").classList.add("show");
+
+setTimeout(()=>{
+$("reveal").animate(
+[{opacity:1},{opacity:0}],
+{duration:700,easing:"ease",fill:"forwards"}
+).onfinish=()=>{
+$("reveal").classList.remove("show");
+$("reveal").style.opacity="";
+resolve();
+};
+},2600);
+});
 }
 
+function makeCopy(song,type){
+const why=String(song.why||"").trim();
 
-/* =========================
-   CAROUSEL
-========================= */
+if(why){
+let clean=why.replace(/[。！？].*$/,"");
+if(clean.length>34)clean=clean.slice(0,34)+"…";
+return clean+"。";
+}
 
+return type+"。";
+}
 
 function render(){
+$("carousel").innerHTML=songs.map((s,i)=>`
+<article class="card" data-i="${i}">
+${s.artwork?`<img class="art" src="${esc(s.artwork)}" alt="${esc(s.title)}">`:`<div class="art"></div>`}
+${i===0?'<span class="best">YOUR BEST MATCH</span>':""}
+<h3>${esc(s.title)}</h3>
+<div class="artist">${esc(s.artist)}</div>
+</article>`).join("");
 
-$("carousel")
-.innerHTML=
-
-songs
-.map((s,i)=>`
-
-<article
-class="card"
-data-i="${i}"
->
-
-${
-s.artwork
-?
-`
-<img
-class="art"
-src="${esc(s.artwork)}"
-alt="${esc(s.title)}"
->
-`
-:
-`
-<div class="art"></div>
-`
-}
-
-${
-i==0
-?
-`
-<span class="best">
-YOUR BEST MATCH
-</span>
-`
-:
-""
-}
-
-<h3>
-${esc(s.title)}
-</h3>
-
-<div class="artist">
-${esc(s.artist)}
-</div>
-
-</article>
-
-`)
-.join("");
-
-
-document
-.querySelectorAll(".card")
-.forEach(c=>{
-
-c.onclick=()=>{
-
-pick(
-+c.dataset.i
-);
-
-c.scrollIntoView({
-
-behavior:
-"smooth",
-
-inline:
-"center",
-
-block:
-"nearest"
-
+document.querySelectorAll(".card").forEach(c=>c.onclick=()=>{
+pick(+c.dataset.i);
+c.scrollIntoView({behavior:"smooth",inline:"center",block:"nearest"});
 });
-
-};
-
-});
-
 
 let q;
-
-
-$("carousel")
-.onscroll=()=>{
-
+$("carousel").onscroll=()=>{
 clearTimeout(q);
+q=setTimeout(()=>{
+let c=$("carousel"),center=c.scrollLeft+c.clientWidth/2,b=0,d=1e9;
 
-
-q=
-setTimeout(()=>{
-
-let c=
-$("carousel");
-
-
-let center=
-
-c.scrollLeft+
-c.clientWidth/2;
-
-
-let b=0;
-
-let d=1e9;
-
-
-[...c.children]
-.forEach((e,i)=>{
-
-let x=
-
-Math.abs(
-
-e.offsetLeft+
-e.offsetWidth/2-
-center
-
-);
-
-
-if(x<d){
-
-d=x;
-
-b=i;
-
-}
-
+[...c.children].forEach((e,i)=>{
+let x=Math.abs(e.offsetLeft+e.offsetWidth/2-center);
+if(x<d){d=x;b=i}
 });
-
 
 pick(b);
-
 },90);
-
 };
-
 }
-
-
-/* =========================
-   FAVORITES
-========================= */
-
 
 function favs(){
-
-try{
-
-return JSON.parse(
-
-localStorage
-.getItem(
-"ysFavs"
-)
-||
-"{}"
-
-);
-
+try{return JSON.parse(localStorage.getItem("ysFavs")||"{}")}
+catch{return{}}
 }
 
-catch{
-
-return {};
-
-}
-
-}
-
-
-function key(s){
-
-return(
-
-s.artist+
-"__"+
-s.title
-
-)
-.toLowerCase();
-
-}
-
-
-/* =========================
-   SONG PICK
-========================= */
-
+function key(s){return(s.artist+"__"+s.title).toLowerCase()}
 
 function pick(i){
-
-if(!songs[i])
-return;
-
-
+if(!songs[i])return;
 idx=i;
 
+document.querySelectorAll(".card").forEach((c,n)=>c.classList.toggle("active",n===i));
 
-document
-.querySelectorAll(".card")
-.forEach(
-(c,n)=>
+let s=songs[i],f=favs(),q=encodeURIComponent(s.artist+" "+s.title);
 
-c.classList.toggle(
-"active",
-n==i
-)
+$("dots").textContent=songs.map((_,n)=>n===i?"●":"○").join("  ");
 
-);
-
-
-let s=
-songs[i];
-
-
-let f=
-favs();
-
-
-let q=
-
-encodeURIComponent(
-
-s.artist+
-" "+
-s.title
-
-);
-
-
-$("dots")
-.textContent=
-
-songs
-.map(
-
-(_,n)=>
-
-n==i
-?
-"●"
-:
-"○"
-
-)
-.join("  ");
-
-
-const detail=
-$("detail");
-
-
-detail.innerHTML=`
-
+$("detail").innerHTML=`
 <div class="detail-head">
-
 <div>
-
-<div class="eyebrow">
-
-${
-i
-?
-"CURATED SELECTION"
-:
-"YOUR BEST MATCH"
-}
-
+<div class="eyebrow">${i?"CURATED SELECTION":"YOUR BEST MATCH"}</div>
+<h2>${esc(s.title)}</h2>
+<div class="artist">${esc(s.artist)}</div>
 </div>
-
-<h2>
-${esc(s.title)}
-</h2>
-
-<div class="artist">
-${esc(s.artist)}
+<button id="heart" class="heart" aria-label="お気に入り">${f[key(s)]?"♥":"♡"}</button>
 </div>
-
-</div>
-
-
-<button
-id="heart"
-class="heart"
-aria-label="お気に入り"
->
-
-${
-f[key(s)]
-?
-"♥"
-:
-"♡"
-}
-
-</button>
-
-</div>
-
 
 <div class="info">
-
-
-<div class="box">
-
-<h4>
-01 / この曲について
-</h4>
-
-<p>
-${esc(s.summary)}
-</p>
-
+<div class="box"><h4>01 / この曲について</h4><p>${esc(s.summary)}</p></div>
+<div class="box"><h4>02 / なぜあなたに合う？</h4><p>${esc(s.why)}</p></div>
+<div class="box"><h4>03 / 特に刺さるポイント</h4><p>${esc(s.lyricPoint)}</p></div>
+<div class="box"><h4>04 / ここを意識して聴いて</h4><p>${esc(s.listenPoint)}</p></div>
 </div>
-
-
-<div class="box">
-
-<h4>
-02 / なぜあなたに合う？
-</h4>
-
-<p>
-${esc(s.why)}
-</p>
-
-</div>
-
-
-<div class="box">
-
-<h4>
-03 / 特に刺さるポイント
-</h4>
-
-<p>
-${esc(s.lyricPoint)}
-</p>
-
-</div>
-
-
-<div class="box">
-
-<h4>
-04 / ここを意識して聴いて
-</h4>
-
-<p>
-${esc(s.listenPoint)}
-</p>
-
-</div>
-
-
-</div>
-
 
 <div class="links">
+${s.appleMusic?`<a href="${esc(s.appleMusic)}" target="_blank" rel="noopener">APPLE MUSIC ↗</a>`:""}
+<a href="https://www.youtube.com/results?search_query=${q}" target="_blank" rel="noopener">YOUTUBE ↗</a>
+<a href="https://open.spotify.com/search/${q}" target="_blank" rel="noopener">SPOTIFY ↗</a>
+</div>`;
 
-${
-s.appleMusic
-?
-`
-<a
-href="${esc(s.appleMusic)}"
-target="_blank"
-rel="noopener"
->
-APPLE MUSIC ↗
-</a>
-`
-:
-""
-}
+$("detail").classList.remove("animate");
+void $("detail").offsetWidth;
+$("detail").classList.add("animate");
 
-
-<a
-href="https://www.youtube.com/results?search_query=${q}"
-target="_blank"
-rel="noopener"
->
-YOUTUBE ↗
-</a>
-
-
-<a
-href="https://open.spotify.com/search/${q}"
-target="_blank"
-rel="noopener"
->
-SPOTIFY ↗
-</a>
-
-
-</div>
-
-`;
-
-
-detail
-.classList
-.remove("animate");
-
-
-void detail.offsetWidth;
-
-
-detail
-.classList
-.add("animate");
-
-
-$("heart")
-.onclick=()=>{
-
-let x=
-favs();
-
-
-let k=
-key(s);
-
-
-if(x[k]){
-
-delete x[k];
-
-}
-
-else{
-
-x[k]={
-
-title:
-s.title,
-
-artist:
-s.artist,
-
-artwork:
-s.artwork
-
-};
-
-}
-
-
-localStorage
-.setItem(
-
-"ysFavs",
-
-JSON.stringify(x)
-
-);
-
-
+$("heart").onclick=()=>{
+let x=favs(),k=key(s);
+x[k]?delete x[k]:x[k]={title:s.title,artist:s.artist,artwork:s.artwork};
+localStorage.setItem("ysFavs",JSON.stringify(x));
 pick(i);
-
 };
 
-
-mood(
-s.mood
-);
-
+mood(s.mood);
 }
-
-
-/* =========================
-   MOOD BACKGROUND
-========================= */
-
 
 function mood(m=""){
+m=String(m).toLowerCase();
 
-m=
-String(m)
-.toLowerCase();
+let c=["#d7eef2","#e7e1f4","#f2dfe7"];
 
+if(/rock|energy/.test(m))c=["#e9a59b","#eec49a","#bcb6ce"];
+else if(/sad/.test(m))c=["#aec4da","#c7bfd7","#dcc6d1"];
+else if(/night/.test(m))c=["#7f94ac","#958ca8","#718292"];
+else if(/dark/.test(m))c=["#727d85","#88818e","#68757a"];
+else if(/love/.test(m))c=["#efbfd0","#eed0ca","#d9c7e7"];
+else if(/happy/.test(m))c=["#eccda5","#efe1bd","#eac4cd"];
+else if(/chill/.test(m))c=["#b8ded9","#c4dde2","#d5d4e4"];
+else if(/hope/.test(m))c=["#c4dfe8","#e9d9aa","#eee6cf"];
 
-let c=[
-
-"#d7eef2",
-
-"#e7e1f4",
-
-"#f2dfe7"
-
-];
-
-
-/* ROCK */
-
-if(
-/rock|energy/.test(m)
-){
-
-c=[
-
-"#e9a59b",
-
-"#eec49a",
-
-"#bcb6ce"
-
-];
-
+["--b1","--b2","--b3"].forEach((x,i)=>document.documentElement.style.setProperty(x,c[i]));
 }
 
-
-/* SAD */
-
-else if(
-/sad/.test(m)
-){
-
-c=[
-
-"#aec4da",
-
-"#c7bfd7",
-
-"#dcc6d1"
-
-];
-
-}
-
-
-/* NIGHT */
-
-else if(
-/night/.test(m)
-){
-
-c=[
-
-"#7f94ac",
-
-"#958ca8",
-
-"#718292"
-
-];
-
-}
-
-
-/* DARK */
-
-else if(
-/dark/.test(m)
-){
-
-c=[
-
-"#727d85",
-
-"#88818e",
-
-"#68757a"
-
-];
-
-}
-
-
-/* LOVE */
-
-else if(
-/love/.test(m)
-){
-
-c=[
-
-"#efbfd0",
-
-"#eed0ca",
-
-"#d9c7e7"
-
-];
-
-}
-
-
-/* HAPPY */
-
-else if(
-/happy/.test(m)
-){
-
-c=[
-
-"#eccda5",
-
-"#efe1bd",
-
-"#eac4cd"
-
-];
-
-}
-
-
-/* CHILL */
-
-else if(
-/chill/.test(m)
-){
-
-c=[
-
-"#b8ded9",
-
-"#c4dde2",
-
-"#d5d4e4"
-
-];
-
-}
-
-
-/* HOPE */
-
-else if(
-/hope/.test(m)
-){
-
-c=[
-
-"#c4dfe8",
-
-"#e9d9aa",
-
-"#eee6cf"
-
-];
-
-}
-
-
-[
-"--b1",
-"--b2",
-"--b3"
-]
-.forEach(
-
-(x,i)=>
-
-document
-.documentElement
-.style
-.setProperty(
-x,
-c[i]
-)
-
-);
-
-}
-
-
-/* =========================
-   ACTIONS
-========================= */
-
-
-$("reroll")
-.onclick=()=>{
-
-if(last){
-
-go(
-
-{
-...last,
-reroll:true
-},
-
-mode=="auto"
-?
-"ast"
-:
-"mst"
-
-);
-
-}
-
+$("reroll").onclick=()=>{
+if(last)go({...last,reroll:true},mode==="auto"?"ast":"mst");
 };
 
-
-$("change")
-.onclick=()=>{
-
-window.scrollTo({
-
-top:0,
-
-behavior:
-"smooth"
-
-});
-
-};
-
+$("change").onclick=()=>window.scrollTo({top:0,behavior:"smooth"});
 </script>
 
 </body>
