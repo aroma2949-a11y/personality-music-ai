@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta name="theme-color" content="#eaf4f5">
+<meta name="theme-color" content="#edf4f3">
 
 <title>YOUR SOUND — まだ知らない、あなたの音。</title>
 
@@ -17,23 +17,18 @@
 @import url('https://fonts.googleapis.com/css2?family=Dela+Gothic+One&family=DotGothic16&family=Shippori+Mincho+B1:wght@400;600;700;800&family=Train+One&family=Zen+Kaku+Gothic+New:wght@400;500;700;900&display=swap');
 
 :root{
-  --ink:#101315;
-  --muted:#616a70;
-  --line:rgba(16,19,21,.19);
+  --ink:#111416;
+  --muted:#626a6d;
+  --line:rgba(17,20,22,.17);
 
-  --base:#eaf4f5;
-  --b1:#7ed6e5;
-  --b2:#d2a2e4;
-  --b3:#ffbecf;
+  --base:#edf4f3;
+  --b1:#c8e2e3;
+  --b2:#ddd5e6;
+  --b3:#ead9dd;
 
-  --glow:rgba(75,202,228,.76);
-  --wash:rgba(255,255,255,.12);
+  --glow:rgba(114,185,193,.28);
+  --wash:rgba(255,255,255,.15);
 }
-
-
-/* ================================
-   RESET
-================================ */
 
 *{
   box-sizing:border-box;
@@ -58,7 +53,7 @@ body{
 
   transition:
     color .9s ease,
-    background 1s ease;
+    background 1.1s ease;
 }
 
 button,
@@ -79,47 +74,48 @@ a{
 }
 
 
-/* ================================
+/* ======================================
    BACKGROUND
-================================ */
+====================================== */
 
 body:before{
   content:"";
 
   position:fixed;
-  inset:-22%;
+  inset:-20%;
 
   z-index:-3;
 
   background:
     radial-gradient(
-      circle at 12% 12%,
-      var(--b1) 0 8%,
-      transparent 38%
+      circle at 12% 10%,
+      var(--b1),
+      transparent 37%
     ),
     radial-gradient(
-      circle at 92% 27%,
-      var(--b2) 0 7%,
-      transparent 43%
+      circle at 88% 30%,
+      var(--b2),
+      transparent 42%
     ),
     radial-gradient(
-      circle at 48% 93%,
-      var(--b3) 0 12%,
-      transparent 48%
+      circle at 50% 92%,
+      var(--b3),
+      transparent 47%
     ),
     var(--base);
 
+  opacity:.88;
+
   filter:
-    saturate(1.5)
-    contrast(1.08);
+    saturate(1.05);
 
   transition:
-    background 1s cubic-bezier(.16,1,.3,1),
-    transform .7s cubic-bezier(.16,1,.3,1);
+    background 1.15s cubic-bezier(.16,1,.3,1),
+    transform .8s cubic-bezier(.16,1,.3,1);
 
   animation:
     atmosphere
-    11s
+    13s
     ease-in-out
     infinite
     alternate;
@@ -130,7 +126,7 @@ body:after{
 
   position:fixed;
 
-  width:95vw;
+  width:82vw;
   aspect-ratio:1;
 
   left:50%;
@@ -142,67 +138,77 @@ body:after{
 
   background:var(--glow);
 
-  filter:blur(95px);
+  filter:blur(115px);
 
-  opacity:.65;
+  opacity:.27;
 
   transform:
     translate(-50%,-50%);
 
   transition:
-    background .95s ease,
-    opacity .95s ease,
-    transform .65s cubic-bezier(.16,1,.3,1);
+    background 1.1s ease,
+    opacity 1s ease,
+    transform .7s cubic-bezier(.16,1,.3,1);
 
   pointer-events:none;
 }
 
-body.mood-hit:before{
-  transform:scale(1.14);
-}
-
 body.mood-hit:after{
+  opacity:.38;
+
   transform:
     translate(-50%,-50%)
-    scale(1.36);
-
-  opacity:.9;
+    scale(1.12);
 }
 
 @keyframes atmosphere{
   from{
     transform:
-      translate(-2%,-1%)
+      translate(-1%,-1%)
       scale(1);
   }
 
   to{
     transform:
-      translate(3%,2%)
-      scale(1.09);
+      translate(2%,1%)
+      scale(1.045);
   }
 }
 
 
-/* ================================
-   APP
-================================ */
+/* ======================================
+   PAGE TRANSITION
+====================================== */
 
 .app{
   width:min(1120px,100%);
-
   margin:auto;
 
   padding:
     16px
     16px
     110px;
+
+  transition:
+    opacity .4s ease,
+    transform .55s cubic-bezier(.16,1,.3,1),
+    filter .4s ease;
+}
+
+body.screen-shift .app{
+  opacity:.22;
+
+  transform:
+    translateY(-12px)
+    scale(.985);
+
+  filter:blur(4px);
 }
 
 
-/* ================================
+/* ======================================
    HEADER
-================================ */
+====================================== */
 
 header{
   display:flex;
@@ -228,25 +234,21 @@ header{
   font-size:9px;
 
   letter-spacing:.16em;
-
-  transition:
-    border-color .8s ease;
 }
 
 .brand{
   font-size:13px;
-
   letter-spacing:.11em;
 }
 
 .issue{
-  opacity:.55;
+  opacity:.52;
 }
 
 
-/* ================================
+/* ======================================
    HERO
-================================ */
+====================================== */
 
 .hero{
   position:relative;
@@ -283,14 +285,8 @@ header{
   opacity:0;
 
   animation:
-    metaIn
-    .35s
-    .03s
-    forwards;
+    metaIn .35s .03s forwards;
 }
-
-
-/* 円 */
 
 .hero-orbit{
   position:absolute;
@@ -344,14 +340,8 @@ header{
   opacity:.38;
 }
 
-
-/* ================================
-   HERO TYPOGRAPHY
-================================ */
-
 .hero-copy{
   position:relative;
-
   z-index:3;
 
   display:flex;
@@ -513,9 +503,6 @@ header{
   opacity:.45;
 }
 
-
-/* 左 */
-
 .hero-vertical{
   position:absolute;
 
@@ -543,9 +530,6 @@ header{
     forwards;
 }
 
-
-/* 右 */
-
 .hero-number{
   position:absolute;
 
@@ -572,9 +556,6 @@ header{
     1.3s
     forwards;
 }
-
-
-/* 説明 */
 
 .hero-description{
   position:absolute;
@@ -620,9 +601,6 @@ header{
 
   opacity:.53;
 }
-
-
-/* hero animations */
 
 @keyframes metaIn{
   to{
@@ -698,9 +676,9 @@ header{
 }
 
 
-/* ================================
+/* ======================================
    MODES
-================================ */
+====================================== */
 
 .modes{
   display:grid;
@@ -801,20 +779,18 @@ header{
 
 .mode.active{
   color:var(--base);
-
   background:var(--ink);
 }
 
 .mode.active span{
   color:var(--base);
-
-  opacity:.66;
+  opacity:.67;
 }
 
 
-/* ================================
+/* ======================================
    PANELS
-================================ */
+====================================== */
 
 .panel{
   margin-top:52px;
@@ -874,9 +850,9 @@ header{
 }
 
 
-/* ================================
+/* ======================================
    FORM
-================================ */
+====================================== */
 
 .grid{
   display:grid;
@@ -942,11 +918,6 @@ header{
   color:var(--ink);
 
   font-size:15px;
-
-  transition:
-    color .8s ease,
-    border-color .8s ease,
-    background .2s;
 }
 
 .field select{
@@ -955,7 +926,6 @@ header{
 
 .field textarea{
   min-height:105px;
-
   resize:vertical;
 }
 
@@ -964,9 +934,6 @@ header{
 .field textarea:focus{
   background:var(--wash);
 }
-
-
-/* love type */
 
 .seg{
   display:flex;
@@ -996,14 +963,8 @@ header{
 
 .seg button.active{
   color:var(--base);
-
   background:var(--ink);
 }
-
-
-/* ================================
-   BUTTONS
-================================ */
 
 .primary{
   width:100%;
@@ -1028,12 +989,8 @@ header{
 
   font-weight:400;
 
-  letter-spacing:.01em;
-
   transition:
-    transform .2s,
-    background .4s,
-    color .4s;
+    transform .2s;
 }
 
 .primary:active{
@@ -1057,7 +1014,7 @@ header{
 }
 
 .error{
-  color:#b32550;
+  color:#a63850;
 }
 
 .manual-note{
@@ -1076,9 +1033,9 @@ header{
 }
 
 
-/* ================================
+/* ======================================
    LOADING
-================================ */
+====================================== */
 
 .loading{
   position:fixed;
@@ -1087,24 +1044,67 @@ header{
 
   z-index:100;
 
-  display:none;
+  visibility:hidden;
+
+  display:grid;
 
   place-items:center;
 
   overflow:hidden;
 
-  color:#101315;
+  color:#111416;
 
   background:
-    rgba(232,244,246,.97);
+    rgba(238,245,244,.985);
 
-  backdrop-filter:blur(25px);
+  opacity:0;
 
-  -webkit-backdrop-filter:blur(25px);
+  clip-path:
+    circle(0% at 50% 52%);
+
+  transition:
+    clip-path .72s cubic-bezier(.16,1,.3,1),
+    opacity .3s ease,
+    visibility 0s linear .75s;
+
+  pointer-events:none;
+
+  backdrop-filter:blur(18px);
+
+  -webkit-backdrop-filter:blur(18px);
 }
 
 .loading.show{
-  display:grid;
+  visibility:visible;
+
+  opacity:1;
+
+  clip-path:
+    circle(150% at 50% 52%);
+
+  transition:
+    clip-path .72s cubic-bezier(.16,1,.3,1),
+    opacity .3s ease;
+
+  pointer-events:auto;
+}
+
+.loading.leaving{
+  clip-path:
+    circle(18% at 50% 45%);
+
+  opacity:0;
+
+  transition:
+    clip-path .55s cubic-bezier(.7,0,.84,0),
+    opacity .45s ease .16s;
+}
+
+.loading.error-leave{
+  opacity:0;
+
+  transition:
+    opacity .35s ease;
 }
 
 .loading .marquee{
@@ -1129,7 +1129,7 @@ header{
   letter-spacing:-.06em;
 
   color:
-    rgba(16,19,21,.055);
+    rgba(16,19,21,.045);
 
   animation:
     marquee
@@ -1155,7 +1155,7 @@ header{
 
   letter-spacing:.24em;
 
-  opacity:.48;
+  opacity:.45;
 
   animation:
     ticker
@@ -1201,10 +1201,50 @@ header{
   align-items:center;
 
   text-align:center;
+
+  transition:
+    transform .5s cubic-bezier(.16,1,.3,1),
+    opacity .4s ease,
+    filter .4s ease;
 }
 
+.loading.show .load{
+  animation:
+    loadArrival
+    .65s
+    .15s
+    both
+    cubic-bezier(.16,1,.3,1);
+}
 
-/* vinyl */
+.loading.leaving .load{
+  transform:
+    scale(.42);
+
+  opacity:0;
+
+  filter:blur(9px);
+}
+
+@keyframes loadArrival{
+  from{
+    opacity:0;
+
+    transform:
+      scale(.82)
+      translateY(20px);
+
+    filter:blur(10px);
+  }
+
+  to{
+    opacity:1;
+
+    transform:none;
+
+    filter:none;
+  }
+}
 
 .turntable{
   position:relative;
@@ -1240,9 +1280,9 @@ header{
 
   box-shadow:
     0
-    32px
-    70px
-    rgba(17,19,21,.25);
+    30px
+    65px
+    rgba(17,19,21,.22);
 
   animation:
     vinylSpin
@@ -1324,7 +1364,7 @@ header{
       100deg,
       transparent 34%,
       rgba(255,255,255,.02) 42%,
-      rgba(255,255,255,.26) 49%,
+      rgba(255,255,255,.24) 49%,
       rgba(255,255,255,.03) 57%,
       transparent 65%
     );
@@ -1360,10 +1400,8 @@ header{
   transform:rotate(25deg);
 
   box-shadow:
-    0
-    4px
-    12px
-    rgba(0,0,0,.2);
+    0 4px 12px
+    rgba(0,0,0,.18);
 
   animation:
     armMove
@@ -1434,7 +1472,7 @@ header{
   }
 
   to{
-    opacity:.96;
+    opacity:.9;
 
     transform:
       translateX(-50%)
@@ -1517,39 +1555,141 @@ header{
 
   color:#616a70;
 
-  transition:.3s;
+  transition:
+    opacity .25s,
+    transform .25s;
 }
 
 
-/* ================================
-   FOUND REVEAL
-================================ */
+/* ======================================
+   RESULT BRIDGE
+====================================== */
 
 .reveal{
   position:fixed;
 
   inset:0;
 
-  z-index:95;
+  z-index:98;
 
-  display:none;
+  visibility:hidden;
+
+  display:grid;
 
   place-items:center;
 
   overflow:hidden;
 
-  color:#101315;
+  color:#111416;
 
   background:
-    rgba(236,246,247,.98);
+    rgba(238,245,244,.97);
+
+  opacity:0;
+
+  transition:
+    opacity .45s ease,
+    visibility 0s linear .5s;
+
+  pointer-events:none;
 }
 
 .reveal.show{
-  display:grid;
+  visibility:visible;
+
+  opacity:1;
+
+  transition:
+    opacity .35s ease;
+
+  pointer-events:auto;
+}
+
+.reveal.out{
+  opacity:0;
 }
 
 .reveal-inner{
   width:min(900px,88vw);
+
+  display:grid;
+
+  justify-items:center;
+
+  text-align:center;
+}
+
+.reveal-disc{
+  width:min(55vw,255px);
+  aspect-ratio:1;
+
+  margin-bottom:30px;
+
+  border-radius:50%;
+
+  background-color:#172022;
+
+  background-position:center;
+  background-size:cover;
+
+  border:
+    1px solid
+    rgba(17,20,22,.18);
+
+  box-shadow:
+    0
+    28px
+    65px
+    rgba(20,30,32,.18);
+
+  opacity:0;
+
+  transform:
+    scale(.2)
+    rotate(-16deg);
+
+  filter:blur(14px);
+}
+
+.reveal.show .reveal-disc{
+  animation:
+    discBecomeCover
+    .9s
+    .05s
+    cubic-bezier(.16,1,.3,1)
+    forwards;
+}
+
+@keyframes discBecomeCover{
+  0%{
+    opacity:0;
+
+    transform:
+      scale(.18)
+      rotate(-30deg);
+
+    filter:blur(14px);
+  }
+
+  55%{
+    opacity:1;
+
+    transform:
+      scale(1.08)
+      rotate(3deg);
+
+    filter:blur(0);
+  }
+
+  100%{
+    opacity:1;
+
+    transform:
+      scale(1)
+      rotate(0);
+
+    filter:none;
+  }
 }
 
 .reveal-kicker{
@@ -1562,51 +1702,60 @@ header{
   letter-spacing:.2em;
 
   opacity:0;
+}
 
+.reveal.show .reveal-kicker{
   animation:
     revealSmall
-    .6s
-    .12s
+    .45s
+    .35s
     forwards;
 }
 
 .reveal-copy{
+  max-width:850px;
+
   margin:
-    22px
-    0;
+    15px
+    0
+    19px;
 
   font-family:
     "Shippori Mincho B1",
     serif;
 
   font-size:
-    clamp(38px,9vw,90px);
+    clamp(32px,7.8vw,76px);
 
   font-weight:700;
 
-  line-height:1.06;
+  line-height:1.08;
 
   letter-spacing:-.06em;
 
   opacity:0;
 
   transform:
-    translateY(45px);
+    translateY(30px);
+}
 
+.reveal.show .reveal-copy{
   animation:
     revealCopy
-    1s
-    .38s
+    .8s
+    .46s
     cubic-bezier(.16,1,.3,1)
     forwards;
 }
 
 .reveal-type{
+  width:100%;
+
   padding-top:12px;
 
   border-top:
     1px solid
-    #101315;
+    #111416;
 
   font-family:
     "DotGothic16",
@@ -1617,11 +1766,13 @@ header{
   letter-spacing:.12em;
 
   opacity:0;
+}
 
+.reveal.show .reveal-type{
   animation:
     revealSmall
-    .65s
-    1.1s
+    .55s
+    .92s
     forwards;
 }
 
@@ -1634,14 +1785,14 @@ header{
 
 @keyframes revealSmall{
   to{
-    opacity:.6;
+    opacity:.58;
   }
 }
 
 
-/* ================================
+/* ======================================
    RESULTS
-================================ */
+====================================== */
 
 .results{
   display:none;
@@ -1666,7 +1817,10 @@ header{
 @keyframes resultIn{
   from{
     opacity:0;
-    transform:translateY(30px);
+
+    transform:
+      translateY(35px)
+      scale(.985);
   }
 
   to{
@@ -1676,9 +1830,7 @@ header{
 }
 
 
-/* ================================
-   MUSIC TYPE
-================================ */
+/* TYPE */
 
 .type{
   position:relative;
@@ -1757,9 +1909,9 @@ header{
 }
 
 
-/* ================================
+/* ======================================
    CAROUSEL
-================================ */
+====================================== */
 
 .carousel{
   display:flex;
@@ -1794,7 +1946,7 @@ header{
 
   scroll-snap-align:center;
 
-  opacity:.22;
+  opacity:.24;
 
   transform:
     scale(.8)
@@ -1838,11 +1990,10 @@ header{
   box-shadow:
     0
     25px
-    65px
-    rgba(20,35,40,.2);
+    60px
+    rgba(20,35,40,.15);
 
-  filter:
-    saturate(1.08);
+  filter:saturate(.94);
 }
 
 .card.active .art{
@@ -1857,8 +2008,8 @@ header{
 @keyframes coverFloat{
   to{
     transform:
-      translateY(-8px)
-      rotate(2deg);
+      translateY(-7px)
+      rotate(1.5deg);
   }
 }
 
@@ -1875,7 +2026,6 @@ header{
     9px;
 
   background:var(--ink);
-
   color:var(--base);
 
   font-family:
@@ -1940,9 +2090,9 @@ header{
 }
 
 
-/* ================================
+/* ======================================
    DETAIL
-================================ */
+====================================== */
 
 .detail{
   padding:
@@ -2174,9 +2324,9 @@ header{
 }
 
 
-/* ================================
+/* ======================================
    MOBILE
-================================ */
+====================================== */
 
 @media(max-width:650px){
 
@@ -2189,7 +2339,6 @@ header{
 
   .hero{
     min-height:620px;
-
     padding-top:68px;
   }
 
@@ -2251,12 +2400,16 @@ header{
       calc(50% + 99px);
   }
 
+  .reveal-disc{
+    width:205px;
+  }
+
 }
 
 
-/* ================================
+/* ======================================
    REDUCED MOTION
-================================ */
+====================================== */
 
 @media(prefers-reduced-motion:reduce){
 
@@ -2268,13 +2421,14 @@ header{
     animation-iteration-count:1!important;
 
     scroll-behavior:auto!important;
+
+    transition-duration:.01ms!important;
   }
 
 }
 
 </style>
 </head>
-
 
 <body>
 
@@ -2284,13 +2438,13 @@ header{
 
 <header>
 
-  <div class="brand">
-    YOUR SOUND
-  </div>
+<div class="brand">
+YOUR SOUND
+</div>
 
-  <div class="issue">
-    DISCOVER / 2026
-  </div>
+<div class="issue">
+DISCOVER / 2026
+</div>
 
 </header>
 
@@ -2300,13 +2454,13 @@ header{
 
 <div class="hero-meta">
 
-  <span>
-    PERSONAL MUSIC CURATION
-  </span>
+<span>
+PERSONAL MUSIC CURATION
+</span>
 
-  <span>
-    YS / 001
-  </span>
+<span>
+YS / 001
+</span>
 
 </div>
 
@@ -2316,37 +2470,37 @@ header{
 
 <div class="hero-copy">
 
-  <div class="hero-small">
-    まだ知らない、
-  </div>
+<div class="hero-small">
+まだ知らない、
+</div>
 
-  <div class="hero-you">
-    あなたの
-  </div>
+<div class="hero-you">
+あなたの
+</div>
 
-  <div class="hero-sound">
-    音<span>。</span>
-  </div>
+<div class="hero-sound">
+音<span>。</span>
+</div>
 
 </div>
 
 
 <div class="hero-vertical">
-  性格　恋愛　感情<br>
-  そして音楽
+性格　恋愛　感情<br>
+そして音楽
 </div>
 
 
 <div class="hero-number">
-  PERSONAL<br>
-  MUSIC<br>
-  CURATION
+PERSONAL<br>
+MUSIC<br>
+CURATION
 </div>
 
 
 <p class="hero-description">
-  性格や今の気持ちを手がかりに、
-  まだ出会っていない音楽を探します。
+性格や今の気持ちを手がかりに、
+まだ出会っていない音楽を探します。
 </p>
 
 
@@ -2358,35 +2512,35 @@ header{
 
 
 <button
-  class="mode active"
-  data-mode="auto"
+class="mode active"
+data-mode="auto"
 >
 
-  <b>
-    おまかせ診断
-  </b>
+<b>
+おまかせ診断
+</b>
 
-  <span>
-    性格や恋愛傾向から、
-    今のあなたに合う音楽を探す。
-  </span>
+<span>
+性格や恋愛傾向から、
+今のあなたに合う音楽を探す。
+</span>
 
 </button>
 
 
 <button
-  class="mode"
-  data-mode="manual"
+class="mode"
+data-mode="manual"
 >
 
-  <b>
-    マニュアル選曲
-  </b>
+<b>
+マニュアル選曲
+</b>
 
-  <span>
-    気分や場面を指定して、
-    聴きたい音を探す。
-  </span>
+<span>
+気分や場面を指定して、
+聴きたい音を探す。
+</span>
 
 </button>
 
@@ -2396,20 +2550,20 @@ header{
 
 
 <section
-  id="auto"
-  class="panel"
+id="auto"
+class="panel"
 >
 
 
 <div class="head">
 
-  <h2>
-    あなたについて
-  </h2>
+<h2>
+あなたについて
+</h2>
 
-  <small>
-    QUICK DIAGNOSIS
-  </small>
+<small>
+QUICK DIAGNOSIS
+</small>
 
 </div>
 
@@ -2421,13 +2575,13 @@ header{
 <div class="field">
 
 <label>
-  01 / MBTI
+01 / MBTI
 </label>
 
 <select id="mbti">
 
 <option value="">
-  選択してください
+選択してください
 </option>
 
 <option>INTJ</option>
@@ -2459,24 +2613,24 @@ header{
 <div class="field">
 
 <label>
-  02 / 恋愛タイプ
+02 / 恋愛タイプ
 </label>
 
 
 <div class="seg">
 
 <button
-  class="ls active"
-  data-l="simple"
+class="ls active"
+data-l="simple"
 >
-  かんたん
+かんたん
 </button>
 
 <button
-  class="ls"
-  data-l="l16"
+class="ls"
+data-l="l16"
 >
-  LoveType16
+LoveType16
 </button>
 
 </div>
@@ -2485,7 +2639,7 @@ header{
 <select id="simple">
 
 <option value="">
-  選択してください
+選択してください
 </option>
 
 <option>一途に愛する</option>
@@ -2501,12 +2655,12 @@ header{
 
 
 <select
-  id="l16"
-  class="hidden"
+id="l16"
+class="hidden"
 >
 
 <option value="">
-  LoveType16を選択
+LoveType16を選択
 </option>
 
 <option>LCRO｜ボス猫</option>
@@ -2536,13 +2690,13 @@ header{
 <div class="field">
 
 <label>
-  03 / 性別
+03 / 性別
 </label>
 
 <select id="gender">
 
 <option value="">
-  選択してください
+選択してください
 </option>
 
 <option>男性</option>
@@ -2559,13 +2713,13 @@ header{
 <div class="field">
 
 <label>
-  04 / 年代
+04 / 年代
 </label>
 
 <select id="age">
 
 <option value="">
-  選択してください
+選択してください
 </option>
 
 <option>10代</option>
@@ -2583,13 +2737,13 @@ header{
 <div class="field full">
 
 <label>
-  05 / 今の気分
+05 / 今の気分
 </label>
 
 <select id="mood">
 
 <option value="">
-  選択してください
+選択してください
 </option>
 
 <option>特に指定なし</option>
@@ -2614,16 +2768,16 @@ header{
 
 
 <button
-  id="find"
-  class="primary"
+id="find"
+class="primary"
 >
-  私の音を探す　→
+私の音を探す　→
 </button>
 
 
 <div
-  id="ast"
-  class="status"
+id="ast"
+class="status"
 ></div>
 
 
@@ -2632,27 +2786,27 @@ header{
 
 
 <section
-  id="manual"
-  class="panel hidden"
+id="manual"
+class="panel hidden"
 >
 
 
 <div class="head">
 
-  <h2>
-    今、聴きたい音
-  </h2>
+<h2>
+今、聴きたい音
+</h2>
 
-  <small>
-    MANUAL SELECTION
-  </small>
+<small>
+MANUAL SELECTION
+</small>
 
 </div>
 
 
 <p class="manual-note">
-  全部埋めなくてもOK。
-  入力した条件を優先して選曲します。
+全部埋めなくてもOK。
+入力した条件を優先して選曲します。
 </p>
 
 
@@ -2663,7 +2817,7 @@ header{
 <div class="field">
 
 <label>
-  01 / 気分
+01 / 気分
 </label>
 
 <select id="mmood">
@@ -2686,7 +2840,7 @@ header{
 <div class="field">
 
 <label>
-  02 / シチュエーション
+02 / シチュエーション
 </label>
 
 <select id="scene">
@@ -2710,7 +2864,7 @@ header{
 <div class="field">
 
 <label>
-  03 / 恋愛状況
+03 / 恋愛状況
 </label>
 
 <select id="romance">
@@ -2733,7 +2887,7 @@ header{
 <div class="field">
 
 <label>
-  04 / ジャンル
+04 / ジャンル
 </label>
 
 <select id="genre">
@@ -2757,7 +2911,7 @@ header{
 <div class="field">
 
 <label>
-  05 / 知名度
+05 / 知名度
 </label>
 
 <select id="fame">
@@ -2776,7 +2930,7 @@ header{
 <div class="field">
 
 <label>
-  06 / 重視
+06 / 重視
 </label>
 
 <select id="focus">
@@ -2797,12 +2951,12 @@ header{
 <div class="field full">
 
 <label>
-  07 / 参考曲
+07 / 参考曲
 </label>
 
 <input
-  id="reference"
-  placeholder="例：HANABIの切なさとサビ"
+id="reference"
+placeholder="例：HANABIの切なさとサビ"
 >
 
 </div>
@@ -2812,13 +2966,13 @@ header{
 <div class="field full">
 
 <label>
-  08 / 自由に伝える
+08 / 自由に伝える
 </label>
 
 <textarea
-  id="free"
-  maxlength="300"
-  placeholder="例：深夜に一人で歩きながら昔好きだった人を思い出す。でも最後は少し前向きになれる曲。"
+id="free"
+maxlength="300"
+placeholder="例：深夜に一人で歩きながら昔好きだった人を思い出す。でも最後は少し前向きになれる曲。"
 ></textarea>
 
 </div>
@@ -2829,16 +2983,16 @@ header{
 
 
 <button
-  id="mfind"
-  class="primary"
+id="mfind"
+class="primary"
 >
-  この条件で音を探す　→
+この条件で音を探す　→
 </button>
 
 
 <div
-  id="mst"
-  class="status"
+id="mst"
+class="status"
 ></div>
 
 
@@ -2847,20 +3001,20 @@ header{
 
 
 <section
-  id="results"
-  class="results"
+id="results"
+class="results"
 >
 
 
 <div class="type">
 
 <div class="eyebrow">
-  YOUR MUSIC TYPE / 001
+YOUR MUSIC TYPE / 001
 </div>
 
 <h2
-  id="type"
-  class="type-title"
+id="type"
+class="type-title"
 ></h2>
 
 <p id="desc"></p>
@@ -2872,48 +3026,48 @@ header{
 <div class="head">
 
 <h2>
-  Recommended
+Recommended
 </h2>
 
 <small>
-  SWIPE / SELECT
+SWIPE / SELECT
 </small>
 
 </div>
 
 
 <div
-  id="carousel"
-  class="carousel"
+id="carousel"
+class="carousel"
 ></div>
 
 
 <div
-  id="dots"
-  class="dots"
+id="dots"
+class="dots"
 ></div>
 
 
 <article
-  id="detail"
-  class="detail"
+id="detail"
+class="detail"
 ></article>
 
 
 <div class="actions">
 
 <button
-  id="reroll"
-  class="secondary"
+id="reroll"
+class="secondary"
 >
-  ↻ 別の5曲
+↻ 別の5曲
 </button>
 
 <button
-  id="change"
-  class="secondary"
+id="change"
+class="secondary"
 >
-  条件を変える
+条件を変える
 </button>
 
 </div>
@@ -2926,18 +3080,20 @@ header{
 
 
 
-<!-- LOADING -->
+<!-- ===========================
+     LOADING
+=========================== -->
 
 <div
-  id="loading"
-  class="loading"
+id="loading"
+class="loading"
 >
 
 
 <div class="marquee">
-  SEARCHING YOUR SOUND —
-  SEARCHING YOUR SOUND —
-  SEARCHING YOUR SOUND —
+SEARCHING YOUR SOUND —
+SEARCHING YOUR SOUND —
+SEARCHING YOUR SOUND —
 </div>
 
 
@@ -2946,30 +3102,30 @@ header{
 
 <div class="turntable">
 
-  <div class="orb"></div>
+<div class="orb"></div>
 
-  <div class="vinyl-shine"></div>
+<div class="vinyl-shine"></div>
 
-  <div class="arm"></div>
+<div class="arm"></div>
 
 </div>
 
 
 <div
-  id="loadStage"
-  class="load-stage"
+id="loadStage"
+class="load-stage"
 >
-  ANALYSING PERSONALITY
+ANALYSING PERSONALITY
 </div>
 
 
 <h2>
-  あなたの音を探しています
+あなたの音を探しています
 </h2>
 
 
 <p id="lt">
-  性格と今の気持ちを読み解いています…
+性格と今の気持ちを読み解いています…
 </p>
 
 
@@ -2977,16 +3133,16 @@ header{
 
 
 <div class="ticker">
-  PERSONALITY /
-  EMOTION /
-  LOVE /
-  SOUND /
-  CURATION /
-  PERSONALITY /
-  EMOTION /
-  LOVE /
-  SOUND /
-  CURATION
+PERSONALITY /
+EMOTION /
+LOVE /
+SOUND /
+CURATION /
+PERSONALITY /
+EMOTION /
+LOVE /
+SOUND /
+CURATION
 </div>
 
 
@@ -2994,30 +3150,44 @@ header{
 
 
 
-<!-- RESULT REVEAL -->
+<!-- ===========================
+     RESULT BRIDGE
+=========================== -->
 
 <div
-  id="reveal"
-  class="reveal"
+id="reveal"
+class="reveal"
 >
+
 
 <div class="reveal-inner">
 
-  <div class="reveal-kicker">
-    FOUND / YOUR SOUND
-  </div>
 
-  <div
-    id="revealCopy"
-    class="reveal-copy"
-  ></div>
+<div
+id="revealDisc"
+class="reveal-disc"
+></div>
 
-  <div
-    id="revealType"
-    class="reveal-type"
-  ></div>
+
+<div class="reveal-kicker">
+FOUND / YOUR SOUND
+</div>
+
+
+<div
+id="revealCopy"
+class="reveal-copy"
+></div>
+
+
+<div
+id="revealType"
+class="reveal-type"
+></div>
+
 
 </div>
+
 
 </div>
 
@@ -3026,1157 +3196,1242 @@ header{
 <script>
 
 const $ =
-  id =>
-  document.getElementById(id);
+id =>
+document.getElementById(id);
+
+
+const wait =
+ms =>
+new Promise(
+resolve =>
+setTimeout(resolve,ms)
+);
 
 
 let mode =
-  "auto";
+"auto";
 
 let loveMode =
-  "simple";
+"simple";
 
 let lastRequest =
-  null;
+null;
 
 let songs =
-  [];
+[];
 
 let currentIndex =
-  0;
+0;
 
 let loadingTimer;
 
 
-/* ================================
-   LOADING TEXT
-================================ */
+/* ======================================
+   LOADING COPY
+====================================== */
 
 const loadingMessages = [
 
-  [
-    "ANALYSING PERSONALITY",
-    "性格と今の気持ちを読み解いています…"
-  ],
+[
+"ANALYSING PERSONALITY",
+"性格と今の気持ちを読み解いています…"
+],
 
-  [
-    "READING EMOTION",
-    "今の感情の温度を探っています…"
-  ],
+[
+"READING EMOTION",
+"今の感情の温度を探っています…"
+],
 
-  [
-    "SEARCHING MUSIC",
-    "まだ知らない音楽を探しています…"
-  ],
+[
+"SEARCHING MUSIC",
+"まだ知らない音楽を探しています…"
+],
 
-  [
-    "VERIFYING TRACKS",
-    "実在する曲を確認しています…"
-  ],
+[
+"VERIFYING TRACKS",
+"実在する曲を確認しています…"
+],
 
-  [
-    "CURATING YOUR SOUND",
-    "あなたに刺さる理由を分析しています…"
-  ]
+[
+"CURATING YOUR SOUND",
+"あなたに刺さる理由を分析しています…"
+]
 
 ];
 
 
-/* ================================
-   MODES
-================================ */
+/* ======================================
+   MODE
+====================================== */
 
 document
 .querySelectorAll(".mode")
 .forEach(button => {
 
-  button.onclick =
-  () => {
+button.onclick =
+() => {
 
-    mode =
-      button.dataset.mode;
-
-
-    document
-    .querySelectorAll(".mode")
-    .forEach(item => {
-
-      item.classList.toggle(
-        "active",
-        item === button
-      );
-
-    });
+mode =
+button.dataset.mode;
 
 
-    $("auto")
-    .classList
-    .toggle(
-      "hidden",
-      mode !== "auto"
-    );
+document
+.querySelectorAll(".mode")
+.forEach(item => {
 
-
-    $("manual")
-    .classList
-    .toggle(
-      "hidden",
-      mode !== "manual"
-    );
-
-  };
+item.classList.toggle(
+"active",
+item === button
+);
 
 });
 
 
-/* ================================
+$("auto")
+.classList.toggle(
+"hidden",
+mode !== "auto"
+);
+
+
+$("manual")
+.classList.toggle(
+"hidden",
+mode !== "manual"
+);
+
+};
+
+});
+
+
+/* ======================================
    LOVE TYPE
-================================ */
+====================================== */
 
 document
 .querySelectorAll(".ls")
 .forEach(button => {
 
-  button.onclick =
-  () => {
+button.onclick =
+() => {
 
-    loveMode =
-      button.dataset.l;
-
-
-    document
-    .querySelectorAll(".ls")
-    .forEach(item => {
-
-      item.classList.toggle(
-        "active",
-        item === button
-      );
-
-    });
+loveMode =
+button.dataset.l;
 
 
-    $("simple")
-    .classList
-    .toggle(
-      "hidden",
-      loveMode !== "simple"
-    );
+document
+.querySelectorAll(".ls")
+.forEach(item => {
 
-
-    $("l16")
-    .classList
-    .toggle(
-      "hidden",
-      loveMode !== "l16"
-    );
-
-  };
+item.classList.toggle(
+"active",
+item === button
+);
 
 });
 
 
-/* ================================
+$("simple")
+.classList.toggle(
+"hidden",
+loveMode !== "simple"
+);
+
+
+$("l16")
+.classList.toggle(
+"hidden",
+loveMode !== "l16"
+);
+
+};
+
+});
+
+
+/* ======================================
    STATUS
-================================ */
+====================================== */
 
 function setStatus(
-  id,
-  text,
-  error = false
+id,
+text,
+error = false
 ){
 
-  const element =
-    $(id);
+const element =
+$(id);
 
 
-  element.style.display =
-    "block";
+element.style.display =
+"block";
 
 
-  element.textContent =
-    text;
+element.textContent =
+text;
 
 
-  element.className =
-    error
-    ?
-    "status error"
-    :
-    "status";
+element.className =
+error
+?
+"status error"
+:
+"status";
 
 }
 
 
-/* ================================
-   LOADING
-================================ */
+/* ======================================
+   LOADING TEXT
+====================================== */
 
-function setLoading(
-  active
-){
+function startLoadingText(){
 
-  if(active){
-
-    let index =
-      0;
+stopLoadingText();
 
 
-    $("loading")
-    .classList
-    .add("show");
+let index =
+0;
 
 
-    $("loadStage")
-    .textContent =
-      loadingMessages[0][0];
+$("loadStage")
+.textContent =
+loadingMessages[0][0];
 
 
-    $("lt")
-    .textContent =
-      loadingMessages[0][1];
+$("lt")
+.textContent =
+loadingMessages[0][1];
 
 
-    loadingTimer =
-      setInterval(
-        () => {
+loadingTimer =
+setInterval(
+() => {
 
-          index =
-            (
-              index + 1
-            )
-            %
-            loadingMessages.length;
-
-
-          $("lt")
-          .style.opacity =
-            "0";
+index =
+(
+index + 1
+)
+%
+loadingMessages.length;
 
 
-          $("lt")
-          .style.transform =
-            "translateY(5px)";
+$("lt")
+.style.opacity =
+"0";
 
 
-          setTimeout(
-            () => {
-
-              $("loadStage")
-              .textContent =
-                loadingMessages[index][0];
+$("lt")
+.style.transform =
+"translateY(5px)";
 
 
-              $("lt")
-              .textContent =
-                loadingMessages[index][1];
+setTimeout(
+() => {
+
+$("loadStage")
+.textContent =
+loadingMessages[index][0];
 
 
-              $("lt")
-              .style.opacity =
-                "1";
+$("lt")
+.textContent =
+loadingMessages[index][1];
 
 
-              $("lt")
-              .style.transform =
-                "none";
-
-            },
-            220
-          );
-
-        },
-        1800
-      );
-
-  }
-  else{
-
-    clearInterval(
-      loadingTimer
-    );
+$("lt")
+.style.opacity =
+"1";
 
 
-    $("loading")
-    .classList
-    .remove("show");
+$("lt")
+.style.transform =
+"none";
 
-  }
+},
+220
+);
+
+},
+1800
+);
 
 }
 
 
-/* ================================
+function stopLoadingText(){
+
+clearInterval(
+loadingTimer
+);
+
+}
+
+
+/* ======================================
+   FORM -> LOADING
+====================================== */
+
+async function showLoading(){
+
+document.body
+.classList
+.add(
+"screen-shift"
+);
+
+
+await wait(
+180
+);
+
+
+$("loading")
+.classList
+.remove(
+"leaving",
+"error-leave"
+);
+
+
+$("loading")
+.classList
+.add(
+"show"
+);
+
+
+startLoadingText();
+
+
+await wait(
+520
+);
+
+
+document.body
+.classList
+.remove(
+"screen-shift"
+);
+
+}
+
+
+/* ======================================
+   ERROR -> FORM
+====================================== */
+
+async function closeLoadingForError(){
+
+stopLoadingText();
+
+
+$("loading")
+.classList
+.add(
+"error-leave"
+);
+
+
+await wait(
+360
+);
+
+
+$("loading")
+.classList
+.remove(
+"show",
+"error-leave"
+);
+
+}
+
+
+/* ======================================
    HTML ESCAPE
-================================ */
+====================================== */
 
 function escapeHTML(
-  value = ""
+value = ""
 ){
 
-  return String(value)
-  .replace(
-    /[&<>"']/g,
-    char => ({
+return String(value)
+.replace(
+/[&<>"']/g,
+char => ({
 
-      "&":"&amp;",
-      "<":"&lt;",
-      ">":"&gt;",
-      '"':"&quot;",
-      "'":"&#039;"
+"&":"&amp;",
+"<":"&lt;",
+">":"&gt;",
+'"':"&quot;",
+"'":"&#039;"
 
-    }[char])
-  );
+}[char])
+);
 
 }
 
 
-/* ================================
+/* ======================================
    AUTO FORM
-================================ */
+====================================== */
 
 $("find")
 .onclick =
 () => {
 
-  const payload = {
+const payload = {
 
-    mode:"auto",
+mode:"auto",
 
-    mbti:
-      $("mbti").value,
+mbti:
+$("mbti").value,
 
-    love:
-      loveMode === "simple"
-      ?
-      $("simple").value
-      :
-      $("l16").value,
+love:
+loveMode === "simple"
+?
+$("simple").value
+:
+$("l16").value,
 
-    gender:
-      $("gender").value,
+gender:
+$("gender").value,
 
-    age:
-      $("age").value,
+age:
+$("age").value,
 
-    mood:
-      $("mood").value
-
-  };
-
-
-  if(
-    !payload.mbti ||
-    !payload.love ||
-    !payload.gender ||
-    !payload.age ||
-    !payload.mood
-  ){
-
-    setStatus(
-      "ast",
-      "すべて選んでください。",
-      true
-    );
-
-    return;
-
-  }
-
-
-  requestMusic(
-    payload,
-    "ast"
-  );
+mood:
+$("mood").value
 
 };
 
 
-/* ================================
+if(
+!payload.mbti ||
+!payload.love ||
+!payload.gender ||
+!payload.age ||
+!payload.mood
+){
+
+setStatus(
+"ast",
+"すべて選んでください。",
+true
+);
+
+return;
+
+}
+
+
+requestMusic(
+payload,
+"ast"
+);
+
+};
+
+
+/* ======================================
    MANUAL FORM
-================================ */
+====================================== */
 
 $("mfind")
 .onclick =
 () => {
 
-  const payload = {
+const payload = {
 
-    mode:"manual",
+mode:"manual",
 
-    mood:
-      $("mmood").value,
+mood:
+$("mmood").value,
 
-    scene:
-      $("scene").value,
+scene:
+$("scene").value,
 
-    romance:
-      $("romance").value,
+romance:
+$("romance").value,
 
-    genre:
-      $("genre").value,
+genre:
+$("genre").value,
 
-    fame:
-      $("fame").value,
+fame:
+$("fame").value,
 
-    focus:
-      $("focus").value,
+focus:
+$("focus").value,
 
-    reference:
-      $("reference")
-      .value
-      .trim(),
+reference:
+$("reference")
+.value
+.trim(),
 
-    freeText:
-      $("free")
-      .value
-      .trim()
-
-  };
-
-
-  const hasCondition =
-    Object
-    .values(payload)
-    .slice(1)
-    .some(Boolean);
-
-
-  if(!hasCondition){
-
-    setStatus(
-      "mst",
-      "少なくとも1つ条件を入れてください。",
-      true
-    );
-
-    return;
-
-  }
-
-
-  requestMusic(
-    payload,
-    "mst"
-  );
+freeText:
+$("free")
+.value
+.trim()
 
 };
 
 
-/* ================================
+const hasCondition =
+Object
+.values(payload)
+.slice(1)
+.some(Boolean);
+
+
+if(!hasCondition){
+
+setStatus(
+"mst",
+"少なくとも1つ条件を入れてください。",
+true
+);
+
+return;
+
+}
+
+
+requestMusic(
+payload,
+"mst"
+);
+
+};
+
+
+/* ======================================
    API
-================================ */
+====================================== */
 
 async function requestMusic(
-  payload,
-  statusId
+payload,
+statusId
 ){
 
-  lastRequest =
-    payload;
+lastRequest =
+payload;
 
 
-  setLoading(
-    true
-  );
+await showLoading();
 
 
-  try{
-
-    const response =
-      await fetch(
-        "/api/recommend",
-        {
-
-          method:"POST",
-
-          headers:{
-            "Content-Type":
-              "application/json"
-          },
-
-          body:
-            JSON.stringify(payload)
-
-        }
-      );
+try{
 
 
-    let data;
+const response =
+await fetch(
+"/api/recommend",
+{
+
+method:"POST",
+
+headers:{
+"Content-Type":
+"application/json"
+},
+
+body:
+JSON.stringify(payload)
+
+}
+);
 
 
-    try{
-
-      data =
-        await response.json();
-
-    }
-    catch{
-
-      throw new Error(
-        "サーバーから正しい応答を受け取れませんでした。"
-      );
-
-    }
+let data;
 
 
-    if(!response.ok){
+try{
 
-      throw new Error(
-        data.error ||
-        "選曲に失敗しました。"
-      );
+data =
+await response.json();
 
-    }
+}
+catch{
 
-
-    if(
-      !Array.isArray(
-        data.recommendations
-      )
-      ||
-      !data.recommendations.length
-    ){
-
-      throw new Error(
-        "曲を確認できませんでした。もう一度試してください。"
-      );
-
-    }
-
-
-    songs =
-      data.recommendations;
-
-
-    setMusicType(
-      data.listenerType ||
-      "未知音探索派"
-    );
-
-
-    $("desc")
-    .textContent =
-      data.listenerDescription ||
-      "";
-
-
-    renderCards();
-
-
-    selectSong(
-      0
-    );
-
-
-    setLoading(
-      false
-    );
-
-
-    await showReveal(
-      data
-    );
-
-
-    $("results")
-    .style.display =
-      "block";
-
-
-    $("results")
-    .classList
-    .remove("enter");
-
-
-    void
-      $("results")
-      .offsetWidth;
-
-
-    $("results")
-    .classList
-    .add("enter");
-
-
-    requestAnimationFrame(
-      () => {
-
-        setMusicType(
-          data.listenerType ||
-          "未知音探索派"
-        );
-
-      }
-    );
-
-
-    setTimeout(
-      () => {
-
-        $("results")
-        .scrollIntoView({
-          behavior:"smooth"
-        });
-
-      },
-      120
-    );
-
-
-    setStatus(
-      statusId,
-      "あなたの音が見つかりました。"
-    );
-
-  }
-  catch(error){
-
-    setLoading(
-      false
-    );
-
-
-    setStatus(
-      statusId,
-      error.message ||
-      "選曲に失敗しました。",
-      true
-    );
-
-  }
+throw new Error(
+"サーバーから正しい応答を受け取れませんでした。"
+);
 
 }
 
 
-/* ================================
-   ONE-LINE MUSIC TYPE
-================================ */
+if(!response.ok){
+
+throw new Error(
+data.error ||
+"選曲に失敗しました。"
+);
+
+}
+
+
+if(
+!Array.isArray(
+data.recommendations
+)
+||
+!data.recommendations.length
+){
+
+throw new Error(
+"曲を確認できませんでした。もう一度試してください。"
+);
+
+}
+
+
+songs =
+data.recommendations;
+
+
+setMusicType(
+data.listenerType ||
+"未知音探索派"
+);
+
+
+$("desc")
+.textContent =
+data.listenerDescription ||
+"";
+
+
+renderCards();
+
+
+selectSong(
+0
+);
+
+
+await transitionToResult(
+data
+);
+
+
+$("results")
+.style.display =
+"block";
+
+
+$("results")
+.classList
+.remove(
+"enter"
+);
+
+
+void
+$("results")
+.offsetWidth;
+
+
+$("results")
+.classList
+.add(
+"enter"
+);
+
+
+requestAnimationFrame(
+() => {
+
+setMusicType(
+data.listenerType ||
+"未知音探索派"
+);
+
+}
+);
+
+
+setTimeout(
+() => {
+
+$("results")
+.scrollIntoView({
+behavior:"smooth"
+});
+
+},
+100
+);
+
+
+setStatus(
+statusId,
+"あなたの音が見つかりました。"
+);
+
+
+}
+catch(error){
+
+
+await closeLoadingForError();
+
+
+setStatus(
+statusId,
+error.message ||
+"選曲に失敗しました。",
+true
+);
+
+
+}
+
+}
+
+
+/* ======================================
+   MUSIC TYPE ONE LINE
+====================================== */
 
 function setMusicType(
-  text
+text
 ){
 
-  const element =
-    $("type");
+const element =
+$("type");
 
 
-  element.textContent =
-    text;
+element.textContent =
+text;
 
 
-  element.style.fontSize =
-    "";
+let size =
+window.innerWidth <= 650
+?
+56
+:
+68;
 
 
-  requestAnimationFrame(
-    () => {
-
-      let size =
-        window.innerWidth <= 650
-        ?
-        56
-        :
-        68;
+element.style.fontSize =
+size + "px";
 
 
-      const minimum =
-        17;
+requestAnimationFrame(
+() => {
 
 
-      element.style.fontSize =
-        size + "px";
+while(
+element.scrollWidth >
+element.clientWidth
+&&
+size > 17
+){
+
+size -= 1;
 
 
-      while(
-        element.scrollWidth >
-        element.clientWidth
-        &&
-        size > minimum
-      ){
-
-        size -= 1;
-
-
-        element.style.fontSize =
-          size + "px";
-
-      }
-
-    }
-  );
+element.style.fontSize =
+size + "px";
 
 }
 
 
-/* ================================
-   RESULT REVEAL
-================================ */
-
-function showReveal(
-  data
-){
-
-  return new Promise(
-    resolve => {
-
-      const first =
-        songs[0] ||
-        {};
-
-
-      const type =
-        data.listenerType ||
-        "今のあなたの音";
-
-
-      $("revealCopy")
-      .textContent =
-        createRevealCopy(
-          first,
-          type
-        );
-
-
-      $("revealType")
-      .textContent =
-        "YOUR MUSIC TYPE / " +
-        type;
-
-
-      $("reveal")
-      .classList
-      .add("show");
-
-
-      setTimeout(
-        () => {
-
-          const animation =
-            $("reveal")
-            .animate(
-              [
-                {
-                  opacity:1
-                },
-                {
-                  opacity:0
-                }
-              ],
-              {
-                duration:650,
-                easing:"ease",
-                fill:"forwards"
-              }
-            );
-
-
-          animation.onfinish =
-          () => {
-
-            $("reveal")
-            .classList
-            .remove("show");
-
-
-            $("reveal")
-            .style.opacity =
-              "";
-
-
-            resolve();
-
-          };
-
-        },
-        2100
-      );
-
-    }
-  );
+}
+);
 
 }
 
 
-/* ================================
+/* ======================================
+   LOADING -> RESULT
+====================================== */
+
+async function transitionToResult(
+data
+){
+
+stopLoadingText();
+
+
+const first =
+songs[0] ||
+{};
+
+
+const type =
+data.listenerType ||
+"今のあなたの音";
+
+
+$("revealCopy")
+.textContent =
+createRevealCopy(
+first,
+type
+);
+
+
+$("revealType")
+.textContent =
+"YOUR MUSIC TYPE / " +
+type;
+
+
+$("revealDisc")
+.style.backgroundImage =
+first.artwork
+?
+`url("${first.artwork}")`
+:
+"none";
+
+
+/* レコードを中央へ吸い込む */
+
+$("loading")
+.classList
+.add(
+"leaving"
+);
+
+
+await wait(
+430
+);
+
+
+/* ジャケットへ変身 */
+
+$("reveal")
+.classList
+.add(
+"show"
+);
+
+
+await wait(
+220
+);
+
+
+$("loading")
+.classList
+.remove(
+"show",
+"leaving"
+);
+
+
+await wait(
+1500
+);
+
+
+/* 結果へ */
+
+$("reveal")
+.classList
+.add(
+"out"
+);
+
+
+await wait(
+480
+);
+
+
+$("reveal")
+.classList
+.remove(
+"show",
+"out"
+);
+
+}
+
+
+/* ======================================
    REVEAL COPY
-================================ */
+====================================== */
 
 function createRevealCopy(
-  song,
-  type
+song,
+type
 ){
 
-  const reason =
-    String(
-      song.why ||
-      ""
-    )
-    .trim();
+const reason =
+String(
+song.why ||
+""
+)
+.trim();
 
 
-  if(reason){
+if(reason){
 
-    let text =
-      reason
-      .split(/[。！？]/)[0]
-      .trim();
-
-
-    if(
-      text.length > 31
-    ){
-
-      text =
-        text.slice(
-          0,
-          31
-        )
-        +
-        "…";
-
-    }
+let text =
+reason
+.split(/[。！？]/)[0]
+.trim();
 
 
-    if(text){
+if(
+text.length > 31
+){
 
-      return text + "。";
-
-    }
-
-  }
-
-
-  return type + "。";
+text =
+text.slice(
+0,
+31
+)
++
+"…";
 
 }
 
 
-/* ================================
+if(text){
+
+return text + "。";
+
+}
+
+}
+
+
+return type + "。";
+
+}
+
+
+/* ======================================
    CARDS
-================================ */
+====================================== */
 
 function renderCards(){
 
-  $("carousel")
-  .innerHTML =
-    songs
-    .map(
-      (song,index) => `
+$("carousel")
+.innerHTML =
+songs
+.map(
+(song,index) => `
 
 <article
-  class="card"
-  data-index="${index}"
+class="card"
+data-index="${index}"
 >
 
 ${
-  song.artwork
-  ?
-  `<img
-    class="art"
-    src="${escapeHTML(song.artwork)}"
-    alt="${escapeHTML(song.title)}"
-  >`
-  :
-  `<div class="art"></div>`
+song.artwork
+?
+`<img
+class="art"
+src="${escapeHTML(song.artwork)}"
+alt="${escapeHTML(song.title)}"
+>`
+:
+`<div class="art"></div>`
 }
 
 ${
-  index === 0
-  ?
-  `<span class="best">
-    YOUR BEST MATCH
-  </span>`
-  :
-  ""
+index === 0
+?
+`<span class="best">
+YOUR BEST MATCH
+</span>`
+:
+""
 }
 
 <h3>
-  ${escapeHTML(song.title)}
+${escapeHTML(song.title)}
 </h3>
 
 <div class="artist">
-  ${escapeHTML(song.artist)}
+${escapeHTML(song.artist)}
 </div>
 
 </article>
 
 `
-    )
-    .join("");
+)
+.join("");
 
 
-  document
-  .querySelectorAll(".card")
-  .forEach(card => {
+document
+.querySelectorAll(".card")
+.forEach(card => {
 
-    card.onclick =
-    () => {
+card.onclick =
+() => {
 
-      const index =
-        Number(
-          card.dataset.index
-        );
-
-
-      selectSong(
-        index
-      );
+const index =
+Number(
+card.dataset.index
+);
 
 
-      card.scrollIntoView({
-        behavior:"smooth",
-        inline:"center",
-        block:"nearest"
-      });
-
-    };
-
-  });
+selectSong(
+index
+);
 
 
-  let scrollTimer;
+card.scrollIntoView({
+behavior:"smooth",
+inline:"center",
+block:"nearest"
+});
+
+};
+
+});
 
 
-  $("carousel")
-  .onscroll =
-  () => {
-
-    clearTimeout(
-      scrollTimer
-    );
+let scrollTimer;
 
 
-    scrollTimer =
-      setTimeout(
-        () => {
+$("carousel")
+.onscroll =
+() => {
 
-          const carousel =
-            $("carousel");
-
-
-          const center =
-            carousel.scrollLeft +
-            carousel.clientWidth / 2;
+clearTimeout(
+scrollTimer
+);
 
 
-          let nearest =
-            0;
+scrollTimer =
+setTimeout(
+() => {
+
+const carousel =
+$("carousel");
 
 
-          let nearestDistance =
-            Infinity;
+const center =
+carousel.scrollLeft +
+carousel.clientWidth / 2;
 
 
-          [
-            ...carousel.children
-          ]
-          .forEach(
-            (element,index) => {
-
-              const distance =
-                Math.abs(
-                  element.offsetLeft +
-                  element.offsetWidth / 2 -
-                  center
-                );
+let nearest =
+0;
 
 
-              if(
-                distance <
-                nearestDistance
-              ){
-
-                nearestDistance =
-                  distance;
+let nearestDistance =
+Infinity;
 
 
-                nearest =
-                  index;
+[
+...carousel.children
+]
+.forEach(
+(element,index) => {
 
-              }
+const distance =
+Math.abs(
+element.offsetLeft +
+element.offsetWidth / 2 -
+center
+);
 
-            }
-          );
+
+if(
+distance <
+nearestDistance
+){
+
+nearestDistance =
+distance;
 
 
-          if(
-            nearest !==
-            currentIndex
-          ){
+nearest =
+index;
 
-            selectSong(
-              nearest
-            );
+}
 
-          }
+}
+);
 
-        },
-        90
-      );
 
-  };
+if(
+nearest !==
+currentIndex
+){
+
+selectSong(
+nearest
+);
+
+}
+
+},
+90
+);
+
+};
 
 }
 
 
-/* ================================
+/* ======================================
    FAVORITES
-================================ */
+====================================== */
 
 function getFavorites(){
 
-  try{
+try{
 
-    return JSON.parse(
-      localStorage
-      .getItem(
-        "ysFavs"
-      )
-      ||
-      "{}"
-    );
+return JSON.parse(
+localStorage
+.getItem(
+"ysFavs"
+)
+||
+"{}"
+);
 
-  }
-  catch{
+}
+catch{
 
-    return {};
+return {};
 
-  }
+}
 
 }
 
 
 function songKey(
-  song
+song
 ){
 
-  return (
-    song.artist +
-    "__" +
-    song.title
-  )
-  .toLowerCase();
+return (
+song.artist +
+"__" +
+song.title
+)
+.toLowerCase();
 
 }
 
 
-/* ================================
+/* ======================================
    SELECT SONG
-================================ */
+====================================== */
 
 function selectSong(
-  index
+index
 ){
 
-  if(
-    !songs[index]
-  ){
+if(
+!songs[index]
+){
 
-    return;
+return;
 
-  }
-
-
-  currentIndex =
-    index;
+}
 
 
-  document
-  .querySelectorAll(".card")
-  .forEach(
-    (card,cardIndex) => {
-
-      card.classList
-      .toggle(
-        "active",
-        cardIndex === index
-      );
-
-    }
-  );
+currentIndex =
+index;
 
 
-  const song =
-    songs[index];
+document
+.querySelectorAll(".card")
+.forEach(
+(card,cardIndex) => {
+
+card.classList.toggle(
+"active",
+cardIndex === index
+);
+
+}
+);
 
 
-  const favorites =
-    getFavorites();
+const song =
+songs[index];
 
 
-  const query =
-    encodeURIComponent(
-      song.artist +
-      " " +
-      song.title
-    );
+const favorites =
+getFavorites();
 
 
-  $("dots")
-  .textContent =
-    songs
-    .map(
-      (_,dotIndex) =>
-      dotIndex === index
-      ?
-      "●"
-      :
-      "○"
-    )
-    .join("  ");
+const query =
+encodeURIComponent(
+song.artist +
+" " +
+song.title
+);
 
 
-  $("detail")
-  .innerHTML = `
+$("dots")
+.textContent =
+songs
+.map(
+(_,dotIndex) =>
+dotIndex === index
+?
+"●"
+:
+"○"
+)
+.join("  ");
+
+
+$("detail")
+.innerHTML = `
 
 <div class="detail-head">
 
 <div>
 
-  <div class="eyebrow">
+<div class="eyebrow">
 
-    ${
-      index === 0
-      ?
-      "YOUR BEST MATCH"
-      :
-      "CURATED SELECTION"
-    }
+${
+index === 0
+?
+"YOUR BEST MATCH"
+:
+"CURATED SELECTION"
+}
 
-  </div>
+</div>
 
-  <h2>
-    ${escapeHTML(song.title)}
-  </h2>
+<h2>
+${escapeHTML(song.title)}
+</h2>
 
-  <div class="artist">
-    ${escapeHTML(song.artist)}
-  </div>
+<div class="artist">
+${escapeHTML(song.artist)}
+</div>
 
 </div>
 
 
 <button
-  id="heart"
-  class="heart"
-  aria-label="お気に入り"
+id="heart"
+class="heart"
+aria-label="お気に入り"
 >
 
 ${
-  favorites[
-    songKey(song)
-  ]
-  ?
-  "♥"
-  :
-  "♡"
+favorites[
+songKey(song)
+]
+?
+"♥"
+:
+"♡"
 }
 
 </button>
 
 </div>
-
 
 
 <div class="info">
@@ -4185,11 +4440,11 @@ ${
 <div class="box">
 
 <h4>
-  01 / この曲について
+01 / この曲について
 </h4>
 
 <p>
-  ${escapeHTML(song.summary || "")}
+${escapeHTML(song.summary || "")}
 </p>
 
 </div>
@@ -4198,11 +4453,11 @@ ${
 <div class="box">
 
 <h4>
-  02 / なぜあなたに合う？
+02 / なぜあなたに合う？
 </h4>
 
 <p>
-  ${escapeHTML(song.why || "")}
+${escapeHTML(song.why || "")}
 </p>
 
 </div>
@@ -4211,11 +4466,11 @@ ${
 <div class="box">
 
 <h4>
-  03 / 特に刺さるポイント
+03 / 特に刺さるポイント
 </h4>
 
 <p>
-  ${escapeHTML(song.lyricPoint || "")}
+${escapeHTML(song.lyricPoint || "")}
 </p>
 
 </div>
@@ -4224,53 +4479,52 @@ ${
 <div class="box">
 
 <h4>
-  04 / ここを意識して聴いて
+04 / ここを意識して聴いて
 </h4>
 
 <p>
-  ${escapeHTML(song.listenPoint || "")}
+${escapeHTML(song.listenPoint || "")}
 </p>
 
 </div>
 
 
 </div>
-
 
 
 <div class="links">
 
 
 ${
-  song.appleMusic
-  ?
-  `<a
-    href="${escapeHTML(song.appleMusic)}"
-    target="_blank"
-    rel="noopener"
-  >
-    APPLE MUSIC ↗
-  </a>`
-  :
-  ""
+song.appleMusic
+?
+`<a
+href="${escapeHTML(song.appleMusic)}"
+target="_blank"
+rel="noopener"
+>
+APPLE MUSIC ↗
+</a>`
+:
+""
 }
 
 
 <a
-  href="https://www.youtube.com/results?search_query=${query}"
-  target="_blank"
-  rel="noopener"
+href="https://www.youtube.com/results?search_query=${query}"
+target="_blank"
+rel="noopener"
 >
-  YOUTUBE ↗
+YOUTUBE ↗
 </a>
 
 
 <a
-  href="https://open.spotify.com/search/${query}"
-  target="_blank"
-  rel="noopener"
+href="https://open.spotify.com/search/${query}"
+target="_blank"
+rel="noopener"
 >
-  SPOTIFY ↗
+SPOTIFY ↗
 </a>
 
 
@@ -4279,541 +4533,436 @@ ${
 `;
 
 
-  $("detail")
-  .classList
-  .remove("animate");
+$("detail")
+.classList
+.remove(
+"animate"
+);
 
 
-  void
-    $("detail")
-    .offsetWidth;
+void
+$("detail")
+.offsetWidth;
 
 
-  $("detail")
-  .classList
-  .add("animate");
+$("detail")
+.classList
+.add(
+"animate"
+);
 
 
-  $("heart")
-  .onclick =
-  () => {
+$("heart")
+.onclick =
+() => {
 
-    const current =
-      getFavorites();
-
-
-    const key =
-      songKey(song);
+const current =
+getFavorites();
 
 
-    if(current[key]){
-
-      delete current[key];
-
-    }
-    else{
-
-      current[key] = {
-
-        title:
-          song.title,
-
-        artist:
-          song.artist,
-
-        artwork:
-          song.artwork
-
-      };
-
-    }
+const key =
+songKey(song);
 
 
-    localStorage
-    .setItem(
-      "ysFavs",
-      JSON.stringify(current)
-    );
+if(current[key]){
 
+delete current[key];
 
-    selectSong(
-      index
-    );
+}
+else{
 
-  };
+current[key] = {
 
+title:
+song.title,
 
-  applyMood(
-    song.mood
-  );
+artist:
+song.artist,
+
+artwork:
+song.artwork
+
+};
 
 }
 
 
-/* ================================
-   MOOD THEMES
-================================ */
+localStorage
+.setItem(
+"ysFavs",
+JSON.stringify(current)
+);
+
+
+selectSong(
+index
+);
+
+};
+
+
+applyMood(
+song.mood
+);
+
+}
+
+
+/* ======================================
+   CALMER MOOD THEMES
+====================================== */
 
 function applyMood(
-  rawMood = ""
+rawMood = ""
 ){
 
-  const mood =
-    String(rawMood)
-    .toLowerCase();
+const mood =
+String(rawMood)
+.toLowerCase();
 
 
-  let theme = {
+let theme = {
 
-    ink:
-      "#101315",
+ink:"#111416",
+muted:"#626a6d",
+line:"rgba(17,20,22,.17)",
 
-    muted:
-      "#616a70",
+base:"#edf4f3",
 
-    line:
-      "rgba(16,19,21,.19)",
+b1:"#c8e2e3",
+b2:"#ddd5e6",
+b3:"#ead9dd",
 
-    base:
-      "#eaf4f5",
+glow:"rgba(114,185,193,.28)"
 
-    b1:
-      "#7ed6e5",
+};
 
-    b2:
-      "#d2a2e4",
 
-    b3:
-      "#ffbecf",
+/* ROCK */
 
-    glow:
-      "rgba(75,202,228,.76)"
+if(
+/rock|energy/.test(mood)
+){
 
-  };
+theme = {
 
+ink:"#1d1715",
+muted:"#665752",
+line:"rgba(29,23,21,.18)",
 
-  /* ROCK */
+base:"#eee4e0",
 
-  if(
-    /rock|energy/.test(mood)
-  ){
+b1:"#e7b4a8",
+b2:"#efd0a9",
+b3:"#c9b8c0",
 
-    theme = {
+glow:"rgba(211,123,99,.28)"
 
-      ink:
-        "#17100e",
-
-      muted:
-        "#44322d",
-
-      line:
-        "rgba(23,16,14,.25)",
-
-      base:
-        "#ee684d",
-
-      b1:
-        "#ff321c",
-
-      b2:
-        "#ffad32",
-
-      b3:
-        "#923047",
-
-      glow:
-        "rgba(255,62,26,.9)"
-
-    };
-
-  }
-
-
-  /* SAD */
-
-  else if(
-    /sad/.test(mood)
-  ){
-
-    theme = {
-
-      ink:
-        "#101827",
-
-      muted:
-        "#344052",
-
-      line:
-        "rgba(16,24,39,.22)",
-
-      base:
-        "#8fa8ce",
-
-      b1:
-        "#4775b3",
-
-      b2:
-        "#9575cf",
-
-      b3:
-        "#e7aac8",
-
-      glow:
-        "rgba(85,101,220,.82)"
-
-    };
-
-  }
-
-
-  /* NIGHT */
-
-  else if(
-    /night/.test(mood)
-  ){
-
-    theme = {
-
-      ink:
-        "#f2f1f8",
-
-      muted:
-        "#c2bfd0",
-
-      line:
-        "rgba(242,241,248,.25)",
-
-      base:
-        "#10182b",
-
-      b1:
-        "#163f79",
-
-      b2:
-        "#683897",
-
-      b3:
-        "#1b1637",
-
-      glow:
-        "rgba(116,70,230,.84)"
-
-    };
-
-  }
-
-
-  /* DARK */
-
-  else if(
-    /dark/.test(mood)
-  ){
-
-    theme = {
-
-      ink:
-        "#f1f1f3",
-
-      muted:
-        "#c1bec6",
-
-      line:
-        "rgba(241,241,243,.23)",
-
-      base:
-        "#18191c",
-
-      b1:
-        "#363d47",
-
-      b2:
-        "#583960",
-
-      b3:
-        "#121316",
-
-      glow:
-        "rgba(110,63,135,.76)"
-
-    };
-
-  }
-
-
-  /* LOVE */
-
-  else if(
-    /love/.test(mood)
-  ){
-
-    theme = {
-
-      ink:
-        "#2b1020",
-
-      muted:
-        "#6a3850",
-
-      line:
-        "rgba(43,16,32,.22)",
-
-      base:
-        "#f389ac",
-
-      b1:
-        "#ff4f88",
-
-      b2:
-        "#ff9563",
-
-      b3:
-        "#d15ce1",
-
-      glow:
-        "rgba(255,64,130,.88)"
-
-    };
-
-  }
-
-
-  /* HAPPY */
-
-  else if(
-    /happy/.test(mood)
-  ){
-
-    theme = {
-
-      ink:
-        "#251c09",
-
-      muted:
-        "#64572e",
-
-      line:
-        "rgba(37,28,9,.2)",
-
-      base:
-        "#f4ca58",
-
-      b1:
-        "#ffe342",
-
-      b2:
-        "#ff9863",
-
-      b3:
-        "#f7e8a2",
-
-      glow:
-        "rgba(255,191,45,.86)"
-
-    };
-
-  }
-
-
-  /* CHILL */
-
-  else if(
-    /chill/.test(mood)
-  ){
-
-    theme = {
-
-      ink:
-        "#102d2d",
-
-      muted:
-        "#356260",
-
-      line:
-        "rgba(16,45,45,.21)",
-
-      base:
-        "#78d2ca",
-
-      b1:
-        "#40d8c9",
-
-      b2:
-        "#65c9ec",
-
-      b3:
-        "#b7a9e9",
-
-      glow:
-        "rgba(40,213,199,.84)"
-
-    };
-
-  }
-
-
-  /* HOPE */
-
-  else if(
-    /hope/.test(mood)
-  ){
-
-    theme = {
-
-      ink:
-        "#162b36",
-
-      muted:
-        "#46616b",
-
-      line:
-        "rgba(22,43,54,.2)",
-
-      base:
-        "#a1d9ed",
-
-      b1:
-        "#64c8ed",
-
-      b2:
-        "#ffe052",
-
-      b3:
-        "#fff0ae",
-
-      glow:
-        "rgba(255,211,48,.84)"
-
-    };
-
-  }
-
-
-  const root =
-    document.documentElement;
-
-
-  Object
-  .entries(theme)
-  .forEach(
-    ([key,value]) => {
-
-      root.style
-      .setProperty(
-        "--" + key,
-        value
-      );
-
-    }
-  );
-
-
-  document.body
-  .classList
-  .remove(
-    "mood-hit"
-  );
-
-
-  void
-    document.body
-    .offsetWidth;
-
-
-  document.body
-  .classList
-  .add(
-    "mood-hit"
-  );
-
-
-  setTimeout(
-    () => {
-
-      document.body
-      .classList
-      .remove(
-        "mood-hit"
-      );
-
-    },
-    600
-  );
+};
 
 }
 
 
-/* ================================
+/* SAD */
+
+else if(
+/sad/.test(mood)
+){
+
+theme = {
+
+ink:"#17202d",
+muted:"#596273",
+line:"rgba(23,32,45,.17)",
+
+base:"#e4e9ef",
+
+b1:"#b7c9dc",
+b2:"#c8c0dc",
+b3:"#dcc9d4",
+
+glow:"rgba(102,130,170,.27)"
+
+};
+
+}
+
+
+/* NIGHT */
+
+else if(
+/night/.test(mood)
+){
+
+theme = {
+
+ink:"#1c2030",
+muted:"#616579",
+line:"rgba(28,32,48,.17)",
+
+base:"#e1e2e9",
+
+b1:"#bac7d9",
+b2:"#c7bdd8",
+b3:"#c0c6d0",
+
+glow:"rgba(91,95,146,.26)"
+
+};
+
+}
+
+
+/* DARK */
+
+else if(
+/dark/.test(mood)
+){
+
+theme = {
+
+ink:"#202124",
+muted:"#65646b",
+line:"rgba(32,33,36,.17)",
+
+base:"#e2e1e3",
+
+b1:"#c8c9cd",
+b2:"#cec2cf",
+b3:"#bfc5c6",
+
+glow:"rgba(100,82,107,.23)"
+
+};
+
+}
+
+
+/* LOVE */
+
+else if(
+/love/.test(mood)
+){
+
+theme = {
+
+ink:"#281820",
+muted:"#705562",
+line:"rgba(40,24,32,.17)",
+
+base:"#f1e5e9",
+
+b1:"#e8bcc9",
+b2:"#f0d2c4",
+b3:"#d8c8e1",
+
+glow:"rgba(216,123,158,.28)"
+
+};
+
+}
+
+
+/* HAPPY */
+
+else if(
+/happy/.test(mood)
+){
+
+theme = {
+
+ink:"#282216",
+muted:"#706653",
+line:"rgba(40,34,22,.17)",
+
+base:"#f0ebdf",
+
+b1:"#edddb1",
+b2:"#efd0b9",
+b3:"#e7dfc7",
+
+glow:"rgba(211,176,91,.27)"
+
+};
+
+}
+
+
+/* CHILL */
+
+else if(
+/chill/.test(mood)
+){
+
+theme = {
+
+ink:"#17302f",
+muted:"#59706d",
+line:"rgba(23,48,47,.17)",
+
+base:"#e3efed",
+
+b1:"#b7ddd8",
+b2:"#bfdce5",
+b3:"#d0cce2",
+
+glow:"rgba(90,177,169,.27)"
+
+};
+
+}
+
+
+/* HOPE */
+
+else if(
+/hope/.test(mood)
+){
+
+theme = {
+
+ink:"#1c3038",
+muted:"#62737a",
+line:"rgba(28,48,56,.17)",
+
+base:"#e8efed",
+
+b1:"#badbe4",
+b2:"#eadcae",
+b3:"#ebe5d1",
+
+glow:"rgba(198,172,87,.25)"
+
+};
+
+}
+
+
+const root =
+document.documentElement;
+
+
+Object
+.entries(theme)
+.forEach(
+([key,value]) => {
+
+root.style
+.setProperty(
+"--" + key,
+value
+);
+
+}
+);
+
+
+document.body
+.classList
+.remove(
+"mood-hit"
+);
+
+
+void
+document.body
+.offsetWidth;
+
+
+document.body
+.classList
+.add(
+"mood-hit"
+);
+
+
+setTimeout(
+() => {
+
+document.body
+.classList
+.remove(
+"mood-hit"
+);
+
+},
+520
+);
+
+}
+
+
+/* ======================================
    REROLL
-================================ */
+====================================== */
 
 $("reroll")
 .onclick =
 () => {
 
-  if(!lastRequest){
+if(!lastRequest){
 
-    return;
+return;
 
-  }
+}
 
 
-  requestMusic(
-    {
-      ...lastRequest,
-      reroll:true
-    },
-    mode === "auto"
-    ?
-    "ast"
-    :
-    "mst"
-  );
+requestMusic(
+{
+...lastRequest,
+reroll:true
+},
+mode === "auto"
+?
+"ast"
+:
+"mst"
+);
 
 };
 
 
-/* ================================
+/* ======================================
    CHANGE CONDITIONS
-================================ */
+====================================== */
 
 $("change")
 .onclick =
 () => {
 
-  window.scrollTo({
-    top:0,
-    behavior:"smooth"
-  });
+window.scrollTo({
+top:0,
+behavior:"smooth"
+});
 
 };
 
 
-/* ================================
+/* ======================================
    RESIZE
-================================ */
+====================================== */
 
 window
 .addEventListener(
-  "resize",
-  () => {
+"resize",
+() => {
 
-    if(
-      $("type")
-      .textContent
-    ){
+if(
+$("type")
+.textContent
+){
 
-      setMusicType(
-        $("type")
-        .textContent
-      );
+setMusicType(
+$("type")
+.textContent
+);
 
-    }
+}
 
-  }
+}
 );
 
 </script>
-
 
 </body>
 </html>
