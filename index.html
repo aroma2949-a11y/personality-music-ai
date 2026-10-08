@@ -21,10 +21,12 @@
   content="性格・恋愛傾向・今の気持ちから、まだ出会っていない音楽を探します。"
 >
 
+<!-- STORY MODE画像生成 -->
+<script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
+
 <style>
 
 @import url('https://fonts.googleapis.com/css2?family=Dela+Gothic+One&family=DotGothic16&family=Shippori+Mincho+B1:wght@400;600;700;800&family=Train+One&family=Zen+Kaku+Gothic+New:wght@400;500;700;900&display=swap');
-
 
 :root{
   --ink:#111416;
@@ -40,16 +42,13 @@
   --wash:rgba(255,255,255,.15);
 }
 
-
 *{
   box-sizing:border-box;
 }
 
-
 html{
   scroll-behavior:smooth;
 }
-
 
 body{
   margin:0;
@@ -69,7 +68,6 @@ body{
     background 1.1s ease;
 }
 
-
 button,
 select,
 input,
@@ -77,12 +75,10 @@ textarea{
   font:inherit;
 }
 
-
 button{
   color:inherit;
   -webkit-tap-highlight-color:transparent;
 }
-
 
 button,
 a{
@@ -90,9 +86,9 @@ a{
 }
 
 
-/* ===============================
+/* =========================================================
    BACKGROUND
-=============================== */
+========================================================= */
 
 body:before{
   content:"";
@@ -122,8 +118,7 @@ body:before{
 
   opacity:.88;
 
-  filter:
-    saturate(1.05);
+  filter:saturate(1.05);
 
   transition:
     background 1.15s cubic-bezier(.16,1,.3,1),
@@ -136,7 +131,6 @@ body:before{
     infinite
     alternate;
 }
-
 
 body:after{
   content:"";
@@ -170,7 +164,6 @@ body:after{
   pointer-events:none;
 }
 
-
 body.mood-hit:after{
   opacity:.38;
 
@@ -179,9 +172,7 @@ body.mood-hit:after{
     scale(1.12);
 }
 
-
 @keyframes atmosphere{
-
   from{
     transform:
       translate(-1%,-1%)
@@ -193,13 +184,12 @@ body.mood-hit:after{
       translate(2%,1%)
       scale(1.045);
   }
-
 }
 
 
-/* ===============================
-   PAGE
-=============================== */
+/* =========================================================
+   APP
+========================================================= */
 
 .app{
   width:min(1120px,100%);
@@ -216,7 +206,6 @@ body.mood-hit:after{
     filter .4s ease;
 }
 
-
 body.screen-shift .app{
   opacity:.22;
 
@@ -228,9 +217,9 @@ body.screen-shift .app{
 }
 
 
-/* ===============================
+/* =========================================================
    HEADER
-=============================== */
+========================================================= */
 
 header{
   display:flex;
@@ -258,21 +247,19 @@ header{
   letter-spacing:.16em;
 }
 
-
 .brand{
   font-size:13px;
   letter-spacing:.11em;
 }
-
 
 .issue{
   opacity:.52;
 }
 
 
-/* ===============================
+/* =========================================================
    HERO
-=============================== */
+========================================================= */
 
 .hero{
   position:relative;
@@ -286,7 +273,6 @@ header{
 
   overflow:hidden;
 }
-
 
 .hero-meta{
   position:absolute;
@@ -312,7 +298,6 @@ header{
   animation:
     metaIn .35s .03s forwards;
 }
-
 
 .hero-orbit{
   position:absolute;
@@ -343,7 +328,6 @@ header{
     forwards;
 }
 
-
 .hero-orbit:before,
 .hero-orbit:after{
   content:"";
@@ -357,30 +341,25 @@ header{
     var(--line);
 }
 
-
 .hero-orbit:before{
   inset:13%;
   opacity:.6;
 }
-
 
 .hero-orbit:after{
   inset:32%;
   opacity:.38;
 }
 
-
 .hero-copy{
   position:relative;
   z-index:3;
 
   display:flex;
-
   flex-direction:column;
 
   padding-top:105px;
 }
-
 
 .hero-small{
   margin-left:6%;
@@ -411,7 +390,6 @@ header{
     cubic-bezier(.16,1,.3,1)
     forwards;
 }
-
 
 .hero-you{
   align-self:flex-end;
@@ -448,7 +426,6 @@ header{
     cubic-bezier(.16,1,.3,1)
     forwards;
 }
-
 
 .hero-sound{
   align-self:center;
@@ -488,7 +465,6 @@ header{
     forwards;
 }
 
-
 .hero-sound span{
   display:inline-block;
 
@@ -509,7 +485,6 @@ header{
     rotate(8deg);
 }
 
-
 .hero-sound:before{
   content:"SOUND";
 
@@ -528,7 +503,6 @@ header{
 
   opacity:.45;
 }
-
 
 .hero-vertical{
   position:absolute;
@@ -557,7 +531,6 @@ header{
     forwards;
 }
 
-
 .hero-number{
   position:absolute;
 
@@ -584,7 +557,6 @@ header{
     1.3s
     forwards;
 }
-
 
 .hero-description{
   position:absolute;
@@ -613,7 +585,6 @@ header{
     forwards;
 }
 
-
 .hero-description:before{
   content:"DISCOVER YOUR SOUND";
 
@@ -632,13 +603,11 @@ header{
   opacity:.53;
 }
 
-
 @keyframes metaIn{
   to{
     opacity:.5;
   }
 }
-
 
 @keyframes copyReveal{
   to{
@@ -646,7 +615,6 @@ header{
     transform:none;
   }
 }
-
 
 @keyframes orbitIn{
   to{
@@ -658,9 +626,7 @@ header{
   }
 }
 
-
 @keyframes soundReveal{
-
   0%{
     opacity:0;
 
@@ -696,12 +662,9 @@ header{
 
     filter:none;
   }
-
 }
 
-
 @keyframes subtleIn{
-
   from{
     opacity:0;
     transform:translateY(10px);
@@ -711,13 +674,12 @@ header{
     opacity:.62;
     transform:none;
   }
-
 }
 
 
-/* ===============================
-   MODES
-=============================== */
+/* =========================================================
+   MODE
+========================================================= */
 
 .modes{
   display:grid;
@@ -736,7 +698,6 @@ header{
     1px solid
     var(--ink);
 }
-
 
 .mode{
   min-height:142px;
@@ -760,11 +721,9 @@ header{
     color .35s;
 }
 
-
 .mode:last-child{
   border-right:0;
 }
-
 
 .mode:before{
   display:block;
@@ -780,16 +739,13 @@ header{
   opacity:.52;
 }
 
-
 .mode:nth-child(1):before{
   content:"MODE / 01";
 }
 
-
 .mode:nth-child(2):before{
   content:"MODE / 02";
 }
-
 
 .mode b{
   display:block;
@@ -812,7 +768,6 @@ header{
   letter-spacing:-.045em;
 }
 
-
 .mode span{
   display:block;
 
@@ -823,12 +778,10 @@ header{
   color:var(--muted);
 }
 
-
 .mode.active{
   color:var(--base);
   background:var(--ink);
 }
-
 
 .mode.active span{
   color:var(--base);
@@ -836,9 +789,9 @@ header{
 }
 
 
-/* ===============================
-   PANELS
-=============================== */
+/* =========================================================
+   PANEL
+========================================================= */
 
 .panel{
   margin-top:52px;
@@ -853,11 +806,9 @@ header{
     var(--ink);
 }
 
-
 .hidden{
   display:none!important;
 }
-
 
 .head{
   display:flex;
@@ -869,7 +820,6 @@ header{
 
   margin-bottom:32px;
 }
-
 
 .head h2{
   margin:0;
@@ -888,7 +838,6 @@ header{
   letter-spacing:-.055em;
 }
 
-
 .head small{
   font-family:
     "DotGothic16",
@@ -902,9 +851,9 @@ header{
 }
 
 
-/* ===============================
+/* =========================================================
    FORM
-=============================== */
+========================================================= */
 
 .grid{
   display:grid;
@@ -918,11 +867,9 @@ header{
     30px;
 }
 
-
 .field.full{
   grid-column:1/-1;
 }
-
 
 .field{
   padding-top:9px;
@@ -931,7 +878,6 @@ header{
     1px solid
     var(--line);
 }
-
 
 .field label{
   display:block;
@@ -948,7 +894,6 @@ header{
 
   opacity:.62;
 }
-
 
 .field select,
 .field input,
@@ -976,24 +921,20 @@ header{
   font-size:15px;
 }
 
-
 .field select{
   height:50px;
 }
-
 
 .field textarea{
   min-height:105px;
   resize:vertical;
 }
 
-
 .field select:focus,
 .field input:focus,
 .field textarea:focus{
   background:var(--wash);
 }
-
 
 .seg{
   display:flex;
@@ -1004,7 +945,6 @@ header{
     1px solid
     var(--ink);
 }
-
 
 .seg button{
   flex:1;
@@ -1022,12 +962,10 @@ header{
   font-size:10px;
 }
 
-
 .seg button.active{
   color:var(--base);
   background:var(--ink);
 }
-
 
 .primary{
   width:100%;
@@ -1056,11 +994,9 @@ header{
     transform .2s;
 }
 
-
 .primary:active{
   transform:scale(.985);
 }
-
 
 .status{
   display:none;
@@ -1078,11 +1014,9 @@ header{
   color:var(--muted);
 }
 
-
 .error{
   color:#a63850;
 }
-
 
 .manual-note{
   max-width:550px;
@@ -1100,9 +1034,9 @@ header{
 }
 
 
-/* ===============================
+/* =========================================================
    LOADING
-=============================== */
+========================================================= */
 
 .loading{
   position:fixed;
@@ -1137,10 +1071,8 @@ header{
   pointer-events:none;
 
   backdrop-filter:blur(18px);
-
   -webkit-backdrop-filter:blur(18px);
 }
-
 
 .loading.show{
   visibility:visible;
@@ -1157,7 +1089,6 @@ header{
   pointer-events:auto;
 }
 
-
 .loading.leaving{
   clip-path:
     circle(18% at 50% 45%);
@@ -1169,14 +1100,12 @@ header{
     opacity .45s ease .16s;
 }
 
-
 .loading.error-leave{
   opacity:0;
 
   transition:
     opacity .35s ease;
 }
-
 
 .loading .marquee{
   position:absolute;
@@ -1209,7 +1138,6 @@ header{
     infinite;
 }
 
-
 .loading .ticker{
   position:absolute;
 
@@ -1236,7 +1164,6 @@ header{
     infinite;
 }
 
-
 @keyframes marquee{
   from{
     transform:translateX(7vw);
@@ -1247,7 +1174,6 @@ header{
   }
 }
 
-
 @keyframes ticker{
   from{
     transform:translateX(-35%);
@@ -1257,7 +1183,6 @@ header{
     transform:translateX(15%);
   }
 }
-
 
 .load{
   position:relative;
@@ -1283,7 +1208,6 @@ header{
     filter .4s ease;
 }
 
-
 .loading.show .load{
   animation:
     loadArrival
@@ -1293,7 +1217,6 @@ header{
     cubic-bezier(.16,1,.3,1);
 }
 
-
 .loading.leaving .load{
   transform:scale(.42);
 
@@ -1302,9 +1225,7 @@ header{
   filter:blur(9px);
 }
 
-
 @keyframes loadArrival{
-
   from{
     opacity:0;
 
@@ -1322,9 +1243,7 @@ header{
 
     filter:none;
   }
-
 }
-
 
 .turntable{
   position:relative;
@@ -1333,7 +1252,6 @@ header{
 
   height:330px;
 }
-
 
 .orb{
   position:absolute;
@@ -1372,7 +1290,6 @@ header{
     infinite;
 }
 
-
 .orb:before{
   content:"";
 
@@ -1390,7 +1307,6 @@ header{
       transparent 6px
     );
 }
-
 
 .orb:after{
   content:"YOUR\A SOUND";
@@ -1427,7 +1343,6 @@ header{
   line-height:1.18;
 }
 
-
 .vinyl-shine{
   position:absolute;
 
@@ -1463,7 +1378,6 @@ header{
   pointer-events:none;
 }
 
-
 .arm{
   position:absolute;
 
@@ -1496,7 +1410,6 @@ header{
     alternate;
 }
 
-
 .arm:before{
   content:"";
 
@@ -1516,7 +1429,6 @@ header{
   background:#101315;
 }
 
-
 .arm:after{
   content:"";
 
@@ -1535,9 +1447,7 @@ header{
   background:#101315;
 }
 
-
 @keyframes vinylSpin{
-
   from{
     transform:
       translateX(-50%)
@@ -1549,12 +1459,9 @@ header{
       translateX(-50%)
       rotate(360deg);
   }
-
 }
 
-
 @keyframes shine{
-
   from{
     opacity:.3;
 
@@ -1570,12 +1477,9 @@ header{
       translateX(-50%)
       rotate(-15deg);
   }
-
 }
 
-
 @keyframes armMove{
-
   from{
     transform:rotate(23deg);
   }
@@ -1583,9 +1487,7 @@ header{
   to{
     transform:rotate(29deg);
   }
-
 }
-
 
 .load-stage{
   margin-bottom:10px;
@@ -1600,7 +1502,6 @@ header{
 
   opacity:.5;
 }
-
 
 .load h2{
   margin:
@@ -1622,7 +1523,6 @@ header{
   letter-spacing:-.045em;
 }
 
-
 .load h2:after{
   content:"●";
 
@@ -1639,13 +1539,11 @@ header{
     infinite;
 }
 
-
 @keyframes blink{
   50%{
     opacity:.15;
   }
 }
-
 
 .load p{
   min-height:22px;
@@ -1662,9 +1560,9 @@ header{
 }
 
 
-/* ===============================
+/* =========================================================
    RESULT BRIDGE
-=============================== */
+========================================================= */
 
 .reveal{
   position:fixed;
@@ -1695,7 +1593,6 @@ header{
   pointer-events:none;
 }
 
-
 .reveal.show{
   visibility:visible;
 
@@ -1707,11 +1604,9 @@ header{
   pointer-events:auto;
 }
 
-
 .reveal.out{
   opacity:0;
 }
-
 
 .reveal-inner{
   width:min(900px,88vw);
@@ -1723,7 +1618,6 @@ header{
   text-align:center;
 }
 
-
 .reveal-disc{
   width:min(55vw,255px);
   aspect-ratio:1;
@@ -1733,6 +1627,7 @@ header{
   border-radius:50%;
 
   background-color:#172022;
+
   background-position:center;
   background-size:cover;
 
@@ -1755,7 +1650,6 @@ header{
   filter:blur(14px);
 }
 
-
 .reveal.show .reveal-disc{
   animation:
     discBecomeCover
@@ -1765,9 +1659,7 @@ header{
     forwards;
 }
 
-
 @keyframes discBecomeCover{
-
   0%{
     opacity:0;
 
@@ -1797,9 +1689,7 @@ header{
 
     filter:none;
   }
-
 }
-
 
 .reveal-kicker{
   font-family:
@@ -1813,7 +1703,6 @@ header{
   opacity:0;
 }
 
-
 .reveal.show .reveal-kicker{
   animation:
     revealSmall
@@ -1821,7 +1710,6 @@ header{
     .35s
     forwards;
 }
-
 
 .reveal-copy{
   max-width:850px;
@@ -1850,7 +1738,6 @@ header{
     translateY(30px);
 }
 
-
 .reveal.show .reveal-copy{
   animation:
     revealCopy
@@ -1859,7 +1746,6 @@ header{
     cubic-bezier(.16,1,.3,1)
     forwards;
 }
-
 
 .reveal-type{
   width:100%;
@@ -1881,7 +1767,6 @@ header{
   opacity:0;
 }
 
-
 .reveal.show .reveal-type{
   animation:
     revealSmall
@@ -1890,14 +1775,12 @@ header{
     forwards;
 }
 
-
 @keyframes revealCopy{
   to{
     opacity:1;
     transform:none;
   }
 }
-
 
 @keyframes revealSmall{
   to{
@@ -1906,9 +1789,9 @@ header{
 }
 
 
-/* ===============================
-   RESULTS
-=============================== */
+/* =========================================================
+   RESULT
+========================================================= */
 
 .results{
   display:none;
@@ -1922,7 +1805,6 @@ header{
     var(--ink);
 }
 
-
 .results.enter{
   animation:
     resultIn
@@ -1931,9 +1813,7 @@ header{
     both;
 }
 
-
 @keyframes resultIn{
-
   from{
     opacity:0;
 
@@ -1946,13 +1826,7 @@ header{
     opacity:1;
     transform:none;
   }
-
 }
-
-
-/* ===============================
-   TYPE
-=============================== */
 
 .type{
   position:relative;
@@ -1962,7 +1836,6 @@ header{
     0
     55px;
 }
-
 
 .eyebrow{
   font-family:
@@ -1975,7 +1848,6 @@ header{
 
   opacity:.54;
 }
-
 
 .type-title{
   display:block;
@@ -2004,7 +1876,6 @@ header{
   letter-spacing:-.075em;
 }
 
-
 .type p{
   max-width:620px;
 
@@ -2023,7 +1894,6 @@ header{
   color:var(--muted);
 }
 
-
 .results>.head{
   margin-top:20px;
 
@@ -2035,9 +1905,9 @@ header{
 }
 
 
-/* ===============================
+/* =========================================================
    CAROUSEL
-=============================== */
+========================================================= */
 
 .carousel{
   display:flex;
@@ -2060,11 +1930,9 @@ header{
     45px;
 }
 
-
 .carousel::-webkit-scrollbar{
   display:none;
 }
-
 
 .card{
   flex:
@@ -2085,13 +1953,11 @@ header{
     cubic-bezier(.16,1,.3,1);
 }
 
-
 .card:nth-child(even){
   transform:
     scale(.8)
     rotate(2deg);
 }
-
 
 .card.active{
   opacity:1;
@@ -2100,7 +1966,6 @@ header{
     scale(1)
     rotate(0);
 }
-
 
 .art{
   display:block;
@@ -2127,7 +1992,6 @@ header{
   filter:saturate(.94);
 }
 
-
 .card.active .art{
   animation:
     coverFloat
@@ -2137,7 +2001,6 @@ header{
     alternate;
 }
 
-
 @keyframes coverFloat{
   to{
     transform:
@@ -2145,7 +2008,6 @@ header{
       rotate(1.5deg);
   }
 }
-
 
 .best{
   position:absolute;
@@ -2173,7 +2035,6 @@ header{
   transform:rotate(5deg);
 }
 
-
 .card h3{
   margin:
     18px
@@ -2197,7 +2058,6 @@ header{
   letter-spacing:-.055em;
 }
 
-
 .artist{
   font-family:
     "DotGothic16",
@@ -2209,7 +2069,6 @@ header{
 
   color:var(--muted);
 }
-
 
 .dots{
   margin:
@@ -2227,9 +2086,9 @@ header{
 }
 
 
-/* ===============================
+/* =========================================================
    DETAIL
-=============================== */
+========================================================= */
 
 .detail{
   padding:
@@ -2245,7 +2104,6 @@ header{
     var(--ink);
 }
 
-
 .detail.animate{
   animation:
     detailIn
@@ -2253,9 +2111,7 @@ header{
     cubic-bezier(.16,1,.3,1);
 }
 
-
 @keyframes detailIn{
-
   from{
     opacity:.1;
 
@@ -2270,9 +2126,7 @@ header{
     transform:none;
     filter:none;
   }
-
 }
-
 
 .detail-head{
   display:flex;
@@ -2282,7 +2136,6 @@ header{
 
   gap:15px;
 }
-
 
 .detail h2{
   max-width:760px;
@@ -2305,7 +2158,6 @@ header{
   letter-spacing:-.065em;
 }
 
-
 .heart{
   flex:
     0 0 47px;
@@ -2326,7 +2178,6 @@ header{
   font-size:20px;
 }
 
-
 .info{
   display:grid;
 
@@ -2341,7 +2192,6 @@ header{
     var(--line);
 }
 
-
 .box{
   padding:
     21px
@@ -2354,18 +2204,15 @@ header{
     var(--line);
 }
 
-
 .box:nth-child(odd){
   border-right:
     1px solid
     var(--line);
 }
 
-
 .box:nth-child(even){
   padding-left:18px;
 }
-
 
 .box h4{
   margin:
@@ -2382,7 +2229,6 @@ header{
   letter-spacing:.035em;
 }
 
-
 .box p{
   margin:0;
 
@@ -2392,7 +2238,6 @@ header{
 
   color:var(--muted);
 }
-
 
 .links{
   display:flex;
@@ -2405,7 +2250,6 @@ header{
     1px solid
     var(--ink);
 }
-
 
 .links a{
   flex:1;
@@ -2431,15 +2275,14 @@ header{
   font-size:10px;
 }
 
-
 .links a:last-child{
   border-right:0;
 }
 
 
-/* ===============================
-   ACTIONS
-=============================== */
+/* =========================================================
+   RESULT ACTIONS
+========================================================= */
 
 .actions{
   display:grid;
@@ -2455,7 +2298,6 @@ header{
     1px solid
     var(--ink);
 }
-
 
 .secondary{
   min-height:54px;
@@ -2479,13 +2321,15 @@ header{
   font-weight:400;
 }
 
-
 .secondary:last-child{
   border-right:0;
 }
 
-
 .share-button{
+  background:var(--ink);
+
+  color:var(--base);
+
   font-family:
     "DotGothic16",
     monospace;
@@ -2493,16 +2337,12 @@ header{
   font-size:11px;
 
   letter-spacing:.04em;
-
-  background:var(--ink);
-
-  color:var(--base);
 }
 
 
-/* ===============================
+/* =========================================================
    SHARED RESULT
-=============================== */
+========================================================= */
 
 body.shared-mode .hero,
 body.shared-mode .modes,
@@ -2511,11 +2351,9 @@ body.shared-mode #manual{
   display:none!important;
 }
 
-
 body.shared-mode .results{
   margin-top:50px;
 }
-
 
 body.shared-mode .actions{
   grid-template-columns:
@@ -2524,9 +2362,1042 @@ body.shared-mode .actions{
 }
 
 
-/* ===============================
+/* =========================================================
+   STORY MODE
+========================================================= */
+
+.story-modal{
+  position:fixed;
+
+  inset:0;
+
+  z-index:500;
+
+  visibility:hidden;
+
+  opacity:0;
+
+  background:
+    rgba(9,13,18,.92);
+
+  backdrop-filter:blur(20px);
+  -webkit-backdrop-filter:blur(20px);
+
+  overflow-y:auto;
+
+  transition:
+    opacity .4s ease,
+    visibility 0s linear .45s;
+}
+
+.story-modal.show{
+  visibility:visible;
+
+  opacity:1;
+
+  transition:
+    opacity .4s ease;
+}
+
+.story-shell{
+  width:min(100%,520px);
+
+  margin:auto;
+
+  padding:
+    18px
+    14px
+    45px;
+}
+
+.story-top{
+  display:flex;
+
+  align-items:center;
+  justify-content:space-between;
+
+  gap:14px;
+
+  margin-bottom:15px;
+
+  color:white;
+}
+
+.story-top-copy{
+  font-family:
+    "DotGothic16",
+    monospace;
+
+  font-size:9px;
+
+  letter-spacing:.16em;
+
+  opacity:.65;
+}
+
+.story-close{
+  width:43px;
+  height:43px;
+
+  border:
+    1px solid
+    rgba(255,255,255,.5);
+
+  border-radius:50%;
+
+  background:transparent;
+
+  color:white;
+
+  font-size:20px;
+}
+
+.story-tabs{
+  display:grid;
+
+  grid-template-columns:
+    repeat(3,1fr);
+
+  margin-bottom:17px;
+
+  border:
+    1px solid
+    rgba(255,255,255,.3);
+}
+
+.story-tab{
+  min-height:43px;
+
+  border:0;
+
+  border-right:
+    1px solid
+    rgba(255,255,255,.25);
+
+  background:transparent;
+
+  color:white;
+
+  font-family:
+    "DotGothic16",
+    monospace;
+
+  font-size:9px;
+
+  letter-spacing:.08em;
+}
+
+.story-tab:last-child{
+  border-right:0;
+}
+
+.story-tab.active{
+  background:white;
+  color:#101315;
+}
+
+.story-stage{
+  display:flex;
+
+  justify-content:center;
+  align-items:center;
+
+  width:100%;
+
+  overflow:hidden;
+}
+
+.story-card{
+  position:relative;
+
+  width:min(100%,420px);
+
+  aspect-ratio:9 / 16;
+
+  overflow:hidden;
+
+  background:#101728;
+  color:white;
+
+  box-shadow:
+    0
+    40px
+    100px
+    rgba(0,0,0,.4);
+
+  isolation:isolate;
+}
+
+.story-card *{
+  box-sizing:border-box;
+}
+
+.story-bg{
+  position:absolute;
+
+  inset:-4%;
+
+  width:108%;
+  height:108%;
+
+  object-fit:cover;
+
+  z-index:-4;
+
+  filter:
+    blur(18px)
+    saturate(.85)
+    brightness(.6);
+
+  transform:scale(1.05);
+}
+
+.story-gradient{
+  position:absolute;
+
+  inset:0;
+
+  z-index:-3;
+
+  background:
+    linear-gradient(
+      180deg,
+      rgba(8,18,33,.76) 0%,
+      rgba(15,24,42,.26) 44%,
+      rgba(18,14,26,.86) 100%
+    ),
+    radial-gradient(
+      circle at 85% 28%,
+      rgba(242,173,186,.33),
+      transparent 35%
+    ),
+    radial-gradient(
+      circle at 20% 70%,
+      rgba(113,148,201,.3),
+      transparent 42%
+    );
+}
+
+.story-noise{
+  position:absolute;
+
+  inset:0;
+
+  z-index:-2;
+
+  opacity:.08;
+
+  background-image:
+    repeating-linear-gradient(
+      0deg,
+      rgba(255,255,255,.18) 0,
+      rgba(255,255,255,.18) 1px,
+      transparent 1px,
+      transparent 4px
+    );
+
+  mix-blend-mode:soft-light;
+}
+
+.story-brand{
+  position:absolute;
+
+  top:4%;
+  left:6%;
+
+  z-index:10;
+
+  font-family:
+    "DotGothic16",
+    monospace;
+
+  font-size:
+    clamp(9px,2.7vw,14px);
+
+  letter-spacing:.25em;
+}
+
+.story-index{
+  position:absolute;
+
+  top:4%;
+  right:6%;
+
+  z-index:10;
+
+  text-align:right;
+
+  font-family:
+    "DotGothic16",
+    monospace;
+
+  font-size:
+    clamp(7px,2vw,11px);
+
+  letter-spacing:.15em;
+
+  opacity:.58;
+}
+
+.story-footer{
+  position:absolute;
+
+  left:6%;
+  right:6%;
+  bottom:3.3%;
+
+  z-index:10;
+
+  display:flex;
+
+  align-items:center;
+
+  gap:12px;
+
+  font-family:
+    "DotGothic16",
+    monospace;
+
+  font-size:
+    clamp(6px,1.8vw,10px);
+
+  letter-spacing:.27em;
+
+  opacity:.68;
+}
+
+.story-footer:before,
+.story-footer:after{
+  content:"";
+
+  height:1px;
+
+  flex:1;
+
+  background:
+    rgba(255,255,255,.45);
+}
+
+
+/* =========================================================
+   COVER
+========================================================= */
+
+.story-card.cover .story-cover-layout{
+  display:block;
+}
+
+.story-card.cover .story-record-layout,
+.story-card.cover .story-receipt-layout{
+  display:none;
+}
+
+.story-cover-layout{
+  display:none;
+
+  position:absolute;
+
+  inset:0;
+
+  padding:
+    11%
+    6%
+    8%;
+}
+
+.story-cover-kicker{
+  margin-top:15%;
+
+  font-family:
+    "Shippori Mincho B1",
+    serif;
+
+  font-size:
+    clamp(16px,5vw,29px);
+
+  letter-spacing:-.05em;
+
+  opacity:.95;
+}
+
+.story-cover-type{
+  margin-top:4%;
+
+  font-family:
+    "Shippori Mincho B1",
+    serif;
+
+  font-weight:700;
+
+  font-size:
+    clamp(31px,9.5vw,59px);
+
+  line-height:1.06;
+
+  letter-spacing:-.08em;
+}
+
+.story-cover-desc{
+  max-width:90%;
+
+  margin-top:4%;
+
+  font-size:
+    clamp(8px,2.3vw,13px);
+
+  line-height:1.8;
+
+  opacity:.72;
+}
+
+.story-cover-orbit{
+  position:absolute;
+
+  width:70%;
+  aspect-ratio:1;
+
+  left:15%;
+  top:42%;
+
+  border:
+    1px solid
+    rgba(255,255,255,.42);
+
+  border-radius:50%;
+
+  transform:rotate(-10deg);
+}
+
+.story-cover-orbit:before{
+  content:"";
+
+  position:absolute;
+
+  width:7px;
+  height:7px;
+
+  right:5%;
+  top:29%;
+
+  border-radius:50%;
+
+  background:white;
+}
+
+.story-cover-art{
+  position:absolute;
+
+  left:17%;
+  top:48%;
+
+  width:66%;
+  aspect-ratio:1;
+
+  object-fit:cover;
+
+  border-radius:4%;
+
+  border:
+    1px solid
+    rgba(255,255,255,.45);
+
+  box-shadow:
+    0
+    20px
+    45px
+    rgba(0,0,0,.28);
+}
+
+.story-cover-best{
+  position:absolute;
+
+  left:10%;
+  right:10%;
+  bottom:14%;
+
+  padding-top:4%;
+
+  border-top:
+    1px solid
+    rgba(255,255,255,.35);
+}
+
+.story-cover-label{
+  font-family:
+    "DotGothic16",
+    monospace;
+
+  font-size:
+    clamp(7px,2vw,11px);
+
+  letter-spacing:.22em;
+
+  opacity:.65;
+}
+
+.story-cover-song{
+  margin-top:2%;
+
+  overflow:hidden;
+
+  white-space:nowrap;
+
+  text-overflow:ellipsis;
+
+  font-family:
+    "Shippori Mincho B1",
+    serif;
+
+  font-size:
+    clamp(20px,6vw,35px);
+
+  line-height:1.2;
+}
+
+.story-cover-artist{
+  margin-top:1%;
+
+  overflow:hidden;
+
+  white-space:nowrap;
+
+  text-overflow:ellipsis;
+
+  font-family:
+    "DotGothic16",
+    monospace;
+
+  font-size:
+    clamp(8px,2.3vw,13px);
+
+  opacity:.68;
+}
+
+
+/* =========================================================
+   RECORD
+========================================================= */
+
+.story-card.record .story-record-layout{
+  display:block;
+}
+
+.story-card.record .story-cover-layout,
+.story-card.record .story-receipt-layout{
+  display:none;
+}
+
+.story-record-layout{
+  display:none;
+
+  position:absolute;
+
+  inset:0;
+
+  padding:
+    12%
+    7%
+    8%;
+}
+
+.story-record-title{
+  margin-top:10%;
+
+  font-family:
+    "Shippori Mincho B1",
+    serif;
+
+  font-weight:700;
+
+  font-size:
+    clamp(28px,8vw,50px);
+
+  line-height:1.05;
+
+  letter-spacing:-.07em;
+}
+
+.story-record-sub{
+  margin-top:3%;
+
+  font-family:
+    "DotGothic16",
+    monospace;
+
+  font-size:
+    clamp(7px,2vw,11px);
+
+  letter-spacing:.08em;
+
+  opacity:.6;
+}
+
+.story-vinyl{
+  position:relative;
+
+  width:63%;
+  aspect-ratio:1;
+
+  margin:
+    9%
+    auto
+    7%;
+
+  border-radius:50%;
+
+  background:#0b0c0f;
+
+  box-shadow:
+    0
+    20px
+    55px
+    rgba(0,0,0,.38);
+}
+
+.story-vinyl:before{
+  content:"";
+
+  position:absolute;
+
+  inset:7%;
+
+  border-radius:50%;
+
+  background:
+    repeating-radial-gradient(
+      circle,
+      transparent 0 5px,
+      rgba(255,255,255,.08) 6px,
+      transparent 7px
+    );
+}
+
+.story-record-art{
+  position:absolute;
+
+  width:46%;
+  aspect-ratio:1;
+
+  left:27%;
+  top:27%;
+
+  border-radius:50%;
+
+  object-fit:cover;
+
+  z-index:2;
+}
+
+.story-record-hole{
+  position:absolute;
+
+  width:5%;
+  aspect-ratio:1;
+
+  left:47.5%;
+  top:47.5%;
+
+  background:#111;
+
+  border-radius:50%;
+
+  z-index:3;
+}
+
+.story-track-list{
+  border-top:
+    1px solid
+    rgba(255,255,255,.35);
+}
+
+.story-track{
+  display:grid;
+
+  grid-template-columns:
+    28px
+    minmax(0,1fr);
+
+  gap:6px;
+
+  padding:
+    2.4%
+    0;
+
+  border-bottom:
+    1px solid
+    rgba(255,255,255,.19);
+}
+
+.story-track-num{
+  font-family:
+    "DotGothic16",
+    monospace;
+
+  font-size:
+    clamp(7px,2vw,11px);
+
+  opacity:.5;
+}
+
+.story-track-main{
+  overflow:hidden;
+
+  white-space:nowrap;
+
+  text-overflow:ellipsis;
+
+  font-family:
+    "Shippori Mincho B1",
+    serif;
+
+  font-size:
+    clamp(10px,3vw,17px);
+}
+
+.story-track-main span{
+  font-family:
+    "DotGothic16",
+    monospace;
+
+  font-size:.68em;
+
+  opacity:.6;
+}
+
+
+/* =========================================================
+   RECEIPT
+========================================================= */
+
+.story-card.receipt{
+  background:#d7d0c5;
+
+  color:#151515;
+}
+
+.story-card.receipt .story-bg,
+.story-card.receipt .story-gradient,
+.story-card.receipt .story-noise{
+  display:none;
+}
+
+.story-card.receipt .story-receipt-layout{
+  display:block;
+}
+
+.story-card.receipt .story-cover-layout,
+.story-card.receipt .story-record-layout{
+  display:none;
+}
+
+.story-card.receipt .story-brand,
+.story-card.receipt .story-index,
+.story-card.receipt .story-footer{
+  color:#151515;
+}
+
+.story-card.receipt .story-footer:before,
+.story-card.receipt .story-footer:after{
+  background:
+    rgba(0,0,0,.4);
+}
+
+.story-receipt-layout{
+  display:none;
+
+  position:absolute;
+
+  inset:0;
+
+  padding:
+    13%
+    8%
+    9%;
+
+  background:
+    radial-gradient(
+      circle at 30% 20%,
+      rgba(255,255,255,.7),
+      transparent 45%
+    ),
+    linear-gradient(
+      180deg,
+      #ece7dd,
+      #d8d0c3
+    );
+}
+
+.receipt-paper{
+  position:absolute;
+
+  left:8%;
+  right:8%;
+  top:14%;
+  bottom:10%;
+
+  padding:
+    9%
+    7%;
+
+  background:
+    rgba(250,248,240,.94);
+
+  box-shadow:
+    0
+    22px
+    60px
+    rgba(0,0,0,.18);
+}
+
+.receipt-head{
+  text-align:center;
+
+  font-family:
+    "DotGothic16",
+    monospace;
+
+  font-size:
+    clamp(9px,2.7vw,14px);
+
+  letter-spacing:.2em;
+}
+
+.receipt-date{
+  margin-top:2%;
+
+  text-align:center;
+
+  font-family:
+    "DotGothic16",
+    monospace;
+
+  font-size:
+    clamp(6px,1.8vw,9px);
+
+  opacity:.45;
+}
+
+.receipt-rule{
+  margin:
+    5%
+    0;
+
+  border-top:
+    1px dashed
+    rgba(0,0,0,.5);
+}
+
+.receipt-type-label{
+  font-family:
+    "DotGothic16",
+    monospace;
+
+  font-size:
+    clamp(7px,2vw,10px);
+
+  opacity:.55;
+}
+
+.receipt-type{
+  margin-top:2%;
+
+  font-family:
+    "Dela Gothic One",
+    sans-serif;
+
+  font-size:
+    clamp(20px,6vw,36px);
+
+  line-height:1.1;
+
+  letter-spacing:-.06em;
+}
+
+.receipt-desc{
+  margin-top:4%;
+
+  font-size:
+    clamp(8px,2vw,11px);
+
+  line-height:1.7;
+
+  opacity:.65;
+}
+
+.receipt-list{
+  margin-top:5%;
+}
+
+.receipt-row{
+  display:grid;
+
+  grid-template-columns:
+    26px
+    minmax(0,1fr);
+
+  gap:6px;
+
+  padding:
+    2.4%
+    0;
+
+  border-bottom:
+    1px dotted
+    rgba(0,0,0,.3);
+}
+
+.receipt-num{
+  font-family:
+    "DotGothic16",
+    monospace;
+
+  font-size:
+    clamp(7px,2vw,10px);
+
+  opacity:.5;
+}
+
+.receipt-song{
+  overflow:hidden;
+
+  white-space:nowrap;
+
+  text-overflow:ellipsis;
+
+  font-family:
+    "Shippori Mincho B1",
+    serif;
+
+  font-size:
+    clamp(10px,3vw,16px);
+
+  line-height:1.3;
+}
+
+.receipt-song small{
+  display:block;
+
+  margin-top:2px;
+
+  overflow:hidden;
+
+  white-space:nowrap;
+
+  text-overflow:ellipsis;
+
+  font-family:
+    "DotGothic16",
+    monospace;
+
+  font-size:.65em;
+
+  opacity:.55;
+}
+
+.receipt-total{
+  margin-top:6%;
+
+  display:flex;
+
+  justify-content:space-between;
+
+  font-family:
+    "DotGothic16",
+    monospace;
+
+  font-size:
+    clamp(8px,2.3vw,12px);
+
+  letter-spacing:.08em;
+}
+
+.receipt-thanks{
+  margin-top:7%;
+
+  text-align:center;
+
+  font-family:
+    "DotGothic16",
+    monospace;
+
+  font-size:
+    clamp(7px,2vw,11px);
+
+  letter-spacing:.18em;
+}
+
+
+/* =========================================================
+   STORY ACTIONS
+========================================================= */
+
+.story-actions{
+  display:grid;
+
+  grid-template-columns:
+    1fr
+    1fr
+    1.5fr;
+
+  margin-top:18px;
+
+  border:
+    1px solid
+    rgba(255,255,255,.35);
+}
+
+.story-action{
+  min-height:56px;
+
+  border:0;
+
+  border-right:
+    1px solid
+    rgba(255,255,255,.25);
+
+  background:transparent;
+
+  color:white;
+
+  font-family:
+    "DotGothic16",
+    monospace;
+
+  font-size:9px;
+
+  letter-spacing:.03em;
+}
+
+.story-action:last-child{
+  border-right:0;
+}
+
+.story-action.main{
+  background:white;
+
+  color:#111416;
+}
+
+.story-note{
+  margin:
+    12px
+    0
+    0;
+
+  text-align:center;
+
+  font-size:9px;
+
+  line-height:1.6;
+
+  color:
+    rgba(255,255,255,.48);
+}
+
+
+/* =========================================================
    MOBILE
-=============================== */
+========================================================= */
 
 @media(max-width:650px){
 
@@ -2624,12 +3495,36 @@ body.shared-mode .actions{
     grid-template-columns:1fr;
   }
 
+  .story-shell{
+    padding:
+      12px
+      10px
+      30px;
+  }
+
+  .story-actions{
+    grid-template-columns:
+      1fr
+      1fr;
+  }
+
+  .story-action{
+    border-bottom:
+      1px solid
+      rgba(255,255,255,.25);
+  }
+
+  .story-action.main{
+    grid-column:
+      1 / -1;
+  }
+
 }
 
 
-/* ===============================
+/* =========================================================
    REDUCED MOTION
-=============================== */
+========================================================= */
 
 @media(prefers-reduced-motion:reduce){
 
@@ -3281,7 +4176,7 @@ class="detail"
 id="share"
 class="secondary share-button"
 >
-SHARE YOUR SOUND ↗
+STORY MODE ↗
 </button>
 
 <button
@@ -3308,7 +4203,9 @@ class="secondary"
 
 
 
-<!-- LOADING -->
+<!-- =========================================================
+     LOADING
+========================================================= -->
 
 <div
 id="loading"
@@ -3376,7 +4273,9 @@ CURATION
 
 
 
-<!-- RESULT BRIDGE -->
+<!-- =========================================================
+     RESULT REVEAL
+========================================================= -->
 
 <div
 id="reveal"
@@ -3408,6 +4307,297 @@ class="reveal-copy"
 id="revealType"
 class="reveal-type"
 ></div>
+
+
+</div>
+
+
+</div>
+
+
+
+<!-- =========================================================
+     STORY MODE
+========================================================= -->
+
+<div
+id="storyModal"
+class="story-modal"
+>
+
+
+<div class="story-shell">
+
+
+<div class="story-top">
+
+<div class="story-top-copy">
+STORY MODE / SHARE YOUR SOUND
+</div>
+
+<button
+id="storyClose"
+class="story-close"
+aria-label="閉じる"
+>
+×
+</button>
+
+</div>
+
+
+
+<div class="story-tabs">
+
+<button
+class="story-tab active"
+data-story="cover"
+>
+01 / COVER
+</button>
+
+<button
+class="story-tab"
+data-story="record"
+>
+02 / RECORD
+</button>
+
+<button
+class="story-tab"
+data-story="receipt"
+>
+03 / RECEIPT
+</button>
+
+</div>
+
+
+
+<div class="story-stage">
+
+
+<div
+id="storyCard"
+class="story-card cover"
+>
+
+
+<img
+id="storyBg"
+class="story-bg"
+crossorigin="anonymous"
+alt=""
+>
+
+
+<div class="story-gradient"></div>
+
+<div class="story-noise"></div>
+
+
+<div class="story-brand">
+YOUR SOUND
+</div>
+
+
+<div class="story-index">
+PERSONAL MUSIC<br>
+CURATION
+</div>
+
+
+
+<!-- COVER -->
+
+<div class="story-cover-layout">
+
+<div class="story-cover-kicker">
+まだ知らない、あなたの音。
+</div>
+
+<div
+id="storyCoverType"
+class="story-cover-type"
+></div>
+
+<div
+id="storyCoverDesc"
+class="story-cover-desc"
+></div>
+
+<div class="story-cover-orbit"></div>
+
+<img
+id="storyCoverArt"
+class="story-cover-art"
+crossorigin="anonymous"
+alt=""
+>
+
+<div class="story-cover-best">
+
+<div class="story-cover-label">
+BEST MATCH
+</div>
+
+<div
+id="storyCoverSong"
+class="story-cover-song"
+></div>
+
+<div
+id="storyCoverArtist"
+class="story-cover-artist"
+></div>
+
+</div>
+
+</div>
+
+
+
+<!-- RECORD -->
+
+<div class="story-record-layout">
+
+<div
+id="storyRecordType"
+class="story-record-title"
+></div>
+
+<div class="story-record-sub">
+YOUR SOUND / 5 TRACK CURATION
+</div>
+
+<div class="story-vinyl">
+
+<img
+id="storyRecordArt"
+class="story-record-art"
+crossorigin="anonymous"
+alt=""
+>
+
+<div class="story-record-hole"></div>
+
+</div>
+
+<div
+id="storyTrackList"
+class="story-track-list"
+></div>
+
+</div>
+
+
+
+<!-- RECEIPT -->
+
+<div class="story-receipt-layout">
+
+<div class="receipt-paper">
+
+<div class="receipt-head">
+YOUR SOUND
+</div>
+
+<div
+id="receiptDate"
+class="receipt-date"
+></div>
+
+<div class="receipt-rule"></div>
+
+<div class="receipt-type-label">
+MUSIC TYPE
+</div>
+
+<div
+id="receiptType"
+class="receipt-type"
+></div>
+
+<div
+id="receiptDesc"
+class="receipt-desc"
+></div>
+
+<div class="receipt-rule"></div>
+
+<div
+id="receiptList"
+class="receipt-list"
+></div>
+
+<div class="receipt-rule"></div>
+
+<div class="receipt-total">
+
+<span>
+TOTAL
+</span>
+
+<span>
+5 SONGS
+</span>
+
+</div>
+
+<div class="receipt-thanks">
+THANK YOU FOR LISTENING<br>
+MUSIC FINDS A NEW YOU
+</div>
+
+</div>
+
+</div>
+
+
+<div class="story-footer">
+MUSIC FINDS A NEW YOU
+</div>
+
+
+</div>
+
+
+</div>
+
+
+
+<div class="story-actions">
+
+<button
+id="storySave"
+class="story-action"
+>
+↓ 画像を保存
+</button>
+
+<button
+id="storyCopy"
+class="story-action"
+>
+⌁ 結果URLコピー
+</button>
+
+<button
+id="storyShare"
+class="story-action main"
+>
+↑ 結果をシェア
+</button>
+
+</div>
+
+
+<p
+id="storyMessage"
+class="story-note"
+>
+Instagramに載せるなら「結果をシェア」がおすすめ。
+</p>
 
 
 </div>
@@ -3449,10 +4639,13 @@ let currentIndex =
 
 let loadingTimer;
 
+let storyStyle =
+"cover";
 
-/* ===============================
+
+/* =========================================================
    LOADING COPY
-=============================== */
+========================================================= */
 
 const loadingMessages = [
 
@@ -3484,9 +4677,9 @@ const loadingMessages = [
 ];
 
 
-/* ===============================
-   MODES
-=============================== */
+/* =========================================================
+   MODE
+========================================================= */
 
 document
 .querySelectorAll(".mode")
@@ -3529,9 +4722,9 @@ mode !== "manual"
 });
 
 
-/* ===============================
+/* =========================================================
    LOVE TYPE
-=============================== */
+========================================================= */
 
 document
 .querySelectorAll(".ls")
@@ -3574,9 +4767,9 @@ loveMode !== "l16"
 });
 
 
-/* ===============================
+/* =========================================================
    STATUS
-=============================== */
+========================================================= */
 
 function setStatus(
 id,
@@ -3606,9 +4799,9 @@ error
 }
 
 
-/* ===============================
-   LOADING
-=============================== */
+/* =========================================================
+   LOADING TEXT
+========================================================= */
 
 function startLoadingText(){
 
@@ -3693,9 +4886,9 @@ loadingTimer
 }
 
 
-/* ===============================
+/* =========================================================
    FORM -> LOADING
-=============================== */
+========================================================= */
 
 async function showLoading(){
 
@@ -3743,9 +4936,9 @@ document.body
 }
 
 
-/* ===============================
+/* =========================================================
    ERROR -> FORM
-=============================== */
+========================================================= */
 
 async function closeLoadingForError(){
 
@@ -3774,9 +4967,9 @@ $("loading")
 }
 
 
-/* ===============================
-   ESCAPE
-=============================== */
+/* =========================================================
+   ESCAPE HTML
+========================================================= */
 
 function escapeHTML(
 value = ""
@@ -3799,9 +4992,9 @@ char => ({
 }
 
 
-/* ===============================
+/* =========================================================
    AUTO
-=============================== */
+========================================================= */
 
 $("find")
 .onclick =
@@ -3860,9 +5053,9 @@ payload,
 };
 
 
-/* ===============================
+/* =========================================================
    MANUAL
-=============================== */
+========================================================= */
 
 $("mfind")
 .onclick =
@@ -3931,9 +5124,9 @@ payload,
 };
 
 
-/* ===============================
+/* =========================================================
    API
-=============================== */
+========================================================= */
 
 async function requestMusic(
 payload,
@@ -4116,9 +5309,9 @@ true
 }
 
 
-/* ===============================
-   MUSIC TYPE ONE LINE
-=============================== */
+/* =========================================================
+   TYPE ONE LINE
+========================================================= */
 
 function setMusicType(
 text
@@ -4170,9 +5363,9 @@ size + "px";
 }
 
 
-/* ===============================
+/* =========================================================
    LOADING -> RESULT
-=============================== */
+========================================================= */
 
 async function transitionToResult(
 data
@@ -4273,9 +5466,9 @@ $("reveal")
 }
 
 
-/* ===============================
+/* =========================================================
    REVEAL COPY
-=============================== */
+========================================================= */
 
 function createRevealCopy(
 song,
@@ -4327,9 +5520,9 @@ return type + "。";
 }
 
 
-/* ===============================
+/* =========================================================
    CARDS
-=============================== */
+========================================================= */
 
 function renderCards(){
 
@@ -4351,6 +5544,7 @@ song.artwork
 class="art"
 src="${escapeHTML(song.artwork)}"
 alt="${escapeHTML(song.title)}"
+crossorigin="anonymous"
 >`
 :
 `<div class="art"></div>`
@@ -4495,9 +5689,9 @@ nearest
 }
 
 
-/* ===============================
+/* =========================================================
    FAVORITES
-=============================== */
+========================================================= */
 
 function getFavorites(){
 
@@ -4536,9 +5730,9 @@ song.title
 }
 
 
-/* ===============================
+/* =========================================================
    SELECT SONG
-=============================== */
+========================================================= */
 
 function selectSong(
 index
@@ -4826,9 +6020,9 @@ song.mood
 }
 
 
-/* ===============================
+/* =========================================================
    MOOD
-=============================== */
+========================================================= */
 
 function applyMood(
 rawMood = ""
@@ -5094,9 +6288,9 @@ document.body
 }
 
 
-/* ===============================
-   SHARE ENCODE
-=============================== */
+/* =========================================================
+   SHARE DATA ENCODE
+========================================================= */
 
 function encodeShareData(
 data
@@ -5115,7 +6309,8 @@ let binary =
 "";
 
 
-bytes.forEach(
+bytes
+.forEach(
 byte => {
 
 binary +=
@@ -5133,9 +6328,9 @@ return btoa(binary)
 }
 
 
-/* ===============================
-   SHARE DECODE
-=============================== */
+/* =========================================================
+   SHARE DATA DECODE
+========================================================= */
 
 function decodeShareData(
 text
@@ -5178,9 +6373,9 @@ return JSON.parse(json);
 }
 
 
-/* ===============================
-   SHARE DATA
-=============================== */
+/* =========================================================
+   CREATE SHARE DATA
+========================================================= */
 
 function createShareData(){
 
@@ -5238,23 +6433,11 @@ song.mood || ""
 }
 
 
-/* ===============================
-   SHARE BUTTON
-=============================== */
+/* =========================================================
+   BUILD SHARE URL
+========================================================= */
 
-$("share")
-.onclick =
-async () => {
-
-
-if(
-!songs.length
-){
-
-return;
-
-}
-
+function buildShareURL(){
 
 const data =
 createShareData();
@@ -5266,28 +6449,757 @@ data
 );
 
 
-const shareURL =
+return (
 location.origin +
 location.pathname +
 "#share=" +
-encoded;
+encoded
+);
+
+}
 
 
-const best =
-songs[0];
+/* =========================================================
+   STORY MODE OPEN
+========================================================= */
+
+$("share")
+.onclick =
+() => {
+
+if(
+!songs.length
+){
+
+return;
+
+}
 
 
-const shareText =
-`まだ知らない、私の音。
+buildStory();
 
-YOUR SOUNDで
-「${data.type}」でした。
 
-BEST MATCH
-${best.title} — ${best.artist}`;
+$("storyModal")
+.classList
+.add(
+"show"
+);
+
+
+document.body
+.style.overflow =
+"hidden";
+
+};
+
+
+/* =========================================================
+   STORY CLOSE
+========================================================= */
+
+$("storyClose")
+.onclick =
+closeStory;
+
+
+function closeStory(){
+
+$("storyModal")
+.classList
+.remove(
+"show"
+);
+
+
+document.body
+.style.overflow =
+"";
+
+}
+
+
+/* =========================================================
+   STORY STYLE SWITCH
+========================================================= */
+
+document
+.querySelectorAll(".story-tab")
+.forEach(button => {
+
+button.onclick =
+() => {
+
+storyStyle =
+button.dataset.story;
+
+
+document
+.querySelectorAll(".story-tab")
+.forEach(item => {
+
+item.classList.toggle(
+"active",
+item === button
+);
+
+});
+
+
+$("storyCard")
+.className =
+"story-card " +
+storyStyle;
+
+};
+
+});
+
+
+/* =========================================================
+   BUILD STORY
+========================================================= */
+
+function buildStory(){
+
+const first =
+songs[0] ||
+{};
+
+
+const type =
+$("type")
+.textContent
+.trim();
+
+
+const description =
+$("desc")
+.textContent
+.trim();
+
+
+const artwork =
+first.artwork ||
+"";
+
+
+$("storyCoverType")
+.textContent =
+type;
+
+
+$("storyCoverDesc")
+.textContent =
+description;
+
+
+$("storyCoverSong")
+.textContent =
+first.title ||
+"";
+
+
+$("storyCoverArtist")
+.textContent =
+first.artist ||
+"";
+
+
+$("storyRecordType")
+.textContent =
+type;
+
+
+$("receiptType")
+.textContent =
+type;
+
+
+$("receiptDesc")
+.textContent =
+description;
+
+
+const now =
+new Date();
+
+
+$("receiptDate")
+.textContent =
+[
+now.getFullYear(),
+String(
+now.getMonth() + 1
+)
+.padStart(2,"0"),
+String(
+now.getDate()
+)
+.padStart(2,"0")
+]
+.join(".")
++
+" / PERSONAL MUSIC CURATION";
+
+
+if(
+artwork
+){
+
+$("storyBg").src =
+artwork;
+
+
+$("storyCoverArt").src =
+artwork;
+
+
+$("storyRecordArt").src =
+artwork;
+
+}
+else{
+
+$("storyBg")
+.removeAttribute(
+"src"
+);
+
+
+$("storyCoverArt")
+.removeAttribute(
+"src"
+);
+
+
+$("storyRecordArt")
+.removeAttribute(
+"src"
+);
+
+}
+
+
+$("storyTrackList")
+.innerHTML =
+songs
+.slice(0,5)
+.map(
+(song,index) => `
+
+<div class="story-track">
+
+<div class="story-track-num">
+${String(index + 1).padStart(2,"0")}
+</div>
+
+<div class="story-track-main">
+
+${escapeHTML(song.title || "")}
+
+<span>
+/ ${escapeHTML(song.artist || "")}
+</span>
+
+</div>
+
+</div>
+
+`
+)
+.join("");
+
+
+$("receiptList")
+.innerHTML =
+songs
+.slice(0,5)
+.map(
+(song,index) => `
+
+<div class="receipt-row">
+
+<div class="receipt-num">
+${String(index + 1).padStart(2,"0")}
+</div>
+
+<div class="receipt-song">
+
+${escapeHTML(song.title || "")}
+
+<small>
+${escapeHTML(song.artist || "")}
+</small>
+
+</div>
+
+</div>
+
+`
+)
+.join("");
+
+
+$("storyCard")
+.className =
+"story-card " +
+storyStyle;
+
+}
+
+
+/* =========================================================
+   WAIT FOR STORY IMAGES
+========================================================= */
+
+async function waitForStoryImages(){
+
+const images = [
+$("storyBg"),
+$("storyCoverArt"),
+$("storyRecordArt")
+];
+
+
+await Promise.all(
+images.map(
+image => {
+
+if(
+!image.src ||
+image.complete
+){
+
+return Promise.resolve();
+
+}
+
+
+return new Promise(
+resolve => {
+
+const finish =
+() => {
+
+image.removeEventListener(
+"load",
+finish
+);
+
+
+image.removeEventListener(
+"error",
+finish
+);
+
+
+resolve();
+
+};
+
+
+image.addEventListener(
+"load",
+finish
+);
+
+
+image.addEventListener(
+"error",
+finish
+);
+
+
+setTimeout(
+finish,
+2500
+);
+
+}
+);
+
+}
+)
+);
+
+}
+
+
+/* =========================================================
+   CREATE STORY PNG
+========================================================= */
+
+async function createStoryBlob(){
+
+$("storyMessage")
+.textContent =
+"画像を作成しています…";
 
 
 try{
+
+await document.fonts.ready;
+
+
+await waitForStoryImages();
+
+
+if(
+typeof html2canvas !==
+"function"
+){
+
+throw new Error(
+"html2canvas unavailable"
+);
+
+}
+
+
+const card =
+$("storyCard");
+
+
+const canvas =
+await html2canvas(
+card,
+{
+
+scale:3,
+
+useCORS:true,
+
+allowTaint:false,
+
+backgroundColor:null,
+
+logging:false
+
+}
+);
+
+
+const blob =
+await new Promise(
+resolve => {
+
+canvas.toBlob(
+resolve,
+"image/png",
+1
+);
+
+}
+);
+
+
+if(
+!blob
+){
+
+throw new Error(
+"画像生成に失敗しました"
+);
+
+}
+
+
+$("storyMessage")
+.textContent =
+"画像が完成しました。";
+
+
+return blob;
+
+
+}
+catch(error){
+
+console.error(
+"STORY IMAGE ERROR",
+error
+);
+
+
+$("storyMessage")
+.textContent =
+"画像を作れませんでした。もう一度試してください。";
+
+
+return null;
+
+}
+
+}
+
+
+/* =========================================================
+   SAVE STORY IMAGE
+========================================================= */
+
+$("storySave")
+.onclick =
+async () => {
+
+const blob =
+await createStoryBlob();
+
+
+if(
+!blob
+){
+
+return;
+
+}
+
+
+const file =
+new File(
+[
+blob
+],
+"YOUR-SOUND-STORY.png",
+{
+type:"image/png"
+}
+);
+
+
+try{
+
+
+if(
+navigator.share
+&&
+navigator.canShare
+&&
+navigator.canShare({
+files:[
+file
+]
+})
+){
+
+await navigator.share({
+files:[
+file
+],
+title:"YOUR SOUND"
+});
+
+
+$("storyMessage")
+.textContent =
+"共有メニューから「画像を保存」を選べます。";
+
+
+return;
+
+}
+
+
+}
+catch(error){
+
+if(
+error.name ===
+"AbortError"
+){
+
+return;
+
+}
+
+}
+
+
+const url =
+URL.createObjectURL(
+blob
+);
+
+
+const link =
+document.createElement(
+"a"
+);
+
+
+link.href =
+url;
+
+
+link.download =
+"YOUR-SOUND-STORY.png";
+
+
+document.body
+.appendChild(
+link
+);
+
+
+link.click();
+
+
+link.remove();
+
+
+setTimeout(
+() => {
+
+URL.revokeObjectURL(
+url
+);
+
+},
+2000
+);
+
+
+$("storyMessage")
+.textContent =
+"画像を保存しました。";
+
+};
+
+
+/* =========================================================
+   COPY RESULT URL
+========================================================= */
+
+$("storyCopy")
+.onclick =
+async () => {
+
+const url =
+buildShareURL();
+
+
+try{
+
+await navigator.clipboard
+.writeText(
+url
+);
+
+
+$("storyMessage")
+.textContent =
+"診断結果リンクをコピーしました。";
+
+}
+catch{
+
+$("storyMessage")
+.textContent =
+"リンクをコピーできませんでした。";
+
+}
+
+};
+
+
+/* =========================================================
+   SHARE STORY
+========================================================= */
+
+$("storyShare")
+.onclick =
+async () => {
+
+const blob =
+await createStoryBlob();
+
+
+if(
+!blob
+){
+
+return;
+
+}
+
+
+const resultURL =
+buildShareURL();
+
+
+const file =
+new File(
+[
+blob
+],
+"YOUR-SOUND-STORY.png",
+{
+type:"image/png"
+}
+);
+
+
+const type =
+$("type")
+.textContent
+.trim();
+
+
+const best =
+songs[0] ||
+{};
+
+
+const text =
+`まだ知らない、私の音。
+
+YOUR SOUNDで
+「${type}」でした。
+
+BEST MATCH
+${best.title || ""} — ${best.artist || ""}`;
+
+
+try{
+
+
+if(
+navigator.share
+&&
+navigator.canShare
+&&
+navigator.canShare({
+files:[
+file
+]
+})
+){
+
+await navigator.share({
+
+title:
+"YOUR SOUND",
+
+text:
+text,
+
+url:
+resultURL,
+
+files:[
+file
+]
+
+});
+
+
+$("storyMessage")
+.textContent =
+"共有メニューを開きました。";
+
+
+return;
+
+}
 
 
 if(
@@ -5300,27 +7212,33 @@ title:
 "YOUR SOUND",
 
 text:
-shareText,
+text,
 
 url:
-shareURL
+resultURL
 
 });
 
+
+$("storyMessage")
+.textContent =
+"共有メニューを開きました。";
+
+
+return;
+
 }
-else{
+
 
 await navigator.clipboard
 .writeText(
-shareURL
+resultURL
 );
 
 
-alert(
-"共有リンクをコピーしました！"
-);
-
-}
+$("storyMessage")
+.textContent =
+"共有に対応していないため、結果URLをコピーしました。";
 
 
 }
@@ -5332,20 +7250,15 @@ error.name !==
 "AbortError"
 ){
 
-try{
-
-await navigator.clipboard
-.writeText(
-shareURL
+console.error(
+"STORY SHARE ERROR",
+error
 );
 
 
-alert(
-"共有リンクをコピーしました！"
-);
-
-}
-catch{}
+$("storyMessage")
+.textContent =
+"共有できませんでした。画像保存を試してください。";
 
 }
 
@@ -5355,9 +7268,9 @@ catch{}
 };
 
 
-/* ===============================
+/* =========================================================
    OPEN SHARED RESULT
-=============================== */
+========================================================= */
 
 function openSharedResult(){
 
@@ -5474,7 +7387,6 @@ $("change")
 .onclick =
 () => {
 
-
 history
 .replaceState(
 null,
@@ -5484,7 +7396,6 @@ location.pathname
 
 
 location.reload();
-
 
 };
 
@@ -5499,7 +7410,7 @@ window.scrollTo(
 catch(error){
 
 console.error(
-"SHARE ERROR",
+"SHARED RESULT ERROR",
 error
 );
 
@@ -5508,15 +7419,17 @@ error
 }
 
 
-/* ===============================
+/* =========================================================
    REROLL
-=============================== */
+========================================================= */
 
 $("reroll")
 .onclick =
 () => {
 
-if(!lastRequest){
+if(
+!lastRequest
+){
 
 return;
 
@@ -5538,9 +7451,9 @@ mode === "auto"
 };
 
 
-/* ===============================
-   CHANGE
-=============================== */
+/* =========================================================
+   CHANGE CONDITIONS
+========================================================= */
 
 $("change")
 .onclick =
@@ -5554,9 +7467,9 @@ behavior:"smooth"
 };
 
 
-/* ===============================
+/* =========================================================
    RESIZE
-=============================== */
+========================================================= */
 
 window
 .addEventListener(
@@ -5579,9 +7492,37 @@ $("type")
 );
 
 
-/* ===============================
+/* =========================================================
+   CLOSE STORY WITH ESC
+========================================================= */
+
+document
+.addEventListener(
+"keydown",
+event => {
+
+if(
+event.key ===
+"Escape"
+&&
+$("storyModal")
+.classList
+.contains(
+"show"
+)
+){
+
+closeStory();
+
+}
+
+}
+);
+
+
+/* =========================================================
    START
-=============================== */
+========================================================= */
 
 openSharedResult();
 
